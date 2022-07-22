@@ -1,0 +1,36 @@
+section#client_opinion{
+    
+    .lna_container_flex{
+
+        overflow: scroll;
+        height: 270px;
+
+        @media screen and (min-width:575px){
+                    
+            overflow: visible;
+        }
+        
+        .lna_product_item{
+            min-width: 200px;
+            max-width: 200px;
+            margin-right: .5rem;
+            margin-left: .5rem;
+    
+            img{
+                width: 107px;
+                height: 107px;
+                padding: 1rem;
+    
+            }
+    
+            p:nth-child(2){
+                font-size: .9rem;
+                line-height: 1.3rem;
+            }
+    
+            p:last-child{
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+section#reinsurance{
+
+    @include gradient_reinsurance;
+
+    @media screen and (min-width:1200px){
+        height: 150px;
+        display: flex;
+        align-items: center;
+    }
+    .lna_reinsurance_img{
+        width: 40px;
+        height: 40px;
+        @include bg_img_parameter;
+
+        &.lna_reinsurance_livraison{
+            background-image: url(../img/icon/reassurant/livraison.svg);
+        }
+        &.lna_reinsurance_expedition{
+            background-image: url(../img/icon/header/expedition.svg);
+        }
+        &.lna_reinsurance_client{
+            background-image: url(../img/icon/reassurant/service_client.svg);
+        }
+        &.lna_reinsurance_delivery{
+            background-image: url(../img/icon/header/delivery.svg);
+        }
+    }
+}

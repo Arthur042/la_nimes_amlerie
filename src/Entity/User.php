@@ -46,15 +46,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Gender $gender = null;
 
-    #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'users')]
-    private Collection $comments;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bag::class)]
     private Collection $bags;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Adress $adress = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
+    private Collection $comments;
 
     public function __construct()
     {
@@ -193,30 +193,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Product>
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Product $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-        }
-
-        return $this;
-    }
-
-    public function removeComment(Product $comment): self
-    {
-        $this->comments->removeElement($comment);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Bag>
      */
     public function getBags(): Collection
@@ -254,6 +230,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAdress(?Adress $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
 
         return $this;
     }

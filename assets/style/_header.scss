@@ -1,0 +1,184 @@
+header{
+
+    background-color: white;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0px 0px 20px #00000080;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+
+    .banner{
+        @include gradient_banner;
+        height: 2rem;
+        line-height: 2rem;
+        .lna_banner_position{
+
+            margin-right: 10%;
+
+            @media screen and (max-width:400px) {
+                margin-right: 1rem;
+            }
+
+            &:last-child{
+                margin-right: 0
+            }
+
+            .lna_banner_img{
+                @include bg_img_parameter;
+                width: 16px;
+                height: 16px;
+                position: relative;
+                top: 8px;
+                margin-right: .5rem;
+    
+                &.lna_img_truck{
+                    background-image: url(../img/icon/header/expedition_white.svg);
+                }
+    
+                &.lna_img_delivery{
+                    background-image: url(../img/icon/header/delivery_white.svg);
+                }
+    
+                &.lna_img_safe{
+                    background-image: url(../img/icon/header/safety_certificate_white.svg);
+                }
+            }
+        }
+        
+    }
+    .logo_search_cut{
+
+        margin-bottom: .5rem;
+        .ps-5{
+            padding-left: 1rem !important;
+        }
+
+        > .row{
+            justify-content: space-between;
+            align-items: center;
+
+            img{
+                width: 100%;
+                max-width: 182px;
+            }
+
+            .form-control{
+                border: 0px;
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+                box-shadow: $shadow_main;
+                transition: all 0.15s ease-in-out;
+
+                &:focus{
+                    box-shadow: $shadow_hover;
+                }
+            }
+
+            @media screen and (min-width: 768px) {
+                .lna_search_logo{
+                    @include bg_img_parameter;
+                    background-image: url(../img/icon/header/search_white.svg);
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    justify-content: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+            
+        }
+
+        .lna_displayHeaderIcon{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 300px;
+
+            @media screen and (max-width:992px) {
+                justify-content: start !important;
+                width: 200px;
+            }
+
+            .lna_header_icon{
+                position: relative;
+                width: 100px;
+                height: 79px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+
+                @media screen and (max-width:992px) {
+                    width: 80px;
+                }
+                
+                >div{
+                    width: 45px;
+                    height: 45px;
+                    @include bg_img_parameter;
+                    transition: all 0.15s ease-in-out;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+
+                    &.lna_account{
+                        background-image: url('../img/icon/header/account.svg');
+                        width: 60px;
+                        height: 60px;
+
+                        &:hover{
+                            background-image: url('../img/icon/header/account_hover.svg');
+                        }
+                    }
+                    &.lna_shop{
+                        background-image: url('../img/icon/header/shop_empty.svg');
+                        margin-top: .5rem;
+
+                        &:hover{
+                            background-image: url('../img/icon/header/shop_empty_hover.svg');
+                        }
+                    }
+                    &.lna_commande{
+                        background-image: url('../img/icon/header/panier.svg');
+                        margin-top: .5rem;
+
+                        &:hover{
+                            background-image: url('../img/icon/header/panier_hover.svg');
+                        }
+                    }
+                }
+                
+                
+
+                
+            }
+        }
+
+        
+
+
+
+
+        .lna_header_icon:last-child{
+            padding-right: 0;
+        }
+
+        .lna_btn{
+            background-image: url(../img/icon/header/burger.svg);
+            @include bg_img_parameter;
+            box-shadow: $shadow_btn;
+            width: 55px;
+            height: 40px;
+            margin-right: 12px;
+        }
+    }
+
+}
+@media screen and (min-width:768px) {
+    body > header > div.container > div > div > div > div.col-7.col-md-4.mt-1 > div > div > p{
+        font-size: .8rem ;
+        margin: 0;
+    }
+}

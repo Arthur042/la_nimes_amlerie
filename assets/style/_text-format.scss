@@ -1,0 +1,64 @@
+body{
+    font-family: $main;
+    text-align: center;
+    color: $dark;
+    
+    h1, h2, h3, h4, h5, h6{
+        font-family: $headings_product;
+    }
+
+    section h2{
+        font-size: 1.87rem;
+        margin-bottom: 1.5rem;
+        
+        + p{
+            font-size: 1.07rem;
+            margin-bottom: 2rem;
+
+        }
+    }
+
+    a{
+        text-decoration: none;
+
+        &:visited{
+            color: inherit;
+        }
+    }
+
+    header{
+
+        .banner{
+            font-size: 0.6rem;
+
+            @media screen and (min-width:992px) {
+                font-size: 1rem;
+            }
+        }
+
+        .input-group{
+    
+            input::placeholder{
+                font-family: $main;
+                font-weight: bold;
+                font-size: .6rem;
+
+
+                @media screen and (min-width: 540px) {
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+
+                @media screen and (min-width:768px) {
+                    font-size: .6rem;
+                }
+
+                @media screen and (min-width:992px){
+                    font-size: 1rem;
+                }
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,138 @@
+.offcanvasMobileNavBar {
+    @include gradient_offCanva;
+    color: $light;
+    width: 100%;
+    a{
+        color: $light;
+    }
+    .offcanvas-header{
+        justify-content: end !important;
+
+        button{
+            @include bg_img_parameter;
+            width: 30px;
+            height: 30px;
+            background-image: url('../img/icon/offCanva/cross.png');
+        }
+    }
+
+    .offcanvas-body{
+        position: relative;
+        overflow: hidden;
+
+        #mainOffcanvas{
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+    
+            li{
+                width: 150px;
+                display: flex;
+                justify-content: start;
+                font-size: 1rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid $light;
+    
+                &:last-child{
+                    padding-bottom: 0;
+                    border-bottom: none;
+                }
+    
+                &:first-child{
+                    padding-top: 0;
+                }
+    
+                img{
+                    margin-right: .5rem;
+                    width: 30px;
+                }
+            }
+        }
+
+
+        // offCanvasDog 
+            .offcanvasDog, .offcanvasCat, .offcanvasRat, .offcanvasFish, .offcanvasSnake, .offcanvasBird{
+                position: absolute;
+                width: 70%;
+                right: -400px;
+                top: 20px;
+                transition: ease-in-out .4s;
+
+                &:hover{
+                    right: 0;
+                }
+
+                .targetDogDisplay{
+                    position: relative;
+
+                    .secondCanvas{
+                        list-style: none;
+                        padding-right: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: end;
+
+                        li{
+                            display: flex;
+                            justify-content: end;
+                            font-size: .9rem;
+                            padding-top: .5rem;
+                            padding-bottom: .5rem;
+                
+                            &:last-child{
+                                padding-bottom: 0;
+                            }
+                
+                            &:first-child{
+                                padding-top: 0;
+                            }
+                        }
+                    }
+
+                    div{
+                        @include bg_img_parameter;
+                        width: 8px;
+                        height: 14px;
+                        background-image: url(../img/icon/offCanva/pointer.png);
+                        position: absolute;
+                    }
+                }
+            }
+
+            .offcanvasDog .targetDogDisplay div{
+                top: 1px;
+                left: -5px;
+            }
+
+            .offcanvasCat .targetDogDisplay div{
+                top: 62px;
+                left: -13px;
+            }
+            
+            .offcanvasFish .targetDogDisplay div{
+                top: 123px;
+                left: -10px;
+            }
+            
+            .offcanvasRat .targetDogDisplay div{
+                top: 183px;
+                left: 12px;
+            }
+
+            .offcanvasSnake .targetDogDisplay div{
+                top: 243px;
+                left: 8px;
+            }
+
+            .offcanvasBird .targetDogDisplay div{
+                top: 304px;
+                left: 2px;
+            }
+    }
+    
+}
+
+

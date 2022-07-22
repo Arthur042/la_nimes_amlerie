@@ -1,0 +1,44 @@
+header nav ul{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    @media screen and (min-width:992px) {
+        justify-content: space-evenly;
+    }
+
+    
+    
+    li {
+        padding-right: 1rem;
+        a{
+            display: flex;
+            align-items: center;
+            color: $dark;
+
+            &:visited{
+                color: inherit;
+            }
+
+            &:hover{
+                @include text_fade;
+            }
+        }
+
+        img{
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        @media screen and (min-width:1200px) {
+        
+            display: flex;
+            align-items: center;
+
+        }
+    }
+}

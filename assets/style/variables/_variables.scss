@@ -1,0 +1,19 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Sansita+Swashed:wght@400;700&display=swap');
+
+$headings_product: 'Sansita Swashed', cursive;
+$main: 'Roboto', sans-serif;
+
+// colors
+$danger: #CB1515;
+$dark: #272727;
+$light: #FAFCFF;
+$price: #9BCBEB;
+$search: #807878;
+$footer: #80787851;
+
+// shadow
+
+$shadow_main: 0 0 4px rgb(0 0 0 / 20%);
+$shadow_hover: 0 0 7px rgb(0 0 0 / 40%);
+$shadow_btn: 0px 0px 7px rgb(0 0 0 / 20%);

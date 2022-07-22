@@ -1,0 +1,93 @@
+.lna_btn_main{
+    font-family: $headings_product;
+    padding: .6rem 3rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 0 auto;
+    transition: all 0.15s ease-in-out;
+    box-shadow: $shadow_main;
+
+    &.lna_btn_product{
+        padding: 0.5rem 1.5rem;
+        font-size: .8rem;
+    }
+
+    &.lna_btn_light{
+        background-color: $light;
+        color: $dark;
+
+        &:hover{
+            background-color: $dark;
+            color: $light;
+        }
+    }
+
+    &.lna_btn_dark{
+        background-color: $dark;
+        color: $light;
+
+        &:hover{
+            background-color: $light;
+            color: $dark;
+        }
+    }
+
+    &.lna_btn_carousel_dark{
+        background-color: $dark;
+        color: $light;
+        padding: .4rem 1rem;
+        font-size: .6rem;
+
+        @media screen and (min-width: 768px) {
+            padding: .5rem 2rem;
+            font-size: .8rem;
+        }
+
+        @media screen and (min-width: 1200px) {
+            padding: .7rem 3rem;
+            font-size: 1rem;
+        }
+
+        &:hover{
+            background-color: $light;
+            color: $dark;
+        }
+    }
+
+
+    &.lna_btn_carousel_fade{
+        border: solid 1px $light;
+        box-shadow: none;
+        padding: .4rem 1rem;
+        font-size: .6rem;
+
+        @media screen and (min-width: 768px) {
+            padding: .5rem 2rem;
+            font-size: .8rem;
+        }
+
+        @media screen and (min-width: 1200px) {
+            padding: .7rem 3rem;
+            font-size: 1rem;
+        }
+        
+        &:hover{
+            background-color: $light;
+            color: $dark;
+            box-shadow: $shadow_main;
+        }
+    }
+
+    &.lna_btn_fade_color{
+        @include gradient_btn;
+        border: none;
+        box-shadow: $shadow_btn;
+        color: $light;
+        font-family: $main !important;
+        font-weight: bold;
+
+        &:hover{
+            @include gradient_btn_hover;
+        }
+    }
+}

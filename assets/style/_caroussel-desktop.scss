@@ -1,0 +1,147 @@
+#carousel_part {
+
+    max-width: 1920px;
+    margin: auto;
+    margin-bottom: 3rem;
+
+    .carousel-control-prev, .carousel-control-next{
+        width: 10%;
+    }
+
+    .lna_carousel_1{
+        text-align: left;
+        color: $dark;
+        width: 40%;
+        height: 80%;
+        left: 8%;
+        top: 5%;
+        
+        h5{
+            font-weight: bold;
+            font-size: .9rem;
+        }
+        p{
+            font-size: .6rem;
+        }
+
+
+        @media screen and (min-width: 768px) {
+
+            left: 10%;
+            top: 10%;
+            h5{
+                font-size: 1.2rem;
+            }
+            p{
+                font-size: .8rem;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+
+            left: 10%;
+            top: 10%;
+            h5{
+                font-size: 1.6rem;
+            }
+            p{
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (min-width: 1400px) {
+
+            left: 10%;
+            top: 10%;
+            h5{
+                font-size: 2rem;
+            }
+            p{
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .lna_carousel_2{
+
+        border: 1px solid white;
+        width: 40%;
+        height: 80%;
+        left: 5%;
+        top: 10%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: .3rem;
+
+        a{
+            color: $light;
+            &:hover{
+                color: $dark;
+            }
+        }
+        p{
+            font-size: .6rem;
+        }
+        p:nth-child(1){
+            margin: 0;
+            font-size: .9rem;
+            font-family: $headings_product;
+        }
+        h5{
+            font-size: .9rem;
+        }
+
+        @media screen and (min-width: 768px) {
+
+            left: 5%;
+            top: 10%;
+            p{
+                font-size: .9rem;
+            }
+            p:nth-child(1){
+                margin: 0;
+                font-size: 2rem;
+                font-family: $headings_product;
+            }
+            h5{
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+
+            left: 5%;
+            top: 10%;
+            p{
+                font-size: 1.2rem;
+            }
+            p:nth-child(1){
+                margin: 0;
+                font-size: 2.5rem;
+                font-family: $headings_product;
+            }
+            h5{
+                font-size: 1.6rem;
+            }
+
+        }
+        
+        @media screen and (min-width: 1200px) {
+
+            left: 5%;
+            top: 10%;
+            p{
+                font-size: 1.5rem;
+            }
+            p:nth-child(1){
+                margin: 0;
+                font-size: 3rem;
+                font-family: $headings_product;
+            }
+            h5{
+                font-size: 2rem;
+            }
+        }
+    }
+}

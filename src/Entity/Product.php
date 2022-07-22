@@ -37,9 +37,6 @@ class Product
     #[ORM\Column]
     private ?bool $isAvailable = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'comments')]
-    private Collection $users;
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
@@ -51,14 +48,15 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Mark $mark = null;
 
-    #[ORM\ManyToMany(targetEntity: Bag::class, inversedBy: 'products')]
-    private Collection $bags;
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Comment::class)]
+    private Collection $comments;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->photos = new ArrayCollection();
         $this->bags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,33 +148,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addComment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeComment($this);
-        }
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -232,25 +203,31 @@ class Product
     }
 
     /**
-     * @return Collection<int, Bag>
+     * @return Collection<int, Comment>
      */
-    public function getBags(): Collection
+    public function getComments(): Collection
     {
-        return $this->bags;
+        return $this->comments;
     }
 
-    public function addBag(Bag $bag): self
+    public function addComment(Comment $comment): self
     {
-        if (!$this->bags->contains($bag)) {
-            $this->bags[] = $bag;
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeBag(Bag $bag): self
+    public function removeComment(Comment $comment): self
     {
-        $this->bags->removeElement($bag);
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getProduct() === $this) {
+                $comment->setProduct(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,38 @@
+// gradient banniere haut bas
+@mixin gradient_banner {
+    background: rgb(5,117,230);
+    background: linear-gradient(90deg, rgba(5,117,230,.7) 0%, rgba(0,242,96,.7) 70%);
+}
+
+@mixin gradient_reinsurance {
+    background: rgb(5,117,230);
+    background: linear-gradient(45deg, rgba(5,117,230,.5) 0%, rgba(0,242,96,.5) 80%);
+}
+
+@mixin gradient_offCanva {
+    background: rgb(5,117,230);
+    background: linear-gradient(45deg, rgba(5,117,230) 0%, rgba(0,242,96) 80%);
+}
+
+@mixin gradient_btn {
+    background: rgb(5,117,230);
+    background: linear-gradient(135deg, rgba(5,117,230) -50%, rgba(0,242,96) 80%);
+}
+
+@mixin gradient_btn_hover {
+    background: rgb(5,117,230);
+    background: linear-gradient(135deg,rgba(0,242,96) 0%, rgba(5,117,230) 200%);
+}
+
+@mixin text_fade {
+    background: linear-gradient(45deg, rgba(5,117,230) 0%, rgba(0,242,96) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin bg_img_parameter {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

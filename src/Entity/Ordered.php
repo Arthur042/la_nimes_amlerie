@@ -17,9 +17,6 @@ class Ordered
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationAt = null;
 
-    #[ORM\OneToOne(mappedBy: 'ordered', cascade: ['persist', 'remove'])]
-    private ?Bag $bag = null;
-
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Status $status = null;
@@ -31,6 +28,10 @@ class Ordered
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Adress $billingAdress = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Bag $bag = null;
 
     public function getId(): ?int
     {
@@ -45,28 +46,6 @@ class Ordered
     public function setCreationAt(\DateTimeInterface $creationAt): self
     {
         $this->creationAt = $creationAt;
-
-        return $this;
-    }
-
-    public function getBag(): ?Bag
-    {
-        return $this->bag;
-    }
-
-    public function setBag(?Bag $bag): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($bag === null && $this->bag !== null) {
-            $this->bag->setOrdered(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($bag !== null && $bag->getOrdered() !== $this) {
-            $bag->setOrdered($this);
-        }
-
-        $this->bag = $bag;
 
         return $this;
     }
@@ -103,6 +82,18 @@ class Ordered
     public function setBillingAdress(?Adress $billingAdress): self
     {
         $this->billingAdress = $billingAdress;
+
+        return $this;
+    }
+
+    public function getBag(): ?Bag
+    {
+        return $this->bag;
+    }
+
+    public function setBag(Bag $bag): self
+    {
+        $this->bag = $bag;
 
         return $this;
     }

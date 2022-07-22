@@ -19,22 +19,20 @@ class Bag
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationAt = null;
 
-    #[ORM\Column]
-    private ?bool $isExpired = null;
-
     #[ORM\ManyToOne(inversedBy: 'bags')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'bags')]
-    private Collection $products;
+    #[ORM\OneToMany(mappedBy: 'bag', targetEntity: Contain::class)]
+    private Collection $contains;
 
-    #[ORM\OneToOne(inversedBy: 'bag', cascade: ['persist', 'remove'])]
-    private ?Ordered $ordered = null;
+    #[ORM\Column]
+    private ?int $status = null;
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->contains = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,18 +52,6 @@ class Bag
         return $this;
     }
 
-    public function isIsExpired(): ?bool
-    {
-        return $this->isExpired;
-    }
-
-    public function setIsExpired(bool $isExpired): self
-    {
-        $this->isExpired = $isExpired;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -79,40 +65,43 @@ class Bag
     }
 
     /**
-     * @return Collection<int, Product>
+     * @return Collection<int, Contain>
      */
-    public function getProducts(): Collection
+    public function getContains(): Collection
     {
-        return $this->products;
+        return $this->contains;
     }
 
-    public function addProduct(Product $product): self
+    public function addContain(Contain $contain): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->addBag($this);
+        if (!$this->contains->contains($contain)) {
+            $this->contains[] = $contain;
+            $contain->setBag($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): self
+    public function removeContain(Contain $contain): self
     {
-        if ($this->products->removeElement($product)) {
-            $product->removeBag($this);
+        if ($this->contains->removeElement($contain)) {
+            // set the owning side to null (unless already changed)
+            if ($contain->getBag() === $this) {
+                $contain->setBag(null);
+            }
         }
 
         return $this;
     }
 
-    public function getOrdered(): ?Ordered
+    public function getStatus(): ?int
     {
-        return $this->ordered;
+        return $this->status;
     }
 
-    public function setOrdered(?Ordered $ordered): self
+    public function setStatus(int $status): self
     {
-        $this->ordered = $ordered;
+        $this->status = $status;
 
         return $this;
     }
