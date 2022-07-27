@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ContainRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: ContainRepository::class)]
 class Contain
@@ -24,8 +25,8 @@ class Contain
     #[ORM\JoinColumn(nullable: false)]
     private ?Bag $bag = null;
 
-    #[ORM\Column]
-    private ?float $unitPrice = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $unitPrice = null;
 
     public function getId(): ?int
     {
@@ -68,12 +69,12 @@ class Contain
         return $this;
     }
 
-    public function getUnitPrice(): ?float
+    public function getUnitPrice(): ?string
     {
         return $this->unitPrice;
     }
 
-    public function setUnitPrice(float $unitPrice): self
+    public function setUnitPrice(string $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
 

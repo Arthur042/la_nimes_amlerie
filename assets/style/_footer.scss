@@ -44,11 +44,11 @@ footer{
                 }
 
                 &.lna_footer_safe::before{
-                    background-image: url(../img/icon/header/safety_certificate.svg);
+                    background-image: url(../images/icon/header/safety_certificate.svg);
                 }
 
                 &.lna_footer_delivery::before{
-                    background-image: url(../img/icon/header/expedition.svg);
+                    background-image: url(../images/icon/header/expedition.svg);
                 }
             }
 
@@ -58,18 +58,18 @@ footer{
                 height: 40px;
 
                 &.payment{
-                    background-image: url(../img/payment.png);
+                    background-image: url(../images/payment.png);
                 }
 
                 &.chrono{
-                    background-image: url(../img/delivery_chrono.png);
+                    background-image: url(../images/delivery_chrono.png);
                     width: 180px;
                     height: 40px;
                     margin-right: 1rem;
                 }
 
                 &.poste{
-                    background-image: url(../img/delivery_poste.png);
+                    background-image: url(../images/delivery_poste.png);
                     width: 130px;
                     height: 50px;
                 }
@@ -149,7 +149,7 @@ footer{
                     @include bg_img_parameter;
                     width: 8px;
                     height: 14px;
-                    background-image: url(../img/icon/fleche.svg);
+                    background-image: url(../images/icon/fleche.svg);
                     margin-left: .5rem;
                     position: relative;
                     top: 2.5px;
@@ -192,27 +192,27 @@ footer{
             }
 
             &.in{
-                background-image: url(../img/icon/footer/instagram.svg);
+                background-image: url(../images/icon/footer/instagram.svg);
             }
 
             &.ln{
-                background-image: url(../img/icon/footer/linkedin.png);
+                background-image: url(../images/icon/footer/linkedin.png);
             }
 
             &.fb{
-                background-image: url(../img/icon/footer/facebook.svg);
+                background-image: url(../images/icon/footer/facebook.svg);
             }
 
             &.in:hover{
-                background-image: url(../img/icon/footer/instagramHover.png);
+                background-image: url(../images/icon/footer/instagramHover.png);
             }
 
             &.ln:hover{
-                background-image: url(../img/icon/footer/linkedinHover.png);
+                background-image: url(../images/icon/footer/linkedinHover.png);
             }
 
             &.fb:hover{
-                background-image: url(../img/icon/footer/facebookHover.png);
+                background-image: url(../images/icon/footer/facebookHover.png);
             }
         }
     }

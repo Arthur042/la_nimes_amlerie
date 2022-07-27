@@ -32,15 +32,15 @@ header{
                 margin-right: .5rem;
     
                 &.lna_img_truck{
-                    background-image: url(../img/icon/header/expedition_white.svg);
+                    background-image: url(../images/icon/header/expedition_white.svg);
                 }
     
                 &.lna_img_delivery{
-                    background-image: url(../img/icon/header/delivery_white.svg);
+                    background-image: url(../images/icon/header/delivery_white.svg);
                 }
     
                 &.lna_img_safe{
-                    background-image: url(../img/icon/header/safety_certificate_white.svg);
+                    background-image: url(../images/icon/header/safety_certificate_white.svg);
                 }
             }
         }
@@ -77,7 +77,7 @@ header{
             @media screen and (min-width: 768px) {
                 .lna_search_logo{
                     @include bg_img_parameter;
-                    background-image: url(../img/icon/header/search_white.svg);
+                    background-image: url(../images/icon/header/search_white.svg);
                     width: 30px;
                     height: 30px;
                     display: flex;
@@ -90,6 +90,7 @@ header{
         }
 
         .lna_displayHeaderIcon{
+            position: relative;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -124,28 +125,28 @@ header{
                     }
 
                     &.lna_account{
-                        background-image: url('../img/icon/header/account.svg');
+                        background-image: url('../images/icon/header/account.svg');
                         width: 60px;
                         height: 60px;
 
                         &:hover{
-                            background-image: url('../img/icon/header/account_hover.svg');
+                            background-image: url('../images/icon/header/account_hover.svg');
                         }
                     }
                     &.lna_shop{
-                        background-image: url('../img/icon/header/shop_empty.svg');
+                        background-image: url('../images/icon/header/shop_empty.svg');
                         margin-top: .5rem;
 
                         &:hover{
-                            background-image: url('../img/icon/header/shop_empty_hover.svg');
+                            background-image: url('../images/icon/header/shop_empty_hover.svg');
                         }
                     }
                     &.lna_commande{
-                        background-image: url('../img/icon/header/panier.svg');
+                        background-image: url('../images/icon/header/panier.svg');
                         margin-top: .5rem;
 
                         &:hover{
-                            background-image: url('../img/icon/header/panier_hover.svg');
+                            background-image: url('../images/icon/header/panier_hover.svg');
                         }
                     }
                 }
@@ -166,7 +167,7 @@ header{
         }
 
         .lna_btn{
-            background-image: url(../img/icon/header/burger.svg);
+            background-image: url(../images/icon/header/burger.svg);
             @include bg_img_parameter;
             box-shadow: $shadow_btn;
             width: 55px;

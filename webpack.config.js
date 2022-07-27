@@ -24,7 +24,22 @@ Encore
     .addStyleEntry('style', './assets/style/index.scss')
     .copyFiles([
         {from: './assets/images', to: 'images/[path][name].[ext]'},
-        ])
+        {from: './assets/images/caroussel', to: 'images/caroussel/[path][name].[ext]'},
+        {from: './assets/images/header', to: 'images/header/[path][name].[ext]'},
+        {from: './assets/images/mark', to: 'images/mark/[path][name].[ext]'},
+        {from: './assets/images/opinion', to: 'images/opinion/[path][name].[ext]'},
+        {from: './assets/images/product_item', to: 'images/product_item/[path][name].[ext]'},
+        {from: './assets/images/icon', to: 'images/icon/[path][name].[ext]'},
+        {from: './assets/images/icon/connection', to: 'images/icon/connection/[path][name].[ext]'},
+        {from: './assets/images/icon/footer', to: 'images/icon/footer/[path][name].[ext]'},
+        {from: './assets/images/icon/header', to: 'images/icon/header/[path][name].[ext]'},
+        {from: './assets/images/icon/offCanva', to: 'images/icon/offCanva/[path][name].[ext]'},
+        {from: './assets/images/icon/panier', to: 'images/icon/panier/[path][name].[ext]'},
+        {from: './assets/images/icon/product', to: 'images/icon/product/[path][name].[ext]'},
+        {from: './assets/images/icon/reassurant', to: 'images/icon/reassurant/[path][name].[ext]'},
+
+
+    ])
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

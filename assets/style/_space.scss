@@ -47,7 +47,7 @@ section#space{
                 background-size: cover;
                 width: 280px;
                 height: 202px;
-                background-image: url(../img/musk_space_part.png);
+                background-image: url(../images/musk_space_part.png);
 
                 @media screen and (min-width:575px){
                     width: 360px;
@@ -79,7 +79,7 @@ section#space{
                 @include bg_img_parameter;
                 width: 165px;
                 height: 175px;
-                background-image: url(../img/musk_dog_part.png);
+                background-image: url(../images/musk_dog_part.png);
                 position: absolute;
                 right: -60px;
                 bottom: 0px;

@@ -1,7 +1,7 @@
-// Import de bootstrap
-    @import "~bootstrap";
+// Bootstrap custom
+@import '~bootstrap';
 
-// Import personnel
+// sass perso
 @import 'variables/variables';
 @import 'variables/mixin';
 @import 'component/button';
@@ -22,3 +22,4 @@
 @import 'component/offcanvaDesktopNavBar';
 @import 'component/connection';
 @import 'component/modalPanier';
+@import 'component/modalGestionCompte';

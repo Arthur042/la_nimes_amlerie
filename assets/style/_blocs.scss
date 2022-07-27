@@ -9,7 +9,7 @@ body{
         .lna_separation{
             width: 100px;
             height: 20px;
-            background-image: url(../img/product_item/separation.png);
+            background-image: url(../images/product_item/separation.png);
             @include bg_img_parameter;
             margin-bottom: 2rem;
         }
@@ -22,7 +22,7 @@ body{
             .lna_arrow{
                 width: 10px;
                 height: 42px;
-                background-image: url(../img/icon/product/fleche.png);
+                background-image: url(../images/icon/product/fleche.png);
                 @include bg_img_parameter;
     
                 &:first-child{

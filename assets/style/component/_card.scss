@@ -52,13 +52,13 @@
                     @include bg_img_parameter;
         
                     &.lna_star_full{
-                        background-image: url(../img/icon/product/star_full.svg);
+                        background-image: url(../../images/icon/product/star_full.svg);
                     }
                     &.lna_star_half{
-                        background-image: url(../img/icon/product/star_half.svg);
+                        background-image: url(../../images/icon/product/star_half.svg);
                     }
                     &.lna_star_empty{
-                        background-image: url(../img/icon/product/star_empty.svg);
+                        background-image: url(../../images/icon/product/star_empty.svg);
                     width: 11px;
                     height: 11px;
                     }

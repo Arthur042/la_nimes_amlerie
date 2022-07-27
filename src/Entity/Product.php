@@ -25,11 +25,11 @@ class Product
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $fullDescription = null;
 
-    #[ORM\Column]
-    private ?float $priceHt = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $priceHt = null;
 
-    #[ORM\Column]
-    private ?float $tva = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
+    private ?string $tva = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $quantity = null;
@@ -100,24 +100,24 @@ class Product
         return $this;
     }
 
-    public function getPriceHt(): ?float
+    public function getPriceHt(): ?string
     {
         return $this->priceHt;
     }
 
-    public function setPriceHt(float $priceHt): self
+    public function setPriceHt(string $priceHt): self
     {
         $this->priceHt = $priceHt;
 
         return $this;
     }
 
-    public function getTva(): ?float
+    public function getTva(): ?string
     {
         return $this->tva;
     }
 
-    public function setTva(float $tva): self
+    public function setTva(string $tva): self
     {
         $this->tva = $tva;
 
