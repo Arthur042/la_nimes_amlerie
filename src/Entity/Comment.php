@@ -7,8 +7,17 @@ use App\Enum\CommentNoteEnum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+    itemOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+)]
 class Comment
 {
     #[ORM\Id]

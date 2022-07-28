@@ -6,8 +6,17 @@ use App\Repository\ContainRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: ContainRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+    itemOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+)]
 class Contain
 {
     #[ORM\Id]

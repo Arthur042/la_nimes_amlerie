@@ -5,8 +5,17 @@ namespace App\Entity;
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+    itemOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+)]
 class Photo
 {
     #[ORM\Id]
