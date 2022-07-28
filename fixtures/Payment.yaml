@@ -1,0 +1,5 @@
+App\Entity\Payment:
+    payment1:
+        name: 'Carte Bancaire'
+    payment2:
+        name: 'Paypal'

@@ -28,6 +28,9 @@ class Contain
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $unitPrice = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
+    private ?string $tva = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +80,18 @@ class Contain
     public function setUnitPrice(string $unitPrice): self
     {
         $this->unitPrice = $unitPrice;
+
+        return $this;
+    }
+
+    public function getTva(): ?string
+    {
+        return $this->tva;
+    }
+
+    public function setTva(string $tva): self
+    {
+        $this->tva = $tva;
 
         return $this;
     }

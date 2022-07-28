@@ -1,0 +1,7 @@
+App\Entity\Adress:
+    adress{0..1000}:
+        line1: '<buildingNumber()> <streetName()>'
+        line2: '83%? <country()>'
+        line3: '20%? <streetSuffix()>'
+        postalCode: '<postcode()>'
+        city: '<city()>'

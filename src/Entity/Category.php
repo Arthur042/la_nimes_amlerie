@@ -30,7 +30,6 @@ class Category
     public function __construct()
     {
         $this->products = new ArrayCollection();
-        $this->parentCategory = new ArrayCollection();
         $this->subCategories = new ArrayCollection();
     }
 

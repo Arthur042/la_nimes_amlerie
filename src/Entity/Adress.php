@@ -15,19 +15,19 @@ class Adress
     #[ORM\Column()]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 100)]
     private ?string $line1 = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $line2 = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $line3 = null;
 
-    #[ORM\Column(length: 6)]
+    #[ORM\Column(length: 10)]
     private ?string $postalCode = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 100)]
     private ?string $city = null;
 
     #[ORM\OneToMany(mappedBy: 'adress', targetEntity: User::class)]

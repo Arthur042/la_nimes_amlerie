@@ -1,0 +1,215 @@
+App\Entity\Mark:
+    mark1: 
+        name: '4Pets'
+    mark2: 
+        name: '8in1'
+    mark3: 
+        name: 'Acana'
+    mark4: 
+        name: 'Adaptil'
+    mark5: 
+        name: 'Affinity'
+    mark6: 
+        name: 'Adventuros'
+    mark7: 
+        name: 'Almo Nature'
+    mark8: 
+        name: 'Animonda'
+    mark9: 
+        name: 'AniOne'
+    mark10: 
+        name: 'Applaws'
+    mark11: 
+        name: 'Aumüller'
+    mark12: 
+        name: 'Beaphar'
+    mark13: 
+        name: "Biokat's"
+    mark14: 
+        name: 'BIOPlan'
+    mark15: 
+        name: 'Bogadent'
+    mark16: 
+        name: 'bosch'
+    mark17: 
+        name: 'Bozita'
+    mark18: 
+        name: "Buddy's Cuisine"
+    mark19: 
+        name: 'Bunny'
+    mark20: 
+        name: 'Catit'
+    mark21: 
+        name: 'Carnilove'
+    mark22: 
+        name: 'Catsan'
+    mark23: 
+        name: 'Cat`s Best'
+    mark24: 
+        name: "Cat's Love"
+    mark25: 
+        name: 'Catlabs'
+    mark26: 
+        name: 'Cesar'
+    mark27: 
+        name: 'Chipsi'
+    mark28: 
+        name: 'Christopherus'
+    mark29: 
+        name: 'Chuckit'
+    mark30: 
+        name: 'CJ Wildbird'
+    mark31: 
+        name: 'CooCoo Design'
+    mark32: 
+        name: 'Curli'
+    mark33: 
+        name: 'Dennerle'
+    mark34: 
+        name: 'DentaLife'
+    mark35: 
+        name: 'Dobar'
+    mark36: 
+        name: 'Dogs Creek'
+    mark37: 
+        name: 'Earth Rated'
+    mark38: 
+        name: 'Eheim'
+    mark39: 
+        name: 'Edgard & Cooper'
+    mark40: 
+        name: 'Eukanuba'
+    mark41: 
+        name: 'Europet Bernina'
+    mark42: 
+        name: 'Exo Terra'
+    mark43: 
+        name: 'Felisept'
+    mark44: 
+        name: 'Felix'
+    mark45: 
+        name: 'Ferplast'
+    mark46: 
+        name: 'Flexi'
+    mark47: 
+        name: 'Fluval'
+    mark48: 
+        name: 'Frolic'
+    mark49: 
+        name: 'Frolicat'
+    mark50: 
+        name: 'Furminator'
+    mark51: 
+        name: 'Farmina'
+    mark52: 
+        name: 'Gimcat'
+    mark53: 
+        name: 'Gourmet'
+    mark54: 
+        name: 'Green Petfood'
+    mark55: 
+        name: 'HabaPet Litter Locker'
+    mark56: 
+        name: 'Hagen'
+    mark57: 
+        name: 'Hunter'
+    mark58: 
+        name: 'Hamiform'
+    mark59: 
+        name: 'Interzoo'
+    mark60: 
+        name: 'JBL'
+    mark61: 
+        name: 'JR Farm'
+    mark62: 
+        name: 'JUWEL'
+    mark63: 
+        name: 'Josera'
+    mark64: 
+        name: 'KERBL'
+    mark65: 
+        name: 'KONG'
+    mark66: 
+        name: 'Kurgo'
+    mark67: 
+        name: 'Lucky Reptile'
+    mark68: 
+        name: 'Marina'
+    mark69: 
+        name: 'MORE'
+    mark70: 
+        name: 'Moser'
+    mark71: 
+        name: 'MultiFit'
+    mark72: 
+        name: 'Naturally Good'
+    mark73: 
+        name: 'Natusan'
+    mark74: 
+        name: 'Numaxes'
+    mark75: 
+        name: 'Orijen'
+    mark76: 
+        name: 'Oster'
+    mark77: 
+        name: 'Pedigree'
+    mark78: 
+        name: 'Penn Plax'
+    mark79: 
+        name: 'Perfect Fit'
+    mark80: 
+        name: 'PetBalance'
+    mark81: 
+        name: 'Pontec'
+    mark82: 
+        name: 'Pro Plan'
+    mark83: 
+        name: 'Purina ONE'
+    mark84: 
+        name: 'Quiko'
+    mark85: 
+        name: 'REAL NATURE'
+    mark86: 
+        name: 'Resch'
+    mark87: 
+        name: 'Rinti'
+    mark88: 
+        name: 'ROYAL CANIN'
+    mark89: 
+        name: 'Ruffwear'
+    mark90: 
+        name: 'Sanabelle'
+    mark91: 
+        name: 'Sanicat'
+    mark92: 
+        name: 'Savic'
+    mark93: 
+        name: 'Sera'
+    mark94: 
+        name: 'Sheba'
+    mark95: 
+        name: 'Simple Solution'
+    mark96: 
+        name: 'Staywell'
+    mark97: 
+        name: 'Terra Canis'
+    mark98: 
+        name: 'Tetra'
+    mark99: 
+        name: 'Trixie'
+    mark100: 
+        name: 'Tropica'
+    mark101: 
+        name: 'True Instinct'
+    mark102: 
+        name: 'United Pets'
+    mark103: 
+        name: 'Versele Laga'
+    mark104: 
+        name: 'Vitakraft'
+    mark105: 
+        name: 'Whiskas'
+    mark106: 
+        name: 'Wolters'
+    mark107: 
+        name: 'Yarrah'

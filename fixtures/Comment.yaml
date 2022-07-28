@@ -1,0 +1,7 @@
+App\Entity\Comment:
+    comment{0..600}:
+        user: '@user*'
+        product: '@product*'
+        description: '<text(50)>'
+        note: '<numberBetween(1,5)>'
+        creationAt: '<dateTimeBetween(2018-01-01, "now")>'

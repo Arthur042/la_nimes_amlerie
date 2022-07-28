@@ -1,0 +1,31 @@
+parameters:
+    password: '$2y$13$vldgApLZb5YMp51QTlLTyOSQf.TTiDYfd55FuaF6ZV2TAAdgE3enG' # 1234
+
+App\Entity\User:
+    account (template):
+        email (unique): '<email()>'
+        roles: '[]'
+        password: '<{password}>'
+        firstName: '<firstName()>'
+        lastName: '<lastName()>'
+        birthAt: '<dateTimeBetween("1960-10-10", "2004-07-26")>'
+        inscriptionAt: '<dateTimeBetween(2018-01-01, "now")>'
+        gender: '@gender*'
+        adress: '@adress*'
+
+    account_admin (extends account):
+        email: 'admin@test.com'
+        firstName: 'Admin'
+        roles: '[ROLE_ADMIN]'
+
+    account_stats (extends account):
+        email: 'stats@test.com'
+        firstName: 'Stats'
+        roles: '[ROLE_STATS]'
+
+    account_user (extends account):
+        email: 'user@test.com'
+        firstName: 'user'
+        roles: '[]'
+
+    user{0..500} (extends account): ~

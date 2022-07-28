@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BagRepository;
+use App\Enum\PanierStatusEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -19,7 +20,7 @@ class Bag
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'bags')]
+    #[ORM\ManyToOne(inversedBy: 'bags', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -27,7 +28,7 @@ class Bag
     private Collection $contains;
 
     #[ORM\Column]
-    private ?int $status = null;
+    private int $status = PanierStatusEnum::ENCOURS;
 
     public function __construct()
     {
@@ -94,7 +95,7 @@ class Bag
         return $this;
     }
 
-    public function getStatus(): ?int
+    public function getStatus(): int
     {
         return $this->status;
     }

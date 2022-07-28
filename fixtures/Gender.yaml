@@ -1,0 +1,7 @@
+App\Entity\Gender:
+    gender1:
+        label: 'Homme'
+    gender2:
+        label: 'Femme'
+    gender3:
+        label: 'Autre'

@@ -1,0 +1,9 @@
+App\Entity\Status:
+    status1:
+        advancement: 'Accepté'
+    status2:
+        advancement: 'En cours de préparation'
+    status3:
+        advancement: 'Expédiée'
+    status4:
+        advancement: 'Remboursée'
