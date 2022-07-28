@@ -1,4 +1,5 @@
 # install all depedency
+
     ```php
     symfony composer install
     ```
