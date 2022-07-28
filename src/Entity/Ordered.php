@@ -2,11 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OrderedRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderedRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+    itemOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+)]
 class Ordered
 {
     #[ORM\Id]

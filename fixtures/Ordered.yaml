@@ -1,7 +1,0 @@
-App\Entity\Ordered:
-    ordered{0..300}:
-        creationAt: '<dateTimeBetween(2018-01-01, "now")>'
-        status: '@status*'
-        payment: '@payment*'
-        billingAdress: '@adress*'
-        bag (unique): '@bag*'

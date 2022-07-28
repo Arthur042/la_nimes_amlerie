@@ -1,5 +1,5 @@
 App\Entity\Comment:
-    comment{0..600}:
+    comment{0..500}:
         user: '@user*'
         product: '@product*'
         description: '<text(50)>'

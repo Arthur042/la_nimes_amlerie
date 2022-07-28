@@ -1,6 +1,11 @@
 <?php
 namespace App\Enum;
 
+/**
+ * Class PanierStatusEnum
+ *
+ * @author ArthurAndré
+ */
 abstract class PanierStatusEnum
 {
     const ENCOURS = 100;

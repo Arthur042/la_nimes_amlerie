@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BagRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Enum\PanierStatusEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,14 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BagRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+    itemOperations: [
+        'get' => ['security' => 'is_granted("ROLE_STATS")'],
+    ],
+)]
 class Bag
 {
     #[ORM\Id]
@@ -102,6 +111,9 @@ class Bag
 
     public function setStatus(int $status): self
     {
+        if(!PanierStatusEnum::isValid($status)){
+            throw new \InvalidArgumentException('mauvais status donné');
+        }
         $this->status = $status;
 
         return $this;

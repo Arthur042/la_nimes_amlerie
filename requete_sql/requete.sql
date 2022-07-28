@@ -37,42 +37,84 @@ SET product.is_available = 1
 WHERE product.quantity > 0
 
 
--- procedure stocké ajout commande
+-- procedure stocké ajout commande/panier/contain
 BEGIN
-DELETE FROM commande;
-DELETE FROM panier;
-ALTER TABLE commande AUTO_INCREMENT = 1 ;
-ALTER TABLE panier AUTO_INCREMENT = 1 ;
 SET @maxi = 500 + RAND()*2500;
 SET @i = 0;
 
 WHILE @i < @maxi DO
     SET @datePanier = '2020-04-14' + INTERVAL (RAND()*TIMESTAMPDIFF(DAY, '2020-04-14', CURDATE())) DAY;
-    SET @idClient = (SELECT client.IdClient FROM client ORDER BY RAND() LIMIT 1);
-    INSERT INTO panier(datePanier, IdClient)
-    VALUES (@datePanier, @idClient);
+    SET @idClient = (SELECT user.id FROM user ORDER BY RAND() LIMIT 1);
+    INSERT INTO bag(bag.creation_at, bag.user_id, bag.status)
+    VALUES (@datePanier, @idClient, 100);
 
     IF RAND()*100 > 60
     THEN
-        SET @IdPanier = (SELECT LAST_INSERT_ID() FROM panier LIMIT 1);
+        SET @IdPanier = (SELECT LAST_INSERT_ID() FROM bag LIMIT 1);
         SET @dateCommande = @datePanier + INTERVAL RAND()*7 DAY;
-        SET @IdPayement = (SELECT paiement.IdPaiement FROM paiement ORDER BY RAND() LIMIT 1);
-        SET @IdStatut = (SELECT statut.IdStatut FROM statut ORDER BY RAND() LIMIT 1);
+        SET @IdPayement = (SELECT payment.id FROM payment ORDER BY RAND() LIMIT 1);
+        SET @IdStatut = (SELECT status.id FROM status ORDER BY RAND() LIMIT 1);
         
             IF RAND()*100 < 90
             THEN
-           		SET @IdAdresseFacture = (SELECT client.IdAdresse FROM client  WHERE client.IdClient = @IdClient);
+           		SET @IdAdresseFacture = (SELECT user.adress_id FROM user  WHERE user.id = @IdClient);
 
             ELSE
-            	SET @IdAdresseFacture = (SELECT adresse.IdAdresse FROM adresse ORDER BY RAND() LIMIT 1);
+            	SET @IdAdresseFacture = (SELECT adress.id FROM adress ORDER BY RAND() LIMIT 1);
             END IF;
 
-        INSERT INTO commande(IdPanier, dateCommande, IdPayement, IdStatut,IdAdresseFacture)
+        INSERT INTO ordered(ordered.bag_id, ordered.creation_at, ordered.payment_id, ordered.status_id,ordered.billing_adress_id)
     	VALUES (@IdPanier, @dateCommande, @IdPayement, @IdStatut, @IdAdresseFacture);       
     END IF;
 
     SET @i = @i + 1;
 END WHILE;
+
+INSERT INTO contain(contain.products_id, contain.bag_id, contain.quantity, contain.unit_price, contain.tva)
+SELECT
+	(SELECT product.id FROM product ORDER by rand() limit 1),
+    bag.id,
+    1 + RAND()*3,
+    (SELECT product.price_ht FROM product ORDER by rand() limit 1),
+    (SELECT product.tva FROM product ORDER by rand() limit 1)
+FROM bag;
+
+INSERT INTO contain(contain.products_id, contain.bag_id, contain.quantity, contain.unit_price, contain.tva)
+SELECT
+	(SELECT product.id FROM product ORDER by rand() limit 1),
+    bag.id,
+    1 + RAND()*3,
+    (SELECT product.price_ht FROM product ORDER by rand() limit 1),
+    (SELECT product.tva FROM product ORDER by rand() limit 1)
+FROM bag
+Order by rand()
+limit 1500;
+
+INSERT INTO contain(contain.products_id, contain.bag_id, contain.quantity, contain.unit_price, contain.tva)
+SELECT
+	(SELECT product.id FROM product ORDER by rand() limit 1),
+    contain.bag_id,
+    1 + RAND()*3,
+    (SELECT product.price_ht FROM product ORDER by rand() limit 1),
+    (SELECT product.tva FROM product ORDER by rand() limit 1)
+FROM contain
+GROUP BY contain.bag_id
+HAVING COUNT(*) = 2
+Order by rand()
+limit 1000;
+
+INSERT INTO contain(contain.products_id, contain.bag_id, contain.quantity, contain.unit_price, contain.tva)
+SELECT
+	(SELECT product.id FROM product ORDER by rand() limit 1),
+    contain.bag_id,
+    1 + RAND()*3,
+    (SELECT product.price_ht FROM product ORDER by rand() limit 1),
+    (SELECT product.tva FROM product ORDER by rand() limit 1)
+FROM contain
+GROUP BY contain.bag_id
+HAVING COUNT(*) = 3
+Order by rand()
+limit 500;
 END
 
 

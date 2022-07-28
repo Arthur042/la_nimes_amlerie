@@ -1,5 +1,0 @@
-App\Entity\Bag:
-    bag{0..1000}:
-        creationAt: '<dateTimeBetween(2018-01-01, "now")>'
-        user: '@user*'
-        status: '30%? 200: 100'
