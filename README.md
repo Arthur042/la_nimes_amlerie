@@ -1,9 +1,9 @@
-# install all depedency
-
+# dependency
+- for php dependency
     ```php
     symfony composer install
     ```
-- execute the command for yarn
+- then execute the command for yarn
     ```php
     yarn install
     ```
