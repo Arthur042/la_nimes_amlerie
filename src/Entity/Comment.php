@@ -25,7 +25,7 @@ class Comment
             message : 'comment.note.NotBlank',
         ),
         Assert\Choice(
-            callback: CommentNoteEnum::getValues,
+            callback: [CommentNoteEnum::class,'getValues'],
             message: 'comment.note.Choice',
         )
     ]

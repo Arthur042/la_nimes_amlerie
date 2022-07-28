@@ -6,24 +6,24 @@ adress:
             max: 'Votre adresse ne peut pas faire plus de 100 caractères.'
     postalCode:
         NotBlank: 'Veuillez entrer un code postal.'
-            Length:
-                min: 'Votre adresse doit faire au moins 2 caractères.'
-                max: 'Votre adresse ne peut pas faire plus de 10 caractères.'
+        Length:
+            min: 'Votre adresse doit faire au moins 2 caractères.'
+            max: 'Votre adresse ne peut pas faire plus de 10 caractères.'
     city:
         NotBlank: 'Veuillez entrer une ville.'
-            Length:
-                min: 'Votre adresse doit faire au moins 2 caractères.'
-                max: 'Votre adresse ne peut pas faire plus de 100 caractères.'
+        Length:
+            min: 'Votre adresse doit faire au moins 2 caractères.'
+            max: 'Votre adresse ne peut pas faire plus de 100 caractères.'
 
 bag:
   createdAt:
         NotBlank: 'La date de création doit être indiqué.'
-        LessThanOrEqual: 'La date de création du panier ne peut pas être supérieur à aujourd'hui.'
+        LessThanOrEqual: "La date de création du panier ne peut pas être supérieur à aujourd'hui."
   user:
         NotNull: 'Un panier doit être associé à un utilisateur.'
   status:
         NotBlank: 'Le status du panier ne peut être vide'
-        Choice: 'La valeur rentré n'est pas la bonne.'
+        Choice: "La valeur rentré n'est pas la bonne."
 
 category:
     name:
@@ -35,12 +35,12 @@ category:
 comment:
     note:
         NotBlank: 'Il faut rentrer une note pour laisser un commentaire.'
-        Choice: 'la valeur rentré n'est pas bonne.'
+        Choice: "la valeur rentré n'est pas bonne."
     user: 'Le commentaire doit être relié a un utilisateur'
     product: 'Le commentaire doit être relié a un produit'
     createdAt:
         NotBlank: 'Il faut une date de création pour le commentaire'
-        LessThanOrEqual: 'La date doit ne peut être supérieur aujourd'hui.'
+        LessThanOrEqual: "La date doit ne peut être supérieur aujourd'hui."
 
 contain:
     quantity:
@@ -69,7 +69,7 @@ mark:
 ordered:
     creationAt:
         NotBlank: 'La date de création de la commande ne peut être vide'
-        LessThanOrEqual: 'la date de création de la commande ne peut pas être supérieur à aujourd'hui.'
+        LessThanOrEqual: "la date de création de la commande ne peut pas être supérieur à aujourd'hui."
     status:
         NotNull: 'il faut rentrer un status pour la commande.'
     payment:
@@ -127,5 +127,5 @@ user:
         MinLength: 'Le nom doit faire au minimum 2 caractères'
         MaxLength: 'Le nom doit faire au maximum 50 caractères'
     createdAt:
-        NotBlank: 'La date d'inscription doit être indiqué.'
-        LessThan: 'La date d'inscription ne peut pas être supérieur à aujourd'hui.'
+        NotBlank: "La date d'inscription doit être indiqué."
+        LessThan: "La date d'inscription ne peut pas être supérieur à aujourd'hui."

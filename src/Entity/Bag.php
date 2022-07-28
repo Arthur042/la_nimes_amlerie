@@ -53,12 +53,12 @@ class Bag
 
     #[ORM\Column]
     #[
-        Assert\NotBlank(
-            message : 'bag.status.NotBlank',
-        ),
+         Assert\NotBlank(
+             message : 'bag.status.NotBlank',
+         ),
         Assert\Choice(
-            callback: PanierStatusEnum::getValues,
-            message : 'bag.status.Choice',
+            callback: [PanierStatusEnum::class,'getValues'],
+            message: 'bag.status.Choice',
         ),
     ]
     private int $status = PanierStatusEnum::ENCOURS;
