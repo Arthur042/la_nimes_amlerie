@@ -1,3 +1,15 @@
+# install all depedency
+    ```php
+    symfony composer install
+    ```
+- execute the command for yarn
+    ```php
+    yarn install
+    ```
+- or for npm
+    ```php
+    npm install
+    ```
 # Add data in database
 - add fixture data
     ```php
@@ -5,6 +17,8 @@
     ```
 - After this, execute this request sql on the database
     ```sql
+    DELIMITER $$
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `ajoutCommandePanier`()
     BEGIN
     SET @maxi = 500 + RAND()*2500;
     SET @i = 0;
@@ -82,7 +96,8 @@
     HAVING COUNT(*) = 3
     Order by rand()
     limit 500;
-    END
+    END$$
+    DELIMITER ;
     ```
 # If the request don't work :
 
