@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\AdressRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 
 #[ORM\Entity(repositoryClass: AdressRepository::class)]
 class Adress
@@ -16,18 +18,67 @@ class Adress
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[
+        Assert\NotBlank(
+            message : 'adress.line.NotBlank',
+        ),
+        Assert\Length([
+            'min' => 2,
+            'minMessage' => 'adress.line.Length.min',
+            'max' => 100,
+            'maxMessage' => 'adress.line.Length.max'
+        ])
+    ]
     private ?string $line1 = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[
+        Assert\Length([
+            'min' => 2,
+            'minMessage' => 'adress.line.Length.min',
+            'max' => 100,
+            'maxMessage' => 'adress.line.Length.max'
+        ])
+    ]
     private ?string $line2 = null;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[
+        Assert\Length([
+            'min' => 2,
+            'minMessage' => 'adress.line.Length.min',
+            'max' => 100,
+            'maxMessage' => 'adress.line.Length.max'
+        ])
+    ]
     private ?string $line3 = null;
 
     #[ORM\Column(length: 10)]
+    #[
+        Assert\NotBlank(
+            message : "adress.postalCode.NotBlank"
+        ),
+        Assert\Length([
+            'min' => 2,
+            'minMessage' => "adress.postalCode.Length.min",
+            'max' => 10,
+            'maxMessage' => "adress.postalCode.Length.max"
+        ])
+    ]
     private ?string $postalCode = null;
 
     #[ORM\Column(length: 100)]
+    #[
+        Assert\NotBlank(
+            message : "adress.city.NotBlank"
+        ),
+        Assert\Length([
+            'min' => 2,
+            'minMessage' => "adress.city.Length.min",
+            'max' => 100,
+            'maxMessage' => "adress.city.Length.max"
+        ])
+    ]
     private ?string $city = null;
 
     #[ORM\OneToMany(mappedBy: 'adress', targetEntity: User::class)]

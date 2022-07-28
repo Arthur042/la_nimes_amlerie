@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,6 +17,17 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[
+        Assert\NotBlank(
+            message : 'category.name.NotBlank',
+        ),
+        Assert\Length([
+            'min' => 2,
+            'minMessage' => 'category.name.Length.min',
+            'max' => 50,
+            'maxMessage' => 'category.name.Length.max'
+        ])
+    ]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]

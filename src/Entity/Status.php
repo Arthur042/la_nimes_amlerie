@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StatusRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StatusRepository::class)]
 class Status
@@ -14,6 +15,17 @@ class Status
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
+    #[
+        Assert\NotBlank(
+            message : 'status.advancement.NotBlank',
+        ),
+        Assert\Length(
+            min: 2,
+            max: 30,
+            minMessage: 'status.advancement.MinLength',
+            maxMessage: 'status.advancement.MaxLength',
+        ),
+    ]
     private ?string $advancement = null;
 
     public function getId(): ?int

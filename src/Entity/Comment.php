@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use App\Enum\CommentNoteEnum;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -18,17 +20,45 @@ class Comment
     private ?string $description = null;
 
     #[ORM\Column]
+    #[
+        Assert\NotBlank(
+            message : 'comment.note.NotBlank',
+        ),
+        Assert\Choice(
+            callback: CommentNoteEnum::getValues,
+            message: 'comment.note.Choice',
+        )
+    ]
     private ?int $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'comment.user.NotNull',
+        ),
+    ]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'comment.product.NotNull',
+        ),
+    ]
     private ?Product $product = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[
+        Assert\NotBlank(
+            message : 'comment.createdAt.NotBlank',
+        ),
+        Assert\LessThanOrEqual(
+            'today',
+            message : 'comment.createdAt.LessThanOrEqual',
+        ),
+    ]
     private ?\DateTimeInterface $creationAt = null;
 
     public function getId(): ?int

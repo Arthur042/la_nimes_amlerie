@@ -1,0 +1,131 @@
+adress:
+    line:
+        NotBlank: 'Veuillez entrer une adresse.'
+        Length:
+            min: 'Votre adresse doit faire au moins 2 caractères.'
+            max: 'Votre adresse ne peut pas faire plus de 100 caractères.'
+    postalCode:
+        NotBlank: 'Veuillez entrer un code postal.'
+            Length:
+                min: 'Votre adresse doit faire au moins 2 caractères.'
+                max: 'Votre adresse ne peut pas faire plus de 10 caractères.'
+    city:
+        NotBlank: 'Veuillez entrer une ville.'
+            Length:
+                min: 'Votre adresse doit faire au moins 2 caractères.'
+                max: 'Votre adresse ne peut pas faire plus de 100 caractères.'
+
+bag:
+  createdAt:
+        NotBlank: 'La date de création doit être indiqué.'
+        LessThanOrEqual: 'La date de création du panier ne peut pas être supérieur à aujourd'hui.'
+  user:
+        NotNull: 'Un panier doit être associé à un utilisateur.'
+  status:
+        NotBlank: 'Le status du panier ne peut être vide'
+        Choice: 'La valeur rentré n'est pas la bonne.'
+
+category:
+    name:
+        NotBlank: 'Le nom de la catégorie ne peut être vide'
+        Length:
+            min: 'Le nom de la catégorie doit faire plus de 2 caractères'
+            max: 'Le nom de la catégorie doit faire moins de 50 caractères'
+
+comment:
+    note:
+        NotBlank: 'Il faut rentrer une note pour laisser un commentaire.'
+        Choice: 'la valeur rentré n'est pas bonne.'
+    user: 'Le commentaire doit être relié a un utilisateur'
+    product: 'Le commentaire doit être relié a un produit'
+    createdAt:
+        NotBlank: 'Il faut une date de création pour le commentaire'
+        LessThanOrEqual: 'La date doit ne peut être supérieur aujourd'hui.'
+
+contain:
+    quantity:
+        NotBlank: 'la quantité ne peut être vide'
+    product:
+        NotNull: 'il faut renseigner un produit à ajouter au panier'
+    bag:
+        NotNull: 'Il faut renseigner le panier où ajouter le produit'
+    price:
+        NotBlank: 'Le prix du produit ne peut être vide'
+        GreaterThanOrEqual: 'Le prix du produit doit être supérieur à 0'
+    tva:
+        NotBlank: 'la tva doit être renseigné'
+        LessThan: 'la tva doit être inférieur à 1 (100%)'
+        GreaterThan: 'la tva doit être supérieur à 0 (0%)'
+
+gender:
+    label:
+        NotBlank: 'tu ne peux pas créer un genre sans valeur.'
+    
+mark:
+    name:
+        MinLength: 'La longueur minimal autorisé est de 2 caractère'
+        MaxLength: 'La longueur maximal autorisé est de 50 caractère'
+
+ordered:
+    creationAt:
+        NotBlank: 'La date de création de la commande ne peut être vide'
+        LessThanOrEqual: 'la date de création de la commande ne peut pas être supérieur à aujourd'hui.'
+    status:
+        NotNull: 'il faut rentrer un status pour la commande.'
+    payment:
+        NotNull: 'Il faut indiquer un moyen de paiement.'
+    billingAdress: 
+        NotNull: 'Il faut indiquer une adresse de facturation.'
+    bag:
+        NotNull: 'la commande doit correspondre à un panier'
+
+payment:
+    name:
+        NotBlank: 'Pour créer un moyen de paiement, il faut rentrer un nom'
+        MinLength: 'La longueur minimal du moyen de paiement ne peut être inférieur à 2 caractères'
+        MaxLength: 'La longueur maximal du moyen de paiement ne peut être supérieur à 50 caractères'
+
+photo:
+    name:
+        NotBlank: 'Le champ ne peut être vide'
+        MinLength: 'La longueur minimal du champ de la photo ne peut être inférieur à 2 caractères'
+        MaxLength: 'La longueur maximal du champ de la photo ne peut être supérieur à 6 caractères'
+    isMajor:
+        NotNull: 'il faut indiquer si la photo est principal où non'
+
+product:
+    title:
+        NotBlank: 'Le titre ne peut pas être vide.'
+        MinLength: 'Le titre doit faire aumoins 2 caractères.'
+        MaxLength: 'Le titre doit faire moins de 30 caractères.'
+    description:
+        NotBlank: 'La description courte ne peut pas être vide.'
+    price:
+        NotBlank: 'Le prix ne peut pas être vide.'
+        GreaterThan: 'Le prix doit être supérieur à 0€'
+    tva:
+        NotBlank: 'La tva ne peut pas être vide.'
+        GreaterThan: 'La tva doit être supérieur à 0 (0%).'
+        LessThan: 'La tva doit être inférieur à 1 (100%).'
+    quantity:
+        GreaterThan: 'La quantité ne peut as être inférieur à 0'
+    isAvailable:
+        NotNull: 'Vous devez renseigner si le produit est disponible'
+    category:
+        NotNull: 'Vous devez renseigner la catégorie de ce produit'
+status:
+    advancement:
+        NotBlank: 'Pour créer un status de commande il faut renseigner son nom'
+        MinLength: 'La longueur minimal du status de commande est de 2 caractères'
+        MaxLength: 'La longueur maximal du status de commande est de 30 caractères'
+
+user:
+    firstName:
+        MinLength: 'Le prénom doit faire au minimum 2 caractères'
+        MaxLength: 'Le prénom doit faire au maximum 50 caractères'
+    LastName:
+        MinLength: 'Le nom doit faire au minimum 2 caractères'
+        MaxLength: 'Le nom doit faire au maximum 50 caractères'
+    createdAt:
+        NotBlank: 'La date d'inscription doit être indiqué.'
+        LessThan: 'La date d'inscription ne peut pas être supérieur à aujourd'hui.'

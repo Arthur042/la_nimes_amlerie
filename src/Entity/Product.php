@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ApiResource(
@@ -26,28 +27,82 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
+    #[
+        Assert\NotBlank(
+            message : 'product.title.NotBlank',
+        ),
+        Assert\Length([
+            'min' => 2,
+            'max' => 30,
+            'minMessage' => 'product.title.MinLength',
+            'maxMessage' => 'product.title.MaxLength',
+        ]),
+    ]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[
+        Assert\NotBlank(
+            message : 'product.description.NotBlank',
+        ),
+    ]
     private ?string $littleDescription = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $fullDescription = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    #[
+        Assert\NotBlank(
+            message : 'product.price.NotBlank',
+        ),
+        Assert\GreaterThan(
+            0,
+            message : 'product.price.GreaterThan',
+        ),
+    ]
     private ?string $priceHt = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
+    #[
+        Assert\NotBlank(
+            message : 'product.tva.NotBlank',
+        ),
+        Assert\GreaterThan(
+            0,
+            message : 'product.tva.GreaterThan',
+        ),
+        Assert\LessThan(
+            1,
+            message : 'product.tva.LessThan',
+        ),
+    ]
     private ?string $tva = null;
 
     #[ORM\Column(nullable: true)]
+    #[
+        Assert\GreaterThan(
+            0,
+            message : 'product.quantity.GreaterThan',
+        ),
+    ]
     private ?int $quantity = null;
 
     #[ORM\Column]
-    private ?bool $isAvailable = null;
+    #[
+        Assert\NotNull(
+            message : 'product.isAvailable.NotNull',
+        ),
+    ]
+    private ?bool $isAvailable = false;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'product.category.NotNull',
+        ),
+    ]
     private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Photo::class)]
@@ -55,6 +110,11 @@ class Product
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'product.mark.NotNull',
+        ),
+    ]
     private ?Mark $mark = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Comment::class)]

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GenderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GenderRepository::class)]
@@ -16,6 +17,15 @@ class Gender
     private ?int $id = null;
 
     #[ORM\Column(length: 15)]
+    #[
+        Assert\NotBlank(
+            message: 'gender.label.NotBlank'
+        ),
+        Assert\Length([
+            'min' => 2,
+            'max' => 15,
+        ])
+    ]
     private ?string $label = null;
 
     #[ORM\OneToMany(mappedBy: 'gender', targetEntity: User::class)]

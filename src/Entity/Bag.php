@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BagRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Enum\PanierStatusEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -27,16 +28,39 @@ class Bag
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[
+        Assert\NotBlank(
+            message : 'bag.createdAt.NotBlank',
+        ),
+        Assert\LessThanOrEqual(
+            'today',
+            message : 'bag.createdAt.LessThanOrEqual',
+        ),
+    ]
     private ?\DateTimeInterface $creationAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'bags', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'bag.user.NotNull',
+        ),
+    ]
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'bag', targetEntity: Contain::class)]
     private Collection $contains;
 
     #[ORM\Column]
+    #[
+        Assert\NotBlank(
+            message : 'bag.status.NotBlank',
+        ),
+        Assert\Choice(
+            callback: PanierStatusEnum::getValues,
+            message : 'bag.status.Choice',
+        ),
+    ]
     private int $status = PanierStatusEnum::ENCOURS;
 
     public function __construct()

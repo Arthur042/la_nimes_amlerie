@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PhotoRepository::class)]
 class Photo
@@ -14,10 +15,26 @@ class Photo
     private ?int $id = null;
 
     #[ORM\Column(length: 60)]
+    #[
+        Assert\NotBlank(
+            message : 'photo.name.NotBlank',
+        ),
+        Assert\Length([
+            'min' => 2,
+            'max' => 60,
+            'minMessage' => 'photo.name.MinLength',
+            'maxMessage' => 'photo.name.MaxLength',
+        ]),
+    ]
     private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $isMajor = null;
+    #[
+        Assert\NotNull(
+            message : 'photo.isMajor.NotNull',
+        ),
+    ]
+    private ?bool $isMajor = false;
 
     #[ORM\ManyToOne(inversedBy: 'photos')]
     private ?Product $product = null;

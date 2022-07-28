@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OrderedRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderedRepository::class)]
 #[ApiResource(
@@ -24,22 +25,51 @@ class Ordered
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[
+        Assert\NotBlank(
+            message : 'ordered.creationAt.NotBlank',
+        ),
+        Assert\LessThanOrEqual(
+            'today',
+            message : 'ordered.creationAt.LessThanOrEqual',
+        ),
+    ]
     private ?\DateTimeInterface $creationAt = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'ordered.status.NotNull',
+        ),
+    ]
     private ?Status $status = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'ordered.payment.NotNull',
+        ),
+    ]
     private ?Payment $payment = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'ordered.billingAdress.NotNull',
+        ),
+    ]
     private ?Adress $billingAdress = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[
+        Assert\NotNull(
+            message : 'ordered.bag.NotNull',
+        ),
+    ]
     private ?Bag $bag = null;
 
     public function getId(): ?int

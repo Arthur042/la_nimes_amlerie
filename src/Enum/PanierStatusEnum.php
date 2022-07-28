@@ -20,4 +20,13 @@ abstract class PanierStatusEnum
             self::COMMANDE,
         ]);
     }
+
+    public static function getValues(): array
+    {
+        return [
+            self::ENCOURS,
+            self::EXPIRE,
+            self::COMMANDE,
+        ];
+    }
 }

@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
@@ -39,27 +40,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    #[
+        Assert\Length(
+            min: 2,
+            max: 50,
+            minMessage: 'user.firstName.MinLength',
+            maxMessage: 'user.firstName.MaxLength',
+        ),
+    ]
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    #[
+        Assert\Length(
+            min: 2,
+            max: 50,
+            minMessage: 'user.lastName.MinLength',
+            maxMessage: 'user.lastName.MaxLength',
+        ),
+    ]
     private ?string $lastName = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $birthAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[
+        Assert\NotBlank(
+            message : 'user.createdAt.NotBlank',
+        ),
+        Assert\LessThan(
+            'today',
+            message : 'user.createdAt.LessThan',
+        ),
+    ]
     private ?\DateTimeInterface $inscriptionAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
+    #[
+        Assert\NotNull(
+            message : 'user.gender.NotNull',
+        ),
+    ]
     private ?Gender $gender = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Bag::class)]
     private Collection $bags;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Adress $adress = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
@@ -146,7 +177,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -158,7 +189,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): self
+    public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -170,7 +201,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->birthAt;
     }
 
-    public function setBirthAt(\DateTimeInterface $birthAt): self
+    public function setBirthAt(?\DateTimeInterface $birthAt): self
     {
         $this->birthAt = $birthAt;
 
