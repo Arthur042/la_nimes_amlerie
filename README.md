@@ -11,6 +11,22 @@
     ```php
     npm install
     ```
+
+# Create database
+- change one of these lines in .env file to connect the project to your database
+```php
+# DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
+DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7&charset=utf8mb4"
+# DATABASE_URL="postgresql://symfony:ChangeMe@127.0.0.1:5432/app?
+```
+- then create the database with this command
+```php
+symfony console doctrine:database:create
+```
+- to finish, migrate table to the data base
+```php
+symfony console doctrine:migration:migrate
+```
 # Add data in database
 - add fixture data
     ```php
