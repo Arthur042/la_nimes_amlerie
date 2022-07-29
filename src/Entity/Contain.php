@@ -10,9 +10,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: ContainRepository::class)]
 #[ApiResource(
-    collectionOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
+    collectionOperations: [],
     itemOperations: [
         'get' => ['security' => 'is_granted("ROLE_STATS")'],
     ],

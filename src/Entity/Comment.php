@@ -11,9 +11,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ApiResource(
-    collectionOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
+    collectionOperations: [],
     itemOperations: [
         'get' => ['security' => 'is_granted("ROLE_STATS")'],
     ],
