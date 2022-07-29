@@ -3,6 +3,7 @@ parameters:
 
 App\Entity\User:
     account (template):
+        username: '<username()>'
         email (unique): '<email()>'
         roles: '[]'
         password: '<{password}>'
@@ -14,17 +15,17 @@ App\Entity\User:
         adress: '@adress*'
 
     account_admin (extends account):
-        email: 'admin@test.com'
+        username: 'LaTerreEstPlate'
         firstName: 'Admin'
         roles: '[ROLE_ADMIN]'
 
     account_stats (extends account):
-        email: 'stats@test.com'
-        firstName: 'Stats'
+        username: 'Stats'
+        firstName: 'coucou'
         roles: '[ROLE_STATS]'
 
     account_user (extends account):
-        email: 'user@test.com'
+        username: 'User'
         firstName: 'user'
         roles: '[]'
 
