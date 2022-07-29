@@ -24,7 +24,7 @@
                     <!-- logo -->
                     <div class="col-3 col-md-2 lna_logo p-0 ps-2 mb-3 mt-2">
                         <h1 class="d-none">La Nîmes'alerie</h1>
-                        <img src="img/header/animalerieLogo.png" alt="logo de la nîmes'alerie">
+                        <img src="{{ asset('build/images/header/animalerieLogo.png') }}" alt="logo de la nîmes'alerie">
                     </div>
                     <!-- fin logo -->
                     <!-- barre de recherche -->
@@ -59,12 +59,12 @@
 
                             {% if app.user %}
                                 {# Afficher le boutton de gestion de compte #}
-                                    {% include 'partials/header/modal/gestionCompte.html.twig' %}
+                                    {% include 'partial/header/modal/gestionCompte.html.twig' %}
                             {% else %}
                                 {# Afficher la modal de connexion #}
-                                    {% include 'partials/header/modal/connection.html.twig' %}
+                                    {% include 'partial/header/modal/connection.html.twig' %}
                                 {# Afficher la modal de inscription #}
-                                    {% include 'partials/header/modal/inscription.html.twig' %}
+                                    {% include 'partial/header/modal/inscription.html.twig' %}
                             {% endif %}
                             </div>
                             
@@ -78,9 +78,9 @@
                                 <!-- modal de panier -->
                                 <div class="myModal d-none">
                                     <div class="myModalBody">
-                                        <!-- composant item panier --------------------------------------------------------------------------------------------->
+                                        {# composant item panier --------------------------------------------------------------------------------------------- #}
                                         <div class="myModalItem">
-                                            <img src="img/product_item/product_one.png" alt="image miniature du produit"
+                                            <img src="{{ asset('build/images/product_item/product_one.png') }}" alt="image miniature du produit"
                                                 class="myModalPanierImg">
                                             <div class="myModalResumeProduct">
                                                 <div class="myModalTopResume">
@@ -95,9 +95,9 @@
                                             </div>
                                             <div class="myModalDeleteProduct"></div>
                                         </div>
-                                        <!-- composant item panier --------------------------------------------------------------------------------------------->
+                                         {# composant item panier ---------------------------------------------------------------------------------------------> #}
                                         <div class="myModalItem">
-                                            <img src="img/product_item/product_two.png" alt="image miniature du produit"
+                                            <img src="{{ asset('build/images/product_item/product_two.png') }}" alt="image miniature du produit"
                                                 class="myModalPanierImg">
                                             <div class="myModalResumeProduct">
                                                 <div class="myModalTopResume">
@@ -147,18 +147,18 @@
             <nav class="d-none d-md-block">
                 <ul>
                     <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleDog"><img
-                                src="img/icon/header/dog.svg" alt="icone de chien"> Chien</a></li>
+                                src="{{ asset('build/images/icon/header/dog.svg') }}" alt="icone de chien"> Chien</a></li>
                     <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleCat"><img
-                                src="img/icon/header/cat.svg" alt="icone de chat"> Chat</a></li>
+                                src="{{ asset('build/images/icon/header/cat.svg') }}" alt="icone de chat"> Chat</a></li>
                     <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleRat"><img
-                                src="img/icon/header/rabbit.svg" alt="icone de Rongeur"> Rongeur</a></li>
+                                src="{{ asset('build/images/icon/header/rabbit.svg') }}" alt="icone de Rongeur"> Rongeur</a></li>
                     <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleFish"><img
-                                src="img/icon/header/fish.svg" alt="icone de poisson"> Aqua</a></li>
+                                src="{{ asset('build/images/icon/header/fish.svg') }}" alt="icone de poisson"> Aqua</a></li>
                     <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleSnake"><img
-                                src="img/icon/header/turtle.svg" alt="icone de reptile"> Terrario</a></li>
+                                src="{{ asset('build/images/icon/header/turtle.svg') }}" alt="icone de reptile"> Terrario</a></li>
                     <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleBird"><img
-                                src="img/icon/header/bird.svg" alt="icone d'oiseau"> Oiseau</a></li>
-                    <li><a href="#"><img src="img/icon/header/rocket.svg" alt="icone de fusée"> <span
+                                src="{{ asset('build/images/icon/header/bird.svg') }}" alt="icone d'oiseau"> Oiseau</a></li>
+                    <li><a href="#"><img src="{{ asset('build/images/icon/header/rocket.svg') }}" alt="icone de fusée"> <span
                                 class="d-none d-lg-block">votre animal dans l</span> <span class="d-lg-none">L</span>
                             'espace</a></li>
                 </ul>
@@ -177,19 +177,19 @@
         <!-- offcanva sous categorie -->
         <div class="offcanvas-body">
             <ul id="mainOffcanvas">
-                <li class="toClosejsOffcanvas"><a id="toggleDog"><img src="img/icon/offCanva/dog.png"
+                <li class="toClosejsOffcanvas"><a id="toggleDog"><img src="{{ asset('build/images/icon/offCanva/dog.png') }}"
                             alt="icone de chien"> Chien</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleCat"><img src="img/icon/offCanva/cat.png"
+                <li class="toClosejsOffcanvas"><a id="toggleCat"><img src="{{ asset('build/images/icon/offCanva/cat.png') }}"
                             alt="icone de chat"> Chat</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleFish"><img src="img/icon/offCanva/fish.png"
+                <li class="toClosejsOffcanvas"><a id="toggleFish"><img src="{{ asset('build/images/icon/offCanva/fish.png') }}"
                             alt="icone de poisson"> Aqua</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleRat"><img src="img/icon/offCanva/rabbit.png"
+                <li class="toClosejsOffcanvas"><a id="toggleRat"><img src="{{ asset('build/images/icon/offCanva/rabbit.png') }}"
                             alt="icone de Rongeur"> Rongeur</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleSnake"><img src="img/icon/offCanva/turtle.png"
+                <li class="toClosejsOffcanvas"><a id="toggleSnake"><img src="{{ asset('build/images/icon/offCanva/turtle.png') }}"
                             alt="icone de reptile"> Terrario</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleBird"><img src="img/icon/offCanva/bird.png"
+                <li class="toClosejsOffcanvas"><a id="toggleBird"><img src="{{ asset('build/images/icon/offCanva/bird.png') }}"
                             alt="icone d'oiseau"> Oiseau</a></li>
-                <li class="toClosejsOffcanvas"><a href="#"><img src="img/icon/offCanva/rocket.png" alt="icone de fusée">
+                <li class="toClosejsOffcanvas"><a href="#"><img src="{{ asset('build/images/icon/offCanva/rocket.png') }}" alt="icone de fusée">
                         <span class="d-none d-lg-block">votre animal dans l</span> <span class="d-lg-none">L</span>
                         'espace</a></li>
             </ul>
@@ -303,4 +303,4 @@
 </header>
 
  {# import du off canvas de labarre de navigation-------------------------------------------------------------------------------------- #}
-{% include 'partials/header/offcanvas.html.twig' %}
+{% include 'partial/header/offcanvas.html.twig' %}

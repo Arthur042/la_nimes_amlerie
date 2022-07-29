@@ -114,7 +114,7 @@ header{
                     width: 80px;
                 }
                 
-                >div{
+                .lna_account, .lna_shop, .lna_commande{
                     width: 45px;
                     height: 45px;
                     @include bg_img_parameter;
