@@ -12,14 +12,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BagRepository::class)]
-#[ApiResource(
-    collectionOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-    itemOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-)]
 class Bag
 {
     #[ORM\Id]

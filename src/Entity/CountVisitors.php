@@ -9,14 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CountVisitorsRepository::class)]
-#[ApiResource(
-    collectionOperations: [
-        'get',
-    ],
-    itemOperations: [
-        'get',
-    ],
-)]
 class CountVisitors
 {
     #[ORM\Id]

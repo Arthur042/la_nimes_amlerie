@@ -43,7 +43,7 @@ SELECT
 FROM client
 JOIN panier ON panier.IdClient = client.IdClient
 JOIN commande ON commande.IdPanier = panier.IdPanier
-WHERE commande.dateCommande LIKE @choixDate  
+WHERE commande.dateCommande LIKE @choixDate
 AND panier.idClient NOT IN (SELECT clientnbcommande.IdClient FROM clientnbcommande WHERE clientnbcommande.nbCommande > 1)
 
 -- nb de commande parnouveau client sur mois x
@@ -79,6 +79,25 @@ SELECT COUNT(IF((panier.idClient IN (SELECT panier.IdClient FROM panier JOIN com
 FROM commande 
 JOIN panier ON panier.IdPanier = commande.IdPanier 
 WHERE commande.dateCommande LIKE @choixDate
+
+
+-- nb commande sur periode
+SET @choixDate = '2020-05%';
+SELECT COUNT(IF((bag.user_id IN (SELECT user_ordered.user_id FROM user_ordered WHERE user_ordered.totalOrderedUser > 1)),1,NULL)) 'nb de recommande' 
+FROM ordered 
+JOIN bag ON bag.id = ordered.bag_id 
+WHERE ordered.creation_at LIKE @choixDate
+
+
+SET @choixDate = '2020-04-31';
+						SELECT
+                        COUNT(*)
+                        FROM bag  
+                        JOIN ordered ON ordered.bag_id = bag.id
+                        WHERE ordered.creation_at < @choixDate 
+                        GROUP BY bag.user_id
+
+                        
 
 -- total commande + newCommande + Recommande sur mois x
 SET @choixDate = '2022-04%';

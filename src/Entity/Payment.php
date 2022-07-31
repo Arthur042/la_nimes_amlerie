@@ -8,12 +8,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: PaymentRepository::class)]
-#[ApiResource(
-    collectionOperations: [],
-    itemOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-)]
 class Payment
 {
     #[ORM\Id]

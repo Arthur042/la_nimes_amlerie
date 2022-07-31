@@ -10,14 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: MarkRepository::class)]
-#[ApiResource(
-    collectionOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-    itemOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-)]
 class Mark
 {
     #[ORM\Id]

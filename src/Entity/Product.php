@@ -11,14 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource(
-    collectionOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-    itemOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-)]
 class Product
 {
     #[ORM\Id]

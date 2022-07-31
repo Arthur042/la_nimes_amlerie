@@ -19,13 +19,13 @@ class TotalCommandNumberAction extends AbstractController
 
     public function __invoke(): JsonResponse
     {
-        // find total sell price
+        // find total number of command in database
             $qb = $this->entityManager->createQueryBuilder()
                 ->select('COUNT(o)')
                 ->from(Ordered::class, 'o');
             $query = $qb->getQuery();
             $total = $query->getSingleScalarResult();
-        // return total sell price
+        // return total number of command
         return new JsonResponse(['Nombre total de commande' => $total]);
     }
 }

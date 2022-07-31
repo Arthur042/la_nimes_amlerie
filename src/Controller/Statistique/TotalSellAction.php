@@ -21,11 +21,10 @@ class TotalSellAction extends AbstractController
     {
         // find total sell price
             $qb = $this->entityManager->createQueryBuilder()
-                ->select('SUM(p.priceHt*c.quantity)')
+                ->select('SUM(c.unitPrice*c.quantity)')
                 ->from(Ordered::class, 'o')
                 ->join('o.bag', 'b')
-                ->join('b.contains', 'c')
-                ->join('c.products', 'p');
+                ->join('b.contains', 'c');
             $query = $qb->getQuery();
             $total = $query->getSingleScalarResult();
         // return total sell price

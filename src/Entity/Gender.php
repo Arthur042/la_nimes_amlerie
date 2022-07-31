@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: GenderRepository::class)]
-#[ApiResource(
-    collectionOperations: [],
-    itemOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-)]
 class Gender
 {
     #[ORM\Id]

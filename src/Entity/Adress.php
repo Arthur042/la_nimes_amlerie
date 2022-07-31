@@ -11,12 +11,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 
 #[ORM\Entity(repositoryClass: AdressRepository::class)]
-#[ApiResource(
-    collectionOperations: [],
-    itemOperations: [
-        'get' => ['security' => 'is_granted("ROLE_STATS")'],
-    ],
-)]
 class Adress
 {
     #[ORM\Id]

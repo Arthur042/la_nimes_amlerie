@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Statistique;
+
 use App\Enum\PanierStatusEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +32,7 @@ class GetAbandonnedBagAction extends AbstractController
             $commande = $query->getSingleScalarResult();
 
         // Calculate percentage of abandoned bags
-            $result['abandon panier'] = round(($commande / $total) * 100, 2);
+            $result['abandon panier %'] = round(($commande / $total) * 100, 2);
 
         return new JsonResponse($result);
     }
