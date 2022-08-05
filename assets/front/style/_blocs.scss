@@ -20,13 +20,20 @@ body{
             align-items: center;
     
             .lna_arrow{
-                width: 10px;
-                height: 42px;
-                background-image: url(../../images/icon/product/fleche.png);
-                @include bg_img_parameter;
-    
+                margin-left: 1rem !important;
+                padding: 1rem;
+                cursor: pointer;
+
+                > div{
+                    width: 10px;
+                    height: 42px;
+                    background-image: url(../../images/icon/product/fleche.png);
+                    @include bg_img_parameter;
+                }
+
                 &:first-child{
                     transform: rotate(180deg);
+                    margin-left: 0 !important;
                 }
             }
         }

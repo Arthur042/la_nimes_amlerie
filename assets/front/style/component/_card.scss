@@ -1,84 +1,111 @@
-.lna_product_item{
-
-    min-width: 134px;
-    max-width: 134px;
-    box-shadow: $shadow_btn;
+.carrouselCard{
+    max-width: 1200px;
+    height: 270px;
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     align-items: center;
+    position: relative;
 
-    .lna_card_img{
-        width: 112px;
-        height: 112px;
-        padding-top: 0.5rem;
-
-        img{
-            width: 112px;
-            height: 112px;
-            object-fit: contain;
-            margin: auto;
-        }
-    }
-
-    .lna_card_body{
-
-        padding: .5rem .62rem;
+    #ProductCarrousel, #ProductSecondCarrousel{
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        text-align: left;
+        transition: 1s ease-in-out;
 
-        h3{
-            font-size: .9rem;
-            margin: 0;
-            padding-bottom: 0.4rem;
+
+        &.zero{
+            transform: translateX(-0%);
         }
-    
-        .lna_comment{
+        &.thirty{
+            transform: translateX(-33.5%);
+        }
+        &.sixty{
+            transform: translateX(-67%);
+        }
+
+        .lna_product_item{
+
+            min-width: 134px;
+            max-width: 134px;
+            height: 258px;
+            box-shadow: $shadow_btn;
             display: flex;
-            width: 100%;
-            justify-content: space-between;
-    
-            > div{
-    
-                display: flex;
-                justify-content: left;
-                align-items: center;
-    
-                .lna_star{
-                    width: 13px;
-                    height: 13px;
-                    @include bg_img_parameter;
-        
-                    &.lna_star_full{
-                        background-image: url(../../../images/icon/product/star_full.svg);
-                    }
-                    &.lna_star_half{
-                        background-image: url(../../../images/icon/product/star_half.svg);
-                    }
-                    &.lna_star_empty{
-                        background-image: url(../../../images/icon/product/star_empty.svg);
-                    width: 11px;
-                    height: 11px;
-                    }
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            margin: 1rem 1.2rem;
+
+            .lna_card_img{
+                width: 112px;
+                height: 112px;
+                padding-top: 0.5rem;
+
+                img{
+                    width: 112px;
+                    height: 112px;
+                    object-fit: contain;
+                    margin: auto;
                 }
             }
-    
-            p{
-                margin: 0;
-                font-size: .75rem;
-                font-weight: bold;
+
+            .lna_card_body{
+
+                padding: .5rem .62rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                text-align: left;
+
+                h3{
+                    font-size: .9rem;
+                    margin: 0;
+                    padding-bottom: 0.4rem;
+                }
+
+                .lna_comment{
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    > div{
+
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+
+                        .lna_star{
+                            width: 13px;
+                            height: 13px;
+                            @include bg_img_parameter;
+
+                            &.lna_star_full{
+                                background-image: url(../../../images/icon/product/star_full.svg);
+                            }
+                            &.lna_star_half{
+                                background-image: url(../../../images/icon/product/star_half.svg);
+                            }
+                            &.lna_star_empty{
+                                background-image: url(../../../images/icon/product/star_empty.svg);
+                                width: 11px;
+                                height: 11px;
+                            }
+                        }
+                    }
+
+                    p{
+                        margin: 0;
+                        font-size: .75rem;
+                        font-weight: bold;
+                    }
+
+                }
+
+                > p{
+                    margin: 0;
+                    font-size: 1.25rem;
+                    color: $price;
+                    padding-bottom: 0.4rem;
+                }
+
             }
-
         }
-
-        > p{
-            margin: 0;
-            font-size: 1.25rem;
-            color: $price;
-            padding-bottom: 0.4rem;
-        }
-
     }
 }

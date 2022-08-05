@@ -6,7 +6,7 @@
         </div>
     </a>
     <div class="lna_card_body">
-        <h3>le titre du produit</h3> {# todo le titre #}
+        <h3>{{ product.title|excerpt }}</h3>
         <div class="lna_comment"> {# todo service d'affichage des étoile a la place du fichier#}
             <div>
                 <span class="lna_star lna_star_empty"></span>
@@ -15,9 +15,9 @@
                 <span class="lna_star lna_star_empty"></span>
                 <span class="lna_star lna_star_empty"></span>
             </div>
-            <p>15 avis</p>{# todo nb avis #}
+            <p>{{ product.comments|length }} avis</p>
         </div>
-        <p>15€</p>{# todo le prix #}
+        <p>{{ product.priceHt }}€</p>
         <a href="#" class="lna_btn_main lna_btn_product lna_btn_dark">Ajouter</a>
     </div>
 </div>
