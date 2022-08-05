@@ -8,12 +8,12 @@
                     ];
 
 // Tableau contenant les offcanvas
-    let offcanvas  : Array<Element> = [document.querySelector('.dofOffcanvaBg'),
+    let offcanvas  : Array<Element> = [document.querySelector('.dogOffcanvaBg'),
                     document.querySelector('.catOffcanvaBg'),
-                    document.querySelector('.ratOffcanvaBg'),
+                    document.querySelector('.rabbitOffcanvaBg'),
                     document.querySelector('.fishOffcanvaBg'),
                     document.querySelector('.birdOffcanvaBg'),
-                    document.querySelector('.snakeOffcanvaBg')
+                    document.querySelector('.turtleOffcanvaBg')
                 ];
 
 if(buttonsCanvas && offcanvas){

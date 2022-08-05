@@ -1,25 +1,32 @@
 App\Entity\Category:
     category1:
-        name: Chien'
+        name: 'Chien'
         parentCategory: null
+        imageEndUrl: 'dog'
     category2:
         name: 'Chat'
         parentCategory: null
+        imageEndUrl: 'cat'
     category3:
         name: 'Rongeur'
         parentCategory: null
-    category4:
+        imageEndUrl: 'rabbit'
+    category6:
         name: 'Aquariophilie'
         parentCategory: null
-    category5:
+        imageEndUrl: 'fish'
+    category4:
         name: 'Terrariophilie'
         parentCategory: null
-    category6:
+        imageEndUrl: 'turtle'
+    category5:
         name: 'Oiseau'
         parentCategory: null
+        imageEndUrl: 'bird'
     category7:
         name: 'Espace'
         parentCategory: null
+        imageEndUrl: 'rocket'
     category8:
         name: 'Alimentation pour chiens'
         parentCategory: '@category1'

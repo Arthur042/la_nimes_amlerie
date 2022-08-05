@@ -1,156 +1,32 @@
 <section>
     <div class="displayOffcanva d-none d-md-block">
         <!-- dog -->
-        <div class="dofOffcanvaBg closeOffcanva">
-            <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktopDog"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-body desktopOffcanva-body">
-                    <div class="leftOffcanva d-none d-lg-block">
-                        <h3 class="offcanvas-title " id="offcanvasExampleLabel">Chiens</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
-                            a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
-                            recusandae deleniti!</p>
-                        <img src="{{ asset('build/images/header/dog.png') }}" alt="photo de chien">
+        {% for category in main_categories() %}
+            {% if category.name != 'Espace' %}
+                    <div class="{{ category.imageEndUrl }}OffcanvaBg closeOffcanva">
+                        <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktop{{ category.imageEndUrl|capitalize }}"
+                             aria-labelledby="offcanvasExampleLabel">
+                            <div class="offcanvas-body desktopOffcanva-body">
+                                <div class="leftOffcanva d-none d-lg-block">
+                                    <h3 class="offcanvas-title " id="offcanvasExampleLabel">{{ category.name }}</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
+                                        a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
+                                        recusandae deleniti!</p>
+                                    <img src="{{ asset('build/images/header/' ~ category.imageEndUrl ~ '.png') }}" alt="photo de {{ category.name }}">
+                                </div>
+                                <div class="rightOffcanva">
+                                    <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">{{ category.name }}</h3>
+                                    <ul class="secondCanvas">
+                                        {% for subCategory in category|sub_categories %}
+                                            <li><a href="#">{{ subCategory.name }}</a><span></span></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rightOffcanva">
-                        <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">Chiens</h3>
-                        <ul class="secondCanvas">
-                            <li><a href="#">Jouets</a><span></span></li>
-                            <li><a href="#">Colliers et laisses</a><span></span></li>
-                            <li><a href="#">Hygiène et soins</a><span></span></li>
-                            <li><a href="#">Gamelles et distributeurs</a><span></span></li>
-                            <li><a href="#">Compléments alimentaires</a><span></span></li>
-                            <li><a href="#">Nourriture pour chiens</a><span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        {% endfor %}
 
-        <!-- Cat -->
-        <div class="catOffcanvaBg closeOffcanva">
-            <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktopCat"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-body desktopOffcanva-body">
-                    <div class="leftOffcanva d-none d-lg-block">
-                        <h3 class="offcanvas-title" id="offcanvasExampleLabel">Chats</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
-                            a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
-                            recusandae deleniti!</p>
-                        <img src="{{ asset('build/images/header/cat.png') }}" alt="photo de Chat">
-                    </div>
-                    <div class="rightOffcanva">
-                        <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">Chats</h3>
-                        <ul class="secondCanvas">
-                            <li><a href="#">Jouets</a><span></span></li>
-                            <li><a href="#">Voyage et transport</a><span></span></li>
-                            <li><a href="#">Arbre à chat</a><span></span></li>
-                            <li><a href="#">Toilettage et hygiène</a><span></span></li>
-                            <li><a href="#">Gamelles et distributeurs</a><span></span></li>
-                            <li><a href="#">Litière pour chat</a><span></span></li>
-                            <li><a href="#">Nourriture pour chat</a><span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Rongeur -->
-        <div class="ratOffcanvaBg closeOffcanva">
-            <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktopRat"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-body desktopOffcanva-body">
-                    <div class="leftOffcanva d-none d-lg-block">
-                        <h3 class="offcanvas-title" id="offcanvasExampleLabel">Rongeur</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
-                            a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
-                            recusandae deleniti!</p>
-                        <img src="{{ asset('build/images/header/mouse.png') }}" alt="photo de rongeur">
-                    </div>
-                    <div class="rightOffcanva">
-                        <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">Rongeurs</h3>
-                        <ul class="secondCanvas">
-                            <li><a href="#">Alimentation</a><span></span></li>
-                            <li><a href="#">Hygiène et soins</a><span></span></li>
-                            <li><a href="#">Cages et accessoires</a><span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Aquario -->
-        <div class="fishOffcanvaBg closeOffcanva">
-            <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktopFish"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-body desktopOffcanva-body">
-                    <div class="leftOffcanva d-none d-lg-block">
-                        <h3 class="offcanvas-title" id="offcanvasExampleLabel">Aquariophilie</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
-                            a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
-                            recusandae deleniti!</p>
-                        <img src="{{ asset('build/images/header/fish.png') }}" alt="photo de poisson">
-                    </div>
-                    <div class="rightOffcanva">
-                        <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">Aquariophilie</h3>
-                        <ul class="secondCanvas">
-                            <li><a href="#">Traitements et soins</a><span></span></li>
-                            <li><a href="#">Filtrations</a><span></span></li>
-                            <li><a href="#">Aquariums</a><span></span></li>
-                            <li><a href="#">Nourritures pour poissons</a><span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Oiseau -->
-        <div class="birdOffcanvaBg closeOffcanva">
-            <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktopBird"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-body desktopOffcanva-body">
-                    <div class="leftOffcanva d-none d-lg-block">
-                        <h3 class="offcanvas-title" id="offcanvasExampleLabel">Oiseaux</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
-                            a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
-                            recusandae deleniti!</p>
-                        <img src="{{ asset('build/images/header/bird.png') }}" alt="photo d'oiseau">
-                    </div>
-                    <div class="rightOffcanva">
-                        <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">Oiseaux</h3>
-                        <ul class="secondCanvas">
-                            <li><a href="#">Nichoires</a><span></span></li>
-                            <li><a href="#">Mangeoires</a><span></span></li>
-                            <li><a href="#">Hygiène et soins</a><span></span></li>
-                            <li><a href="#">Habitats</a><span></span></li>
-                            <li><a href="#">Nourriture pour oiseaux</a><span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Terrario -->
-        <div class="snakeOffcanvaBg closeOffcanva">
-            <div class="text-start myOffcanva" tabindex="-1" id="offcanvasDesktopSnake"
-                aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-body desktopOffcanva-body">
-                    <div class="leftOffcanva d-none d-lg-block">
-                        <h3 class="offcanvas-title" id="offcanvasExampleLabel">Terrariophilie</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quod ab totam. Expedita unde
-                            a magnam, sapiente commodi iusto hic modi quidem est fuga repellat voluptate eaque esse
-                            recusandae deleniti!</p>
-                        <img src="{{ asset('build/images/header/snake.png') }}" alt="photo de serpent">
-                    </div>
-                    <div class="rightOffcanva">
-                        <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">Terrariophilie</h3>
-                        <ul class="secondCanvas">
-                            <li><a href="#">Accessoires</a><span></span></li>
-                            <li><a href="#">Décoration</a><span></span></li>
-                            <li><a href="#">Substrat</a><span></span></li>
-                            <li><a href="#">Chauffage</a><span></span></li>
-                            <li><a href="#">Éclairage</a><span></span></li>
-                            <li><a href="#">Nourriture pour reptiles</a><span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>

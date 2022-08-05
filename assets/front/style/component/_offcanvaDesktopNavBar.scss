@@ -1,7 +1,7 @@
 .displayOffcanva{
     position: relative;
 
-    .dofOffcanvaBg, .catOffcanvaBg, .ratOffcanvaBg, .fishOffcanvaBg, .birdOffcanvaBg, .snakeOffcanvaBg{
+    .dogOffcanvaBg, .catOffcanvaBg, .rabbitOffcanvaBg, .fishOffcanvaBg, .birdOffcanvaBg, .turtleOffcanvaBg{
         position: absolute;
         top: -1000px;
         left: 50%;
@@ -15,7 +15,7 @@
             top: -57px;
         }
     
-        #offcanvasDesktopDog, #offcanvasDesktopCat, #offcanvasDesktopRat, #offcanvasDesktopFish, #offcanvasDesktopBird, #offcanvasDesktopSnake{
+        #offcanvasDesktopDog, #offcanvasDesktopCat, #offcanvasDesktopRabbit, #offcanvasDesktopFish, #offcanvasDesktopBird, #offcanvasDesktopTurtle{
             background-color: $light;
             width: 50%;
         }
