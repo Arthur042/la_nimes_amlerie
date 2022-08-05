@@ -20,8 +20,16 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('script', './assets/script/index.ts')
-    .addStyleEntry('style', './assets/style/index.scss')
+
+    .addEntry('shared_script', './assets/shared/script/index.ts')
+    .addStyleEntry('shared_style', './assets/shared/style/index.scss')
+
+    .addEntry('front_script', './assets/front/script/index.ts')
+    .addStyleEntry('front_style', './assets/front/style/index.scss')
+
+    .addEntry('back_script', './assets/back/script/index.ts')
+    .addStyleEntry('back_style', './assets/back/style/index.scss')
+
     .copyFiles([
         {from: './assets/images', to: 'images/[path][name].[ext]'},
         {from: './assets/images/caroussel', to: 'images/caroussel/[path][name].[ext]'},

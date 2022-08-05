@@ -1,0 +1,24 @@
+@import '../../shared/style/index';
+
+// sass perso
+@import 'assets/shared/style/variables/variables';
+@import 'assets/shared/style/variables/mixin';
+@import 'component/button';
+@import 'component/card';
+@import 'component/input-search-mail';
+@import 'text-format';
+@import 'header';
+@import 'carousel-responsive';
+@import 'blocs';
+@import 'reinsurance';
+@import 'mark';
+@import 'space';
+@import 'client-opinion';
+@import 'footer';
+@import 'component/navbar';
+@import 'caroussel-desktop';
+@import 'component/offcanvaMobileNavBar';
+@import 'component/offcanvaDesktopNavBar';
+@import 'component/connection';
+@import 'component/modalPanier';
+@import 'component/modalGestionCompte';

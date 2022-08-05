@@ -1,0 +1,35 @@
+html{
+    margin: auto;
+}
+body{
+    section{
+
+        margin-bottom: 3rem;
+
+        .lna_separation{
+            width: 100px;
+            height: 20px;
+            background-image: url(../../images/product_item/separation.png);
+            @include bg_img_parameter;
+            margin-bottom: 2rem;
+        }
+
+        .lna_container_flex{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+            .lna_arrow{
+                width: 10px;
+                height: 42px;
+                background-image: url(../../images/icon/product/fleche.png);
+                @include bg_img_parameter;
+    
+                &:first-child{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+    }
+}

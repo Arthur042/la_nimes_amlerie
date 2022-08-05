@@ -1,0 +1,147 @@
+.displayOffcanva{
+    position: relative;
+
+    .dofOffcanvaBg, .catOffcanvaBg, .ratOffcanvaBg, .fishOffcanvaBg, .birdOffcanvaBg, .snakeOffcanvaBg{
+        position: absolute;
+        top: -1000px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 1920px;
+        width: 100%;
+        z-index: 4;
+        transition: ease-in-out .4s;
+
+        &:hover{
+            top: -57px;
+        }
+    
+        #offcanvasDesktopDog, #offcanvasDesktopCat, #offcanvasDesktopRat, #offcanvasDesktopFish, #offcanvasDesktopBird, #offcanvasDesktopSnake{
+            background-color: $light;
+            width: 50%;
+        }
+    }
+    
+    .myOffcanva{
+        width: 800px;
+        height: 630px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+
+        @media screen and (max-width:1900px){
+            height: 570px;
+        }
+        @media screen and (max-width:1800px){
+            height: 550px;
+        }
+        @media screen and (max-width:1650px){
+            height: 520px;
+        }
+        @media screen and (max-width:1450px){
+            height: 470px;
+        }
+        @media screen and (max-width:1350px){
+            height: 450px;
+        }
+        @media screen and (max-width:1200px){
+            height: 400px;
+            width: 60% !important;
+        }
+
+        @media screen and (max-width:992px){
+            height: 310px;
+            width: 300px !important;
+        }
+    
+        .desktopOffcanva-body{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+    
+            .rightOffcanva, .leftOffcanva{
+                padding: 1rem;
+                width: 100%;
+                height: 100%;
+            }
+            .leftOffcanva{
+                border-right: 3px solid #e6e6e6;
+    
+                h3{
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+
+                    @media screen and (max-width:1450px){
+                        font-size: 1.5rem;
+                    }
+                }
+    
+                p{
+                    margin-bottom: 1rem;
+
+                    @media screen and (max-width:1450px){
+                        font-size: .8rem;
+                    }
+                }
+
+                img{
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+                    width: 70%;
+                }
+            }
+    
+            .rightOffcanva{
+    
+                h3{
+                    font-size: 1.5rem;
+                }
+
+                ul{
+                    margin-top: 4.8rem;
+                    list-style: none;
+
+                    @media screen and (max-width:1200px){
+                        margin-top: 2rem;
+                        padding: 0;
+                    }
+    
+                    li{
+                        margin-bottom: 1rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        a{
+                            font-size: 1rem;
+                            text-decoration: none;
+                            text-transform: uppercase;
+                            color: $dark;
+    
+                            &:hover{
+                                @include text_fade;
+                            }
+
+
+                            @media screen and (max-width:1450px){
+                                font-size: .8rem;
+                            }
+
+                            @media screen and (max-width:992px){
+                                font-size: .6rem;
+                            }
+                        }
+                        span {
+                            @include bg_img_parameter;
+                            width: 8px;
+                            height: 14px;
+                            background-image: url(../../../images/icon/fleche.svg);
+
+                            @media screen and (max-width:992px){
+                                width: 7px;
+                                height: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
