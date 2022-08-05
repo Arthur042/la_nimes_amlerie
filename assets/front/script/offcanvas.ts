@@ -20,16 +20,16 @@ if(closeOffcanvas && windowOffcanva) {
             name: document.querySelector('#toggleCat')
         },
         {
-            id: '.offcanvasRat',
-            name: document.querySelector('#toggleRat')
+            id: '.offcanvasRabbit',
+            name: document.querySelector('#toggleRabbit')
         },
         {
             id: '.offcanvasFish',
             name: document.querySelector('#toggleFish')
         },
         {
-            id: '.offcanvasSnake',
-            name: document.querySelector('#toggleSnake')
+            id: '.offcanvasTurtle',
+            name: document.querySelector('#toggleTurtle')
         },
         {
             id: '.offcanvasBird',

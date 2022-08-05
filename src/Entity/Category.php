@@ -40,6 +40,9 @@ class Category
     #[ORM\OneToMany(mappedBy: 'parentCategory', targetEntity: self::class)]
     private Collection $subCategories;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageEndUrl = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -131,6 +134,18 @@ class Category
                 $subCategory->setParentCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImageEndUrl(): ?string
+    {
+        return $this->imageEndUrl;
+    }
+
+    public function setImageEndUrl(?string $imageEndUrl): self
+    {
+        $this->imageEndUrl = $imageEndUrl;
 
         return $this;
     }

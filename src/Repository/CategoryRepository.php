@@ -63,4 +63,22 @@ class CategoryRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findMainCategories(): array
+    {
+        return $this->createQueryBuilder('category')
+            ->where('category.parentCategory IS NULL')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findSubCategories($value)
+    {
+        return $this->createQueryBuilder('category')
+            ->where('category.parentCategory = :val')
+            ->setParameter('val', $value->getId())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

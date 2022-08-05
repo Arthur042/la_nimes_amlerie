@@ -1,10 +1,10 @@
 // Tableau contenant les liens de la navbar
     let buttonsCanvas : Array<Element> = [document.querySelector('#buttonToggleDog'), 
                         document.querySelector('#buttonToggleCat'), 
-                        document.querySelector('#buttonToggleRat'), 
+                        document.querySelector('#buttonToggleRabbit'),
                         document.querySelector('#buttonToggleFish'), 
                         document.querySelector('#buttonToggleBird'), 
-                        document.querySelector('#buttonToggleSnake')
+                        document.querySelector('#buttonToggleTurtle')
                     ];
 
 // Tableau contenant les offcanvas

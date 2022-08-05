@@ -54,7 +54,7 @@
 
 
         // offCanvasDog 
-            .offcanvasDog, .offcanvasCat, .offcanvasRat, .offcanvasFish, .offcanvasSnake, .offcanvasBird{
+            .offcanvasDog, .offcanvasCat, .offcanvasRabbit, .offcanvasFish, .offcanvasTurtle, .offcanvasBird{
                 position: absolute;
                 width: 70%;
                 right: -400px;
@@ -113,18 +113,18 @@
             }
             
             .offcanvasFish .targetDogDisplay div{
-                top: 123px;
-                left: -10px;
+                top: 183px;
+                left: 48px;
             }
             
-            .offcanvasRat .targetDogDisplay div{
-                top: 183px;
-                left: 12px;
+            .offcanvasRabbit .targetDogDisplay div{
+                top: 122px;
+                left: 13px;
             }
 
-            .offcanvasSnake .targetDogDisplay div{
+            .offcanvasTurtle .targetDogDisplay div{
                 top: 243px;
-                left: 8px;
+                left: 48px;
             }
 
             .offcanvasBird .targetDogDisplay div{

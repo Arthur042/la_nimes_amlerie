@@ -146,21 +146,10 @@
             <!-- navbar -->
             <nav class="d-none d-md-block">
                 <ul>
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleDog"><img
-                                src="{{ asset('build/images/icon/header/dog.svg') }}" alt="icone de chien"> Chien</a></li>
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleCat"><img
-                                src="{{ asset('build/images/icon/header/cat.svg') }}" alt="icone de chat"> Chat</a></li>
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleRat"><img
-                                src="{{ asset('build/images/icon/header/rabbit.svg') }}" alt="icone de Rongeur"> Rongeur</a></li>
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleFish"><img
-                                src="{{ asset('build/images/icon/header/fish.svg') }}" alt="icone de poisson"> Aqua</a></li>
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleSnake"><img
-                                src="{{ asset('build/images/icon/header/turtle.svg') }}" alt="icone de reptile"> Terrario</a></li>
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggleBird"><img
-                                src="{{ asset('build/images/icon/header/bird.svg') }}" alt="icone d'oiseau"> Oiseau</a></li>
-                    <li><a href="#"><img src="{{ asset('build/images/icon/header/rocket.svg') }}" alt="icone de fusée"> <span
-                                class="d-none d-lg-block">votre animal dans l</span> <span class="d-lg-none">L</span>
-                            'espace</a></li>
+                    {% for category in main_categories() %}
+                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggle{{ category.imageEndUrl|capitalize }}"><img
+                                src="{{ asset('build/images/icon/header/' ~ category.imageEndUrl ~ '.svg') }}" alt="icone de {{ category.name }}">{{ category.name }}</a></li>
+                    {% endfor %}
                 </ul>
             </nav>
             <!-- fin navbar -->
@@ -177,129 +166,32 @@
         <!-- offcanva sous categorie -->
         <div class="offcanvas-body">
             <ul id="mainOffcanvas">
-                <li class="toClosejsOffcanvas"><a id="toggleDog"><img src="{{ asset('build/images/icon/offCanva/dog.png') }}"
-                            alt="icone de chien"> Chien</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleCat"><img src="{{ asset('build/images/icon/offCanva/cat.png') }}"
-                            alt="icone de chat"> Chat</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleFish"><img src="{{ asset('build/images/icon/offCanva/fish.png') }}"
-                            alt="icone de poisson"> Aqua</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleRat"><img src="{{ asset('build/images/icon/offCanva/rabbit.png') }}"
-                            alt="icone de Rongeur"> Rongeur</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleSnake"><img src="{{ asset('build/images/icon/offCanva/turtle.png') }}"
-                            alt="icone de reptile"> Terrario</a></li>
-                <li class="toClosejsOffcanvas"><a id="toggleBird"><img src="{{ asset('build/images/icon/offCanva/bird.png') }}"
-                            alt="icone d'oiseau"> Oiseau</a></li>
-                <li class="toClosejsOffcanvas"><a href="#"><img src="{{ asset('build/images/icon/offCanva/rocket.png') }}" alt="icone de fusée">
-                        <span class="d-none d-lg-block">votre animal dans l</span> <span class="d-lg-none">L</span>
-                        'espace</a></li>
+                {% for category in main_categories() %}
+                    <li class="toClosejsOffcanvas"><a id="toggle{{ category.imageEndUrl|capitalize }}"><img src="{{ asset('build/images/icon/offCanva/' ~ category.imageEndUrl ~ '.png') }}"
+                            alt="icone de {{ category.name }}">{{ category.name }}</a></li>
+                {% endfor %}
             </ul>
 
             <!-- offcanvas au clique sur chien -->
-            <div class="offcanvasDog">
-                <div class="targetDogDisplay">
-                    <ul class="secondCanvas">
-                        <li><a href="#">Jouets</a></li>
-                        <li><a href="#">Colliers et laisses</a></li>
-                        <li><a href="#">Hygiène et soins</a></li>
-                        <li><a href="#">Gamelles et distributeurs</a></li>
-                        <li><a href="#">Compléments alimentaires</a></li>
-                        <li><a href="#">Nourriture pour chiens</a></li>
-                    </ul>
-                    <!-- pointeur du lien cliqué en background -->
-                    <div>
+            {% for category in main_categories() %}
+                {% if category.name != 'Espace' %}
+                    <div class="offcanvas{{ category.imageEndUrl|capitalize }}">
+                        <div class="targetDogDisplay">
+                            <ul class="secondCanvas">
+                                {% for subCategory in category|sub_categories %}
+                                    <li><a href="#">{{ subCategory.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <!-- pointeur du lien cliqué en background -->
+                            <div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- offcanvas au clique sur chat -->
-            <div class="offcanvasCat">
-                <div class="targetDogDisplay">
-                    <ul class="secondCanvas">
-                        <li><a href="#">Jouets</a></li>
-                        <li><a href="#">Voyage et transport</a></li>
-                        <li><a href="#">Arbre à chat</a></li>
-                        <li><a href="#">Toilettage et hygiène</a></li>
-                        <li><a href="#">Gamelles et distributeurs</a></li>
-                        <li><a href="#">Litière pour chat</a></li>
-                        <li><a href="#">Nourriture pour chat</a></li>
-                    </ul>
-                    <!-- pointeur du lien cliqué en background -->
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- offcanvas au clique sur rongeur -->
-            <div class="offcanvasRat">
-                <div class="targetDogDisplay">
-                    <ul class="secondCanvas">
-                        <li><a href="#">Alimentation</a></li>
-                        <li><a href="#">Hygiène et soins</a></li>
-                        <li><a href="#">Cages et accessoires</a></li>
-                    </ul>
-                    <!-- pointeur du lien cliqué en background -->
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- offcanvas au clique sur poisson -->
-            <div class="offcanvasFish">
-                <div class="targetDogDisplay">
-                    <ul class="secondCanvas">
-                        <li><a href="#">Traitements et soins</a></li>
-                        <li><a href="#">Filtrations</a></li>
-                        <li><a href="#">Aquariums</a></li>
-                        <li><a href="#">Nourritures pour poissons</a></li>
-                    </ul>
-                    <!-- pointeur du lien cliqué en background -->
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- offcanvas au clique sur reptile -->
-            <div class="offcanvasSnake">
-                <div class="targetDogDisplay">
-                    <ul class="secondCanvas">
-                        <li><a href="#">Accessoires</a></li>
-                        <li><a href="#">Décoration</a></li>
-                        <li><a href="#">Substrat</a></li>
-                        <li><a href="#">Chauffage</a></li>
-                        <li><a href="#">Éclairage</a></li>
-                        <li><a href="#">Nourriture pour reptiles</a></li>
-                    </ul>
-                    <!-- pointeur du lien cliqué en background -->
-                    <div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- offcanvas au clique sur oiseau -->
-            <div class="offcanvasBird">
-                <div class="targetDogDisplay">
-                    <ul class="secondCanvas">
-                        <li><a href="#">Nichoires</a></li>
-                        <li><a href="#">Mangeoires</a></li>
-                        <li><a href="#">Hygiène et soins</a></li>
-                        <li><a href="#">Habitats</a></li>
-                        <li><a href="#">Nourriture pour oiseaux</a></li>
-                    </ul>
-                    <!-- pointeur du lien cliqué en background -->
-                    <div>
-
-                    </div>
-                </div>
-            </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
-
-    <!-- fin offcanva menu -->
 </header>
 
  {# import du off canvas de labarre de navigation-------------------------------------------------------------------------------------- #}
