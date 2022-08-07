@@ -23,8 +23,16 @@ class TotalCommandNumberAction extends AbstractController
             $qb = $this->entityManager->createQueryBuilder()
                 ->select('COUNT(o)')
                 ->from(Ordered::class, 'o');
-            $query = $qb->getQuery();
-            $total = $query->getSingleScalarResult();
+
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $qb->andwhere('o.creationAt BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
+            $total = $qb->getQuery()
+                    ->getSingleScalarResult();
+
         // return total number of command
         return new JsonResponse(['Nombre total de commande' => $total]);
     }

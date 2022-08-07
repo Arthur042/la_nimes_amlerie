@@ -25,8 +25,15 @@ class TotalSellAction extends AbstractController
                 ->from(Ordered::class, 'o')
                 ->join('o.bag', 'b')
                 ->join('b.contains', 'c');
-            $query = $qb->getQuery();
-            $total = $query->getSingleScalarResult();
+
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $qb->andwhere('c. BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
+        $total = $qb->getQuery()
+            ->getSingleScalarResult();
         // return total sell price
         return new JsonResponse(['Montant total des ventes' => $total]);
     }

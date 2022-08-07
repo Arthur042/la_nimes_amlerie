@@ -25,6 +25,12 @@ class NumberVisitorsAction extends AbstractController
                                 ->select('COUNT(v)')
                                 ->from(CountVisitors::class, 'v');
 
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $TotalVisitors->andwhere('v.connectionAt BETWEEN :dateFrom AND :dateTo')
+                            ->setParameter('dateFrom', $_GET['dateFrom'])
+                            ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
         // execute request and stock result in a variable
             $TotalVisitors = $TotalVisitors->getQuery()->getSingleScalarResult();
         

@@ -26,11 +26,19 @@ class NewClientAction extends AbstractController
         // Find new users (user inserted in the base during current month)
             $qb = $this->entityManager->createQueryBuilder()
                 ->select('COUNT(u)')
-                ->from(User::class, 'u')
-                ->where('u.inscriptionAt >= :date')
+                ->from(User::class, 'u');
+        if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+            $qb->where('u.inscriptionAt BETWEEN :dateFrom AND :dateTo')
+                ->setParameter('dateFrom', $_GET['dateFrom'])
+                ->setParameter('dateTo', $_GET['dateTo'])
+                ->andWhere('u.inscriptionAt <= :expireDate')
+                ->setParameter('expireDate', 'u.inscriptionAt + 1 month');
+        } else {
+            $qb->where('u.inscriptionAt >= :date')
                 ->setParameter('date', $date);
-            $query = $qb->getQuery();
-            $newUsers = $query->getSingleScalarResult();
+        }
+            $newUsers = $qb->getQuery()
+                        ->getSingleScalarResult();
 
         return new JsonResponse(['Nombre de nouveaux clients' => $newUsers]);
     }

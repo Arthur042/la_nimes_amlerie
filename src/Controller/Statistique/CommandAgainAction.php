@@ -19,17 +19,21 @@ class CommandAgainAction extends AbstractController
 
     public function __invoke(): JsonResponse
     {
-        $date = '2023-07-31';
         // count all ordered from echa clien before $date
             $qb = $this->entityManager->createQueryBuilder()
                 ->select('IDENTITY(b.user), COUNT(o)')
                 ->from(Ordered::class, 'o')
-                ->join('o.bag', 'b')
-                ->where('o.creationAt < :date')
-                ->groupBy('b.user')
-                ->setParameter('date', $date);
-            $query = $qb->getQuery();
-            $totals = $query->getScalarResult();
+                ->join('o.bag', 'b');
+
+                if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                    $qb->where('o.creationAt BETWEEN :dateFrom AND :dateTo')
+                        ->setParameter('dateFrom', $_GET['dateFrom'])
+                        ->setParameter('dateTo', $_GET['dateTo']);
+                }
+
+            $totals = $qb->groupBy('b.user')
+                        ->getQuery()
+                        ->getScalarResult();
 
         // loop in total and look if total nomber of command for one user is greater than 1
             $commandForSecondTime = 0;

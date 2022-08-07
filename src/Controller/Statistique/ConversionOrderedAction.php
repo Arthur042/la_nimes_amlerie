@@ -26,9 +26,23 @@ class ConversionOrderedAction extends AbstractController
                         ->select('Count(b)')
                         ->from(Bag::class, 'b');
 
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $totalBag->where('b.creationAt BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
+
             $totalOrder = $this->entityManager->createQueryBuilder()
                         ->select('Count(o)')
                         ->from(Ordered::class, 'o');
+
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $totalOrder->where('o.creationAt BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
 
         // execute request and stock result in a variable
             $totalBag = $totalBag->getQuery()->getSingleScalarResult();

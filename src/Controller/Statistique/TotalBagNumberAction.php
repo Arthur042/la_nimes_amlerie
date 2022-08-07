@@ -23,8 +23,15 @@ class TotalBagNumberAction extends AbstractController
             $qb = $this->entityManager->createQueryBuilder()
                 ->select('COUNT(b)')
                 ->from(Bag::class, 'b');
-            $query = $qb->getQuery();
-            $total = $query->getSingleScalarResult();
+
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $qb->andwhere('b.creationAt BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
+        $total = $qb->getQuery()
+                ->getSingleScalarResult();
         // return total number of bag
         return new JsonResponse(['Nombre total de panier' => $total]);
     }

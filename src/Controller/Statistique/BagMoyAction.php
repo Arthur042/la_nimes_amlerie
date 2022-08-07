@@ -24,17 +24,33 @@ class BagMoyAction extends AbstractController
             $qb = $this->entityManager->createQueryBuilder()
                 ->select('COUNT(b)')
                 ->from(Bag::class, 'b');
-            $query = $qb->getQuery();
-            $totalbag = $query->getSingleScalarResult();
-            
+
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $qb->where('b.date BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
+        $totalbag = $qb->getQuery()
+                    ->getSingleScalarResult();
+
+
         // calculate average bag price
             $qb = $this->entityManager->createQueryBuilder()
                 ->select("SUM(c.unitPrice*c.quantity)/:totalBag")
                 ->from(Contain::class, 'c')
                 ->setParameter('totalBag', $totalbag);
-            $query = $qb->getQuery();
-            $total = $query->getSingleScalarResult();
+
+            // date from and date to
+            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+                $qb->andWhere('c.date BETWEEN :dateFrom AND :dateTo')
+                    ->setParameter('dateFrom', $_GET['dateFrom'])
+                    ->setParameter('dateTo', $_GET['dateTo']);
+            }
+
+            $result = $qb->getQuery()
+                ->getSingleScalarResult();
         // return average bag price
-        return new JsonResponse(['Valeur moyen d\'un panier' => $total]);
+        return new JsonResponse(['Panier moyen' => $result]);
     }
 }
