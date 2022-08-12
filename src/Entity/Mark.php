@@ -34,6 +34,9 @@ class Mark
     #[ORM\OneToMany(mappedBy: 'mark', targetEntity: Product::class)]
     private Collection $products;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pathImage = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -82,6 +85,18 @@ class Mark
                 $product->setMark(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPathImage(): ?string
+    {
+        return $this->pathImage;
+    }
+
+    public function setPathImage(?string $pathImage): self
+    {
+        $this->pathImage = $pathImage;
 
         return $this;
     }

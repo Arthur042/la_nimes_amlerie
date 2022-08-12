@@ -63,4 +63,12 @@ class MarkRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findMarks()
+    {
+        return $this->createQueryBuilder('mark')
+            ->setMaxResults(6)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

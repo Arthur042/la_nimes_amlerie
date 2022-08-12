@@ -6,14 +6,10 @@
         </div>
     </a>
     <div class="lna_card_body">
-        <h3>{{ product.title|excerpt }}</h3>
+        <h3>{{ product.title|excerpt(20) }}</h3>
         <div class="lna_comment"> {# todo service d'affichage des étoile a la place du fichier#}
-            <div>
-                <span class="lna_star lna_star_empty"></span>
-                <span class="lna_star lna_star_empty"></span>
-                <span class="lna_star lna_star_empty"></span>
-                <span class="lna_star lna_star_empty"></span>
-                <span class="lna_star lna_star_empty"></span>
+            <div class="star">
+                {{ average|star|raw }}
             </div>
             <p>{{ product.comments|length }} avis</p>
         </div>

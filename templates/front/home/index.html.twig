@@ -73,8 +73,13 @@
         <section id="new_order" class="order">
 
             <div class="container container">
-                <h2>Commander à nouveau</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium quis doloremque non.</p>
+                {% if app.user %}
+                    <h2>Commander à nouveau</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium quis doloremque non.</p>
+                {% else %}
+                    <h2>Dernières sorties</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium quis doloremque non.</p>
+                {% endif %}
                 <div class="lna_separation"></div>
                 <!-- carousel des produits -->
                 <div class="lna_container_flex">
@@ -83,10 +88,22 @@
                         <div></div>
                     </div>
                     <div class="carrouselCard">
-                        <div id="ProductCarrousel" class="zero">
-                            {% for product in products %}
-                                {% include 'front/partial/productCard/productCard.html.twig' %}
-                            {% endfor %}
+                        <div id="ProductCarrousel" class="zero" data-position-carrousel="">
+                            {% if app.user %}
+                                {% for product in products %}
+                                    {% include 'front/partial/productCard/productCard.html.twig' with {
+                                        'product': product[0],
+                                        'average': product['average'],
+                                    } %}
+                                {% endfor %}
+                            {% else %}
+                                {% for product in lastReleasedProducts %}
+                                    {% include 'front/partial/productCard/productCard.html.twig' with {
+                                        'product': product[0],
+                                        'average': product['average'],
+                                    } %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
 
@@ -114,9 +131,12 @@
                         <div></div>
                     </div>
                     <div class="carrouselCard">
-                        <div id="ProductSecondCarrousel" class="zero">
+                        <div id="ProductSecondCarrousel" class="zero" data-position-carrousel="">
                             {% for product in bestSellingProducts %}
-                                {% include 'front/partial/productCard/productCard.html.twig' %}
+                                {% include 'front/partial/productCard/productCard.html.twig' with {
+                                    'product': product[0],
+                                    'average': product['average'],
+                                } %}
                             {% endfor %}
                         </div>
                     </div>
@@ -164,7 +184,12 @@
                 <div class="lna_separation"></div>
 
                 <div class="lna_container_flex">
-                    {% include 'front/partial/markCard/markCard.html.twig' %}
+                    {% for mark in marks %}
+                        {% set count = count + 1 %}
+                        {% include 'front/partial/markCard/markCard.html.twig' with {
+                            'iteration': count,
+                        }%}
+                    {% endfor %}
                 </div>
             </div>
 
@@ -210,7 +235,13 @@
 
                 <div class="lna_container_flex">
                     <!-- carte client -->
-                    {% include 'front/partial/avisCard/avisCard.html.twig' %}
+                    {% set count = 0 %}
+                    {% for comment in lastComments %}
+                        {% set count = count + 1 %}
+                        {% include 'front/partial/avisCard/avisCard.html.twig' with {
+                            'iteration': count,
+                        }%}
+                    {% endfor %}
                 </div>
             </div>
 

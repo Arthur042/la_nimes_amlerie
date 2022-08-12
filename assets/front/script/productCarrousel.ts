@@ -1,22 +1,26 @@
 
 function slideLeft(carrousel){
-    // if classList.contains('zero')
-    if(carrousel.classList.contains('thirty')){
-        carrousel.classList.remove('thirty');
-        carrousel.classList.add('zero');
-    }else if (carrousel.classList.contains('sixty')){
-        carrousel.classList.remove('sixty');
-        carrousel.classList.add('thirty');
+    let width: number = carrousel.getAttribute('data-position-carrousel');
+    console.log(width);
+    if (width >= 172){
+        width = width - 172;
+        console.log(width);
+
+        carrousel.style.transform = 'translateX(-'+ width +'px)';
+
+        carrousel.setAttribute('data-position-carrousel', width.toString());
     }
 }
 
 function slideRight(carrousel){
-    if(carrousel.classList.contains('zero')){
-        carrousel.classList.remove('zero');
-        carrousel.classList.add('thirty');
-    }else if (carrousel.classList.contains('thirty')){
-        carrousel.classList.remove('thirty');
-        carrousel.classList.add('sixty');
+    let width: number = carrousel.getAttribute('data-position-carrousel');
+
+    if(width <= 1204){
+        width = Number(width) + 172;
+        console.log(width);
+        carrousel.style.transform = 'translateX(-'+ width +'px)';
+
+        carrousel.setAttribute('data-position-carrousel', width.toString());
     }
 }
 

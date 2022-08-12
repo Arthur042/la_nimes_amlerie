@@ -112,6 +112,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -289,6 +292,18 @@ class Product
                 $comment->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

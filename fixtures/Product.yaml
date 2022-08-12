@@ -7,5 +7,6 @@ App\Entity\Product:
         tva: '<randomFloat(2, 0, 0.2)>'
         quantity: '<numberBetween(0, 100)>'
         isAvailable: '<numberBetween(0, 1)>'
+        createdAt: '<dateTimeBetween("-2 years", "-1 days")>'
         category: '@category*'
         mark: '@mark*'

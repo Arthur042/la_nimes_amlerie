@@ -45,9 +45,10 @@ class ProductRepository extends ServiceEntityRepository
     public function findForHomePage()
     {
         return $this->createQueryBuilder('products')
-            ->select('products', 'comments')
-            ->leftJoin('products.comments', 'comments')
-            ->setMaxResults(21)
+            ->select('products', 'AVG(comments.note) AS average')
+            ->join('products.comments', 'comments')
+            ->groupBy('products')
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult()
             ;
@@ -56,12 +57,26 @@ class ProductRepository extends ServiceEntityRepository
     public function findBestSellingProducts()
     {
         return $this->createQueryBuilder('product')
+            ->select('product', 'AVG(comments.note) AS average')
             ->join(Contain::class, 'contain', Join::WITH, 'contain.products = product')
             ->join('contain.bag', 'bag')
             ->join(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->join('product.comments', 'comments')
             ->groupBy('product')
             ->orderBy('SUM(contain.quantity)', 'DESC')
-            ->setMaxResults(21)
+            ->setMaxResults(15)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findLastReleased()
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product, AVG(comments.note) AS average')
+            ->join('product.comments', 'comments')
+            ->groupBy('product')
+            ->orderBy('product.createdAt', 'DESC')
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }

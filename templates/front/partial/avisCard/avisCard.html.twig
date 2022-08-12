@@ -1,24 +1,19 @@
 
-<div class="lna_product_item product_item"> {# todo display des cards #}
-    <img src="{{ asset('build/images/opinion/cat.png') }}" alt="photo d'un client"> {# todo photo du client #}
-    <p>loremljlhf ufhsd jfhsdlk jfsqdjkffg hsdkjfhsoif iouagz emfij zskljhfgqsd ufujazioh fiosdlkjfioy aizug fkjqsdnf lmsdh hfiu ah^pozfjh sdkljgh f</p> {# todo avis #}
-    <p><b>Michel</b></p> {# todo nom du client #}
-</div>
-
-<div class="lna_product_item product_item d-sm-none d-md-block"> {# todo display des cards #}
-    <img src="{{ asset('build/images/opinion/cat.png') }}" alt="photo d'un client"> {# todo photo du client #}
-    <p>loremljlhf ufhsd jfhsdlk jfsqdjkffg hsdkjfhsoif iouagz emfij zskljhfgqsd ufujazioh fiosdlkjfioy aizug fkjqsdnf lmsdh hfiu ah^pozfjh sdkljgh f</p> {# todo avis #}
-    <p><b>Michel</b></p> {# todo nom du client #}
-</div>
-
-<div class="lna_product_item product_item d-sm-none d-lg-block"> {# todo display des cards #}
-    <img src="{{ asset('build/images/opinion/cat.png') }}" alt="photo d'un client"> {# todo photo du client #}
-    <p>loremljlhf ufhsd jfhsdlk jfsqdjkffg hsdkjfhsoif iouagz emfij zskljhfgqsd ufujazioh fiosdlkjfioy aizug fkjqsdnf lmsdh hfiu ah^pozfjh sdkljgh f</p> {# todo avis #}
-    <p><b>Michel</b></p> {# todo nom du client #}
-</div>
-
-<div class="lna_product_item product_item d-sm-none d-xl-block"> {# todo display des cards #}
-    <img src="{{ asset('build/images/opinion/cat.png') }}" alt="photo d'un client"> {# todo photo du client #}
-    <p>loremljlhf ufhsd jfhsdlk jfsqdjkffg hsdkjfhsoif iouagz emfij zskljhfgqsd ufujazioh fiosdlkjfioy aizug fkjqsdnf lmsdh hfiu ah^pozfjh sdkljgh f</p> {# todo avis #}
-    <p><b>Michel</b></p> {# todo nom du client #}
+<div class="lna_product_item product_item
+{% if iteration == 2 %} d-none d-md-block
+{% elseif iteration == 3 %} d-none d-lg-block
+{% elseif iteration == 4 %} d-none d-xxl-block
+{% endif %}">
+    <div class="d-flex align-items-center justify-content-center">
+        <img src="{{ asset('build/images/opinion/client'~ random(5) ~'.png') }}" alt="photo d'un client"> {# todo photo du client #}
+        <div>
+            <p class="avisTitle"><b>{{ comment.user.firstName|upper }}</b></p>
+            <div class="star">
+                {{ comment.note|star|raw }}
+            </div>
+        </div>
+    </div>
+    <p class="avisContent"><b>{{ comment.product.title }}</b></p>
+    <p class="comment">{{ comment.description|excerpt(70) }}</p>
+    <p><b>écrit le {{ comment.creationAt|date("d/m/Y") }}</b></p>
 </div>
