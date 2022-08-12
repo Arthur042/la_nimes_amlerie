@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Contain;
+use App\Entity\Ordered;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -48,5 +51,18 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function findBestSellingProducts()
+    {
+        return $this->createQueryBuilder('product')
+            ->join(Contain::class, 'contain', Join::WITH, 'contain.products = product')
+            ->join('contain.bag', 'bag')
+            ->join(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->groupBy('product')
+            ->orderBy('SUM(contain.quantity)', 'DESC')
+            ->setMaxResults(21)
+            ->getQuery()
+            ->getResult();
     }
 }

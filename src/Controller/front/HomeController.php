@@ -24,12 +24,16 @@ class HomeController extends AbstractController
         $entityManager->flush();
 
         // Request 15 products from the database
-        $products = $productRepository->findForHomePage();
+        $products = $productRepository->findForHomePage(); //todo 15 product ordered one timeby user
 
+        // Request 15 products most selling from the database
+        $bestSellingProducts = $productRepository->findBestSellingProducts();
+        dd($bestSellingProducts);
 
 
         return $this->render('front/home/index.html.twig', [
             'products' => $products,
+            'bestSellingProducts' => $bestSellingProducts,
         ]);
     }
 }
