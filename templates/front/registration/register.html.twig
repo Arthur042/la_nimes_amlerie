@@ -1,0 +1,38 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Connection{% endblock %}
+
+{% block body %}
+
+{% for flash_error in app.flashes('verify_email_error') %}
+    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+
+    <section class="container inscription">
+        <h2 class="modal-title" id="inscriptionModalLabel">Inscrivez-vous</h2>
+
+        {{ form_start(registrationForm) }}
+        <div class="mb-4">
+            {{ form_widget(registrationForm.email) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_widget(registrationForm.username) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_widget(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+        </div>
+        <div class="mb-4">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+        <button type="submit" class="lna_btn_main lna_btn_dark">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+
+        <p>Si vous avez déjà un compte : <a href="{{ path('app_login') }}">Connectez-vous</a></p>
+    </section>
+
+{% endblock %}
