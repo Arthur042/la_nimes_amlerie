@@ -11,6 +11,10 @@
             <li><a href="">Newsletter</a></li>
             <div></div>
             <li><a href="">Mes adresses</a></li>
+            {% if app.user|isAdmin %}
+            <div></div>
+            <li><a href="{{ path('app_admin_user') }}">Gestion du site</a></li>
+            {% endif %}
             <div></div>
             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
         </ul>

@@ -1,0 +1,66 @@
+
+<div class="ps-4 pt-4 admin-menu">
+
+    <h4>Clients</h4>
+    <ul class="list-unstyled ps-4">
+        <li>
+            <a  href="{{ path('app_admin_user') }}"
+                class="{% if app.request.pathinfo == path('app_admin_user') %}menu-active{% endif %}"
+            >
+                Liste des clients
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <h4>Commandes</h4>
+    <ul class="list-unstyled ps-4">
+        <li>
+            <a  href="{{ path('app_admin_user') }}"
+                class="{% if app.request.pathinfo == path('app_admin_user') %}menu-active{% endif %}"
+            >
+                Liste des commandes
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <h4>Catégories</h4>
+    <ul class="list-unstyled ps-4">
+        <li>
+            <a href="{{ path('app_admin_user') }}"
+               class="{% if app.request.pathinfo == path('app_admin_user') %}menu-active{% endif %}"
+            >
+                Liste des catégories
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('app_admin_user') }}"
+               class="{% if app.request.pathinfo == path('app_admin_user') %}menu-active{% endif %}"
+            >
+                Ajouter une catégorie
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <h4>Produits</h4>
+    <ul class="list-unstyled ps-4">
+        <li>
+            <a href="{{ path('app_admin_product') }}"
+               class="{% if app.request.pathinfo == path('app_admin_product') %}menu-active{% endif %}"
+            >
+                Liste des produits
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('app_admin_product_new') }}"
+               class="{% if app.request.pathinfo == path('app_admin_product_new') %}menu-active{% endif %}"
+            >
+                Ajouter un produit
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <a href="{{ path('app_home') }}">
+        Retour au site
+    </a>
+
+</div>

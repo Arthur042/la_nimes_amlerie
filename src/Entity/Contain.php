@@ -25,7 +25,7 @@ class Contain
     private ?int $quantity = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[
         Assert\NotNull(
             message : 'contain.product.NotNull',

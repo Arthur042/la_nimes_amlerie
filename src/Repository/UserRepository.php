@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Ordered;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -80,4 +83,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function getQbAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('user')
+            ->select('user', 'count(ordered) as totalOrdered', 'count(comment) as totalComment')
+            ->leftJoin('user.bags', 'bag')
+            ->leftJoin(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->leftJoin('user.comments', 'comment')
+            ->groupBy('user')
+            ;
+    }
 }

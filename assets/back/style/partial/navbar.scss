@@ -1,0 +1,22 @@
+.myNavbar{
+  padding: 1rem;
+  min-height: 100vh;
+  h2{
+
+  }
+
+  ul{
+    list-style: none;
+    li{
+      margin-bottom: 1rem;
+      a{
+        transition: all 0.3s ease-in-out;
+        padding: .5rem .5rem .5rem 0;
+        font-size: 1.3rem;
+        &:hover{
+          @include text_fade;
+        }
+      }
+    }
+  }
+}

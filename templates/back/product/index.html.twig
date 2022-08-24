@@ -1,0 +1,102 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Gestion des Produits{% endblock %}
+
+{% block body %}
+    <h1 class="my-3 ms-5">Liste des produits</h1>
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    {{
+                    knp_pagination_sortable(products, 'Titre', 'product.title')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'product.title' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'product.title' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(products, 'Prix', 'product.priceHt')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'product.priceHt' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'product.priceHt' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(products, 'TVA', 'product.tva')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'product.tva' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'product.tva' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(products, 'Quantité', 'product.quantity')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'product.quantity' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'product.quantity' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(products, 'Disponibilité', 'product.isAvailable')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'product.isAvailable' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'product.isAvailable' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(products, 'Date de création', 'product.createdAt')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'product.createdAt' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'product.createdAt' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.title }}</td>
+                <td>{{ product.priceHt }}€</td>
+                <td>{{ product.tva*100 }}%</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.isAvailable ? 'En stock' : 'Non disponible' }}</td>
+                <td>{{ product.createdAt|date('Y-m-d') }}</td>
+                <td>
+                    <a href="{{ path('app_admin_product_show', {'id': product.id}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ path('app_admin_product_edit', {'id': product.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ product.id }}"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+
+            {% include 'back/partials/modal.html.twig' with {
+                'redirect': 'app_admin_product_delete',
+                'id': product.id
+            }%}
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

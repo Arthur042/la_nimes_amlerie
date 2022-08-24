@@ -2,11 +2,14 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Contain;
+use App\Entity\Mark;
 use App\Entity\Ordered;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -79,5 +82,11 @@ class ProductRepository extends ServiceEntityRepository
             ->setMaxResults(15)
             ->getQuery()
             ->getResult();
+    }
+
+    public function getQbAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('product')
+            ;
     }
 }

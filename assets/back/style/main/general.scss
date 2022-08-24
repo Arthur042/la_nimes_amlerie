@@ -1,0 +1,47 @@
+body{
+  height: 100%;
+  background-color: #FAFCFF;
+
+    .leftBack{
+      background-color: $light;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+    }
+
+  .rightBack{
+    margin-left: 300px;
+  }
+
+    .admin-menu {
+      a {
+        text-decoration: none;
+        color: $dark;
+
+        &:hover {
+          @include text_fade;
+        }
+
+        &.menu-active {
+          @include text_fade;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+  .showEditLink{
+    color: $dark;
+    font-size: 2rem;
+    text-decoration: none;
+    padding: .5rem 2rem;
+    box-shadow: rgba(0, 0, 0, 0.78) 0 0 4px;
+    border-radius: 1rem;
+    transition: ease-in-out .15s;
+    &:hover{
+      background-color: #dcdcdc;
+    }
+  }
+}

@@ -32,12 +32,7 @@ class Bag
     private ?\DateTimeInterface $creationAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'bags', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    #[
-        Assert\NotNull(
-            message : 'bag.user.NotNull',
-        ),
-    ]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'bag', targetEntity: Contain::class)]

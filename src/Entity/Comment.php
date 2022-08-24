@@ -33,7 +33,7 @@ class Comment
     private ?int $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[
         Assert\NotNull(
             message : 'comment.user.NotNull',
@@ -42,7 +42,7 @@ class Comment
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[
         Assert\NotNull(
             message : 'comment.product.NotNull',
