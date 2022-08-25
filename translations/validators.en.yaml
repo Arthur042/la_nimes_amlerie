@@ -105,8 +105,8 @@ product:
         GreaterThan: 'Le prix doit être supérieur à 0€'
     tva:
         NotBlank: 'La tva ne peut pas être vide.'
-        GreaterThan: 'La tva doit être supérieur à 0 (0%).'
-        LessThan: 'La tva doit être inférieur à 1 (100%).'
+        GreaterThan: 'La tva doit être supérieur à 0.'
+        LessThan: 'La tva doit être inférieur à 100%.'
     quantity:
         GreaterThan: 'La quantité ne peut as être inférieur à 0'
     isAvailable:

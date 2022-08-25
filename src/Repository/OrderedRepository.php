@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Contain;
 use App\Entity\Ordered;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -63,4 +66,15 @@ class OrderedRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function getQbAll(): QueryBuilder
+    {
+        return $this->createQueryBuilder('ordered')
+            ->select('ordered, bag, payment, status')
+            ->join('ordered.payment', 'payment')
+            ->join('ordered.status', 'status')
+            ->join('ordered.bag', 'bag')
+            ->groupBy('ordered')
+            ->orderBy('bag.user', 'asc')
+            ;
+    }
 }

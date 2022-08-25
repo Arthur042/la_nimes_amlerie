@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th>Description complète</th>
-                <td>{{ product.fullDescription }}</td>
+                <td>{{ product.fullDescription|raw }}</td>
             </tr>
             <tr>
                 <th>Prix hors taxe</th>
@@ -50,6 +50,20 @@
             <tr>
                 <th>Catégories</th>
                 <td>{{ product.category.name}}</td>
+            </tr>
+            <tr>
+                <th>Note Moyenne</th>
+                <td>
+                    {% if note is null %}
+                        il n'y a pas encore de commentaires
+                    {% else %}
+                        {{ note }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Total de ventes</th>
+                <td>{{ totalSell }}</td>
             </tr>
             </tbody>
         </table>

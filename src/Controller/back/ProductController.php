@@ -39,7 +39,7 @@ class ProductController extends AbstractController
             'products' => $products,
         ]);
     }
-
+//    todo AJOUTER L UPLOADER DE FICHIER POUR METTRE LES IMAGES ET MODIFIER LES CATEGORIES
     #[Route('/new', name: 'app_admin_product_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProductRepository $productRepository): Response
     {
@@ -48,6 +48,9 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $product->setCreatedAt(new \DateTime('now'));
+            $tva = $product->getTva() / 100;
+            $product->setTva($tva);
             $productRepository->add($product, true);
 
             return $this->redirectToRoute('app_admin_product', [], Response::HTTP_SEE_OTHER);
@@ -60,10 +63,13 @@ class ProductController extends AbstractController
     }
 
     #[Route('/detail/{id}', name: 'app_admin_product_show', methods: ['GET'])]
-    public function show(Product $product): Response
+    public function show(int $id): Response
     {
+        $detailProduct = $this->productRepository->getDetailProduct($id);
         return $this->render('back/product/show.html.twig', [
-            'product' => $product,
+            'product' => $detailProduct[0][0],
+            'note' => $detailProduct[0]['average'],
+            'totalSell' => $detailProduct[0]['totalSell'],
         ]);
     }
 
@@ -74,6 +80,8 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $tva = $product->getTva() / 100;
+            $product->setTva($tva);
             $productRepository->add($product, true);
 
             return $this->redirectToRoute('app_admin_product', [], Response::HTTP_SEE_OTHER);

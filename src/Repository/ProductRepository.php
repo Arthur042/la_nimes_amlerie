@@ -89,4 +89,19 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('product')
             ;
     }
+
+    public function getDetailProduct(int $id)
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product, AVG(comments.note) AS average, count(ordered) as totalSell')
+            ->leftJoin('product.comments', 'comments')
+            ->leftJoin(Contain::class, 'contain', Join::WITH, 'contain.products = product')
+            ->leftJoin('contain.bag', 'bag')
+            ->leftJoin(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->where('product.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

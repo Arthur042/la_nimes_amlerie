@@ -65,7 +65,7 @@ class Product
             message : 'product.tva.GreaterThan',
         ),
         Assert\LessThan(
-            1,
+            100,
             message : 'product.tva.LessThan',
         ),
     ]

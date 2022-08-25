@@ -1,0 +1,41 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Liste des commandes{% endblock %}
+
+{% block body %}
+    <h1>Liste des commandes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreationAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ordered in ordereds %}
+            <tr>
+                {% dump ordered %}
+                <td>{{ ordered.id }}</td>
+                <td>{{ ordered.creationAt|date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('app_admin_ordered_show', {'id': ordered.id}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ path('app_admin_ordered_edit', {'id': ordered.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ ordered.id }}"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+
+            {% include 'back/partials/modal.html.twig' with {
+                'redirect': 'app_admin_ordered_delete',
+                'id': ordered.id
+            }%}
+
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

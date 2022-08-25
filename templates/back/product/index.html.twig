@@ -3,7 +3,7 @@
 {% block title %}Gestion des Produits{% endblock %}
 
 {% block body %}
-    <h1 class="my-3 ms-5">Liste des produits</h1>
+    <h1>Liste des produits</h1>
 
     <table class="table table-hover table-striped">
         <thead>
@@ -98,5 +98,8 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation d-flex justify-content-center my-2">
+        {{ knp_pagination_render(products) }}
+    </div>
 
 {% endblock %}
