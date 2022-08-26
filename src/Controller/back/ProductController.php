@@ -3,12 +3,14 @@
 namespace App\Controller\back;
 
 use App\Entity\Product;
+use App\Form\Filter\ProductFilterType;
 use App\Form\ProductType;
 use App\Repository\CommentRepository;
 use App\Repository\ContainRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdaterInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,16 +29,28 @@ class ProductController extends AbstractController
     public function index(
         Request $request,
         PaginatorInterface $paginator,
+        FilterBuilderUpdaterInterface $builderUpdater,
     ): Response
     {
+        $qb = $this->productRepository->getQbAll();
+
+        $filterForm = $this->createForm(ProductFilterType::class, null, [
+            'method' => 'GET',
+        ]);
+
+        if ($request->query->has($filterForm->getName())) {
+            $filterForm->submit($request->query->all($filterForm->getName()));
+            $builderUpdater->addFilterConditions($filterForm, $qb);
+        }
         $products = $paginator->paginate(
-            $this->productRepository->getQbAll(),
+            $qb,
             $request->query->getInt('page', 1),
             15
         );
 
         return $this->render('back/product/index.html.twig', [
             'products' => $products,
+            'filters' => $filterForm->createView(),
         ]);
     }
 //    todo AJOUTER L UPLOADER DE FICHIER POUR METTRE LES IMAGES ET MODIFIER LES CATEGORIES

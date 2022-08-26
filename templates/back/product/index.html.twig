@@ -5,6 +5,7 @@
 {% block body %}
     <h1>Liste des produits</h1>
 
+    {{ form_start(filters) }}
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -17,6 +18,7 @@
                     {% elseif app.request.query.get("sort") == 'product.title' and  app.request.query.get("direction") == 'desc' %}
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
+                    {{ form_widget(filters.title) }}
                 </th>
                 <th>
                     {{
@@ -57,6 +59,7 @@
                     {% elseif app.request.query.get("sort") == 'product.isAvailable' and  app.request.query.get("direction") == 'desc' %}
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
+                    {{ form_widget(filters.isAvailable) }}
                 </th>
                 <th>
                     {{
@@ -68,7 +71,17 @@
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
                 </th>
-                <th>actions</th>
+                <th>
+                    actions
+                    <div>
+                        <button type="submit" class="filter-action">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <a class="filter-action" href="{{ path('app_admin_user') }}">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -98,6 +111,8 @@
         {% endfor %}
         </tbody>
     </table>
+    {{ form_start(filters) }}
+
     <div class="navigation d-flex justify-content-center my-2">
         {{ knp_pagination_render(products) }}
     </div>

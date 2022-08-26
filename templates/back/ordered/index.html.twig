@@ -5,7 +5,8 @@
 {% block body %}
     <h1>Liste des commandes</h1>
 
-    <table class="table">
+    {{ form_start(filters) }}
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>
@@ -17,6 +18,7 @@
                     {% elseif app.request.query.get("sort") == 'user.email' and  app.request.query.get("direction") == 'desc' %}
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
+                    {{ form_widget(filters.email) }}
                 </th>
                 <th>
                     {{
@@ -27,8 +29,12 @@
                     {% elseif app.request.query.get("sort") == 'ordered.creationAt' and  app.request.query.get("direction") == 'desc' %}
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
+                    <span class="empty-filter"></span>
                 </th>
-                <th>Montant</th>
+                <th>
+                    Montant
+                    <span class="empty-filter"></span>
+                </th>
                 <th>
                     {{
                     knp_pagination_sortable(ordereds, 'Moyen de paiement', 'payment.name')|raw
@@ -38,6 +44,7 @@
                     {% elseif app.request.query.get("sort") == 'payment.name' and  app.request.query.get("direction") == 'desc' %}
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
+                    {{ form_widget(filters.payment) }}
                 </th>
                 <th>
                     {{
@@ -48,8 +55,19 @@
                     {% elseif app.request.query.get("sort") == 'status.advancement' and  app.request.query.get("direction") == 'desc' %}
                         <i class="fas fa-sort-down"></i>
                     {% endif %}
+                    {{ form_widget(filters.status) }}
                 </th>
-                <th>actions</th>
+                <th>
+                    actions
+                    <div>
+                        <button type="submit" class="filter-action">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <a class="filter-action" href="{{ path('app_admin_ordered') }}">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -79,6 +97,7 @@
         {% endfor %}
         </tbody>
     </table>
+    {{ form_end(filters) }}
     <div class="navigation d-flex justify-content-center my-2">
         {{ knp_pagination_render(ordereds) }}
     </div>

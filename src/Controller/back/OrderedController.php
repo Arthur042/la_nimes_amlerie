@@ -3,10 +3,12 @@
 namespace App\Controller\back;
 
 use App\Entity\Ordered;
+use App\Form\Filter\OrderedFilterType;
 use App\Form\OrderedType;
 use App\Repository\OrderedRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdaterInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,16 +26,29 @@ class OrderedController extends AbstractController
     public function index(
         Request $request,
         PaginatorInterface $paginator,
+        FilterBuilderUpdaterInterface $builderUpdater,
     ): Response
     {
+        $qb = $this->orderedRepository->getQbAll();
+
+        $filterForm = $this->createForm(OrderedFilterType::class, null, [
+            'method' => 'GET',
+        ]);
+
+        if ($request->query->has($filterForm->getName())) {
+            $filterForm->submit($request->query->all($filterForm->getName()));
+            $builderUpdater->addFilterConditions($filterForm, $qb);
+        }
+
         $ordereds = $paginator->paginate(
-            $this->orderedRepository->getQbAll(),
+            $qb,
             $request->query->getInt('page', 1),
             15
         );
 
         return $this->render('back/ordered/index.html.twig', [
             'ordereds' => $ordereds,
+            'filters' => $filterForm->createView(),
         ]);
     }
 

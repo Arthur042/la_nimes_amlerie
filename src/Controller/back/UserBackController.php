@@ -3,11 +3,13 @@
 namespace App\Controller\back;
 
 use App\Entity\User;
+use App\Form\Filter\UserFilterType;
 use App\Repository\BagRepository;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\UserRepository;
+use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdaterInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,17 +29,29 @@ class UserBackController extends AbstractController
     public function index(
         Request $request,
         PaginatorInterface $paginator,
+        FilterBuilderUpdaterInterface $builderUpdater,
     ): Response
     {
+        $qb = $this->userRepository->getQbAll();
+
+        $filterForm = $this->createForm(UserFilterType::class, null, [
+            'method' => 'GET',
+        ]);
+
+        if ($request->query->has($filterForm->getName())) {
+            $filterForm->submit($request->query->all($filterForm->getName()));
+            $builderUpdater->addFilterConditions($filterForm, $qb);
+        }
+
         $users = $paginator->paginate(
-            $this->userRepository->getQbAll(),
+            $qb,
             $request->query->getInt('page', 1),
             15
         );
 
-        dump($users);
         return $this->render('back/user_back/index.html.twig', [
             'users' => $users,
+            'filters' => $filterForm->createView(),
         ]);
     }
 
