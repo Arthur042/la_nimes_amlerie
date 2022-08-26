@@ -35,6 +35,7 @@ class UserBackController extends AbstractController
             15
         );
 
+        dump($users);
         return $this->render('back/user_back/index.html.twig', [
             'users' => $users,
         ]);

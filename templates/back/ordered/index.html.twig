@@ -8,27 +8,68 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>CreationAt</th>
+                <th>
+                    {{
+                    knp_pagination_sortable(ordereds, 'Email utilisateur', 'user.email')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'user.email' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'user.email' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(ordereds, 'Date d\'achat', 'ordered.creationAt')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'ordered.creationAt' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'ordered.creationAt' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>Montant</th>
+                <th>
+                    {{
+                    knp_pagination_sortable(ordereds, 'Moyen de paiement', 'payment.name')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'payment.name' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'payment.name' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
+                <th>
+                    {{
+                    knp_pagination_sortable(ordereds, 'Status de commande', 'status.advancement')|raw
+                    }}
+                    {% if app.request.query.get("sort") == 'status.advancement' and  app.request.query.get("direction") == 'asc' %}
+                        <i class="fas fa-sort-up"></i>
+                    {% elseif app.request.query.get("sort") == 'status.advancement' and  app.request.query.get("direction") == 'desc' %}
+                        <i class="fas fa-sort-down"></i>
+                    {% endif %}
+                </th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for ordered in ordereds %}
             <tr>
-                {% dump ordered %}
-                <td>{{ ordered.id }}</td>
-                <td>{{ ordered.creationAt|date('d/m/Y') }}</td>
+                <td>{{ ordered[0].bag.user.email }}</td>
+                <td>{{ ordered[0].creationAt|date('d/m/Y') }}</td>
+                <td>{{ ordered[1] }}€</td>
+                <td>{{ ordered[0].payment.name }}</td>
+                <td>{{ ordered[0].status.advancement }}</td>
                 <td>
-                    <a href="{{ path('app_admin_ordered_show', {'id': ordered.id}) }}"><i class="fa-solid fa-eye"></i></a>
-                    <a href="{{ path('app_admin_ordered_edit', {'id': ordered.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ ordered.id }}"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="{{ path('app_admin_ordered_show', {'id': ordered[0].id}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ path('app_admin_ordered_show', {'id': ordered[0].id}) }}"><i class="fa-solid fa-file-pdf"></i></a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ ordered[0].id }}"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
 
             {% include 'back/partials/modal.html.twig' with {
                 'redirect': 'app_admin_ordered_delete',
-                'id': ordered.id
+                'id': ordered[0].id
             }%}
 
         {% else %}
@@ -38,4 +79,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation d-flex justify-content-center my-2">
+        {{ knp_pagination_render(ordereds) }}
+    </div>
 {% endblock %}

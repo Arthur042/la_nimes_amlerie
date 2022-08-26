@@ -84,12 +84,12 @@
                 <td>{{ user['totalOrdered'] }}</td>
                 <td>{{ user['totalComment'] }}</td>
                 <td>
-                    <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ user.id }}"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ user[0].id }}"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
             {% include 'back/partials/modal.html.twig' with {
                 'redirect': 'app_admin_user_delete',
-                'id': user.id
+                'id': user[0].id
             }%}
         {% endfor %}
         </tbody>

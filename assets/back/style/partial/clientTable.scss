@@ -1,0 +1,38 @@
+.clientInformationTable{
+  width: 500px !important;
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+
+  tbody{
+
+    tr{
+      th{
+        padding-left: 1rem;
+      }
+      td{
+        padding-right: 1rem;
+      }
+
+      &:first-child{
+        th, td{
+          padding-top: 1rem;
+        }
+      }
+      &:last-child{
+        th, td{
+          padding-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+
+  .totalPriceOrdered{
+    td{
+      --bs-table-accent-bg: none !important;
+      font-weight: bold;
+      border-bottom: none !important;
+    }
+  }
+

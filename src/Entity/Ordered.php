@@ -56,7 +56,7 @@ class Ordered
     private ?Adress $billingAdress = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[
         Assert\NotNull(
             message : 'ordered.bag.NotNull',

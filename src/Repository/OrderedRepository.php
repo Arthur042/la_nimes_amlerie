@@ -69,12 +69,32 @@ class OrderedRepository extends ServiceEntityRepository
     public function getQbAll(): QueryBuilder
     {
         return $this->createQueryBuilder('ordered')
-            ->select('ordered, bag, payment, status')
+            ->select('ordered, bag, payment, status, sum(contain.unitPrice*contain.quantity)')
             ->join('ordered.payment', 'payment')
             ->join('ordered.status', 'status')
             ->join('ordered.bag', 'bag')
+            ->join('bag.user', 'user')
+            ->join(Contain::class, 'contain', Join::WITH, 'contain.bag = bag')
             ->groupBy('ordered')
             ->orderBy('bag.user', 'asc')
+            ;
+    }
+
+    public function findOneDetail(int $id)
+    {
+        return $this->createQueryBuilder('ordered')
+            ->select('ordered, bag, payment, status, contain, adress, product')
+            ->join('ordered.payment', 'payment')
+            ->join('ordered.status', 'status')
+            ->join('ordered.bag', 'bag')
+            ->join('bag.user', 'user')
+            ->leftJoin('ordered.billingAdress', 'adress')
+            ->join(Contain::class, 'contain', Join::WITH, 'contain.bag = bag')
+            ->join('contain.products', 'product')
+            ->where('ordered.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
             ;
     }
 }

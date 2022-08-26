@@ -34,7 +34,7 @@ class Contain
     private ?Product $products = null;
 
     #[ORM\ManyToOne(inversedBy: 'contains')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[
         Assert\NotNull(
             message : 'contain.bag.NotNull',

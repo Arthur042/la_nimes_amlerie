@@ -32,10 +32,11 @@ class Bag
     private ?\DateTimeInterface $creationAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'bags', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'bag', targetEntity: Contain::class)]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
     private Collection $contains;
 
     #[ORM\Column]
