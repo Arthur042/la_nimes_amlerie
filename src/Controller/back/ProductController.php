@@ -8,6 +8,7 @@ use App\Form\ProductType;
 use App\Repository\CommentRepository;
 use App\Repository\ContainRepository;
 use App\Repository\ProductRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\FilterBuilderUpdaterInterface;
@@ -55,16 +56,26 @@ class ProductController extends AbstractController
     }
 //    todo AJOUTER L UPLOADER DE FICHIER POUR METTRE LES IMAGES ET MODIFIER LES CATEGORIES
     #[Route('/new', name: 'app_admin_product_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductRepository $productRepository): Response
+    public function new(Request $request, ProductRepository $productRepository, FileUploader $fileUploader): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->get('thumbnail')->getData() !== null) {
+                $file = $fileUploader->uploadFile(
+                    $form->get('thumbnail')->getData(),
+                    '/product'
+                );
+                $product->setThumbnail($file);
+            }
+
             $product->setCreatedAt(new \DateTime('now'));
             $tva = $product->getTva() / 100;
             $product->setTva($tva);
+
             $productRepository->add($product, true);
 
             return $this->redirectToRoute('app_admin_product', [], Response::HTTP_SEE_OTHER);
@@ -88,12 +99,21 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_product_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function edit(Request $request, Product $product, ProductRepository $productRepository, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->get('thumbnail')->getData() !== null) {
+                $file = $fileUploader->uploadFile(
+                    $form->get('thumbnail')->getData(),
+                    '/product'
+                );
+                $product->setThumbnail($file);
+            }
+
             $tva = $product->getTva() / 100;
             $product->setTva($tva);
             $productRepository->add($product, true);

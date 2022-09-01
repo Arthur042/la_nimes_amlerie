@@ -113,11 +113,6 @@ class Product
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[
-        Assert\NotNull(
-            message : 'product.thumbnail.NotNull',
-        ),
-    ]
     private ?string $thumbnail = null;
 
     public function __construct()

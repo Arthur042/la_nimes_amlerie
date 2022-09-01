@@ -10,10 +10,12 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProductType extends AbstractType
 {
@@ -81,8 +83,16 @@ class ProductType extends AbstractType
                         ;
                 }
             ])
-            ->add('thumbnail', TextType::class, [
-                'label' => 'photo'
+            ->add('thumbnail', FileType::class, [
+                'label' => 'photo',
+                'mapped' => false,
+                'constraints' => [
+                    new File(
+                        maxSize: '2048k',
+                        mimeTypes: ['image/png', 'image/jpeg'],
+                        mimeTypesMessage: 'Ce format d\'image n\'est pas pris en compte',
+                    )
+                ]
             ])
         ;
     }
