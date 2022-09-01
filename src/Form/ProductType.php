@@ -81,6 +81,9 @@ class ProductType extends AbstractType
                         ;
                 }
             ])
+            ->add('thumbnail', TextType::class, [
+                'label' => 'photo'
+            ])
         ;
     }
 

@@ -97,9 +97,6 @@ class Product
     ]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Photo::class)]
-    private Collection $photos;
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     #[
@@ -114,6 +111,14 @@ class Product
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[
+        Assert\NotNull(
+            message : 'product.thumbnail.NotNull',
+        ),
+    ]
+    private ?string $thumbnail = null;
 
     public function __construct()
     {
@@ -224,36 +229,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, Photo>
-     */
-    public function getPhotos(): Collection
-    {
-        return $this->photos;
-    }
-
-    public function addPhoto(Photo $photo): self
-    {
-        if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
-            $photo->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhoto(Photo $photo): self
-    {
-        if ($this->photos->removeElement($photo)) {
-            // set the owning side to null (unless already changed)
-            if ($photo->getProduct() === $this) {
-                $photo->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getMark(): ?Mark
     {
         return $this->mark;
@@ -304,6 +279,18 @@ class Product
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }

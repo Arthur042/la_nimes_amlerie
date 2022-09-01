@@ -113,6 +113,10 @@ product:
         NotNull: 'Vous devez renseigner si le produit est disponible'
     category:
         NotNull: 'Vous devez renseigner la catégorie de ce produit'
+    mark:
+        NotNull: 'Vous devez renseigner la marque de ce produit'
+    thumbnail:
+        NotNull: 'Vous devez uploader une image pour ce produit'
 status:
     advancement:
         NotBlank: 'Pour créer un status de commande il faut renseigner son nom'
