@@ -6,7 +6,7 @@
     <div class="container">
         <div class="my-4 m d-flex justify-content-between align-items-center">
             <h2>Informations client</h2>
-            <a class="showEditLink" href="{{ path('app_admin_ordered_show', {'id': ordered[0].id}) }}">Imprimer <i class="fa-solid fa-file-pdf"></i></a>
+            <a class="showEditLink" href="{{ path('app_admin_ordered_pdf', {'id': ordered[0].id}) }}">Imprimer <i class="fa-solid fa-file-pdf"></i></a>
         </div>
 
     <table class="clientInformationTable ms-4">
@@ -67,7 +67,6 @@
             <tbody>
             {% for contain in ordered %}
                 {% if loop.index > 1 %}
-                    {% dump contain %}
                     {% set totalHT = totalHT + (contain.unitPrice * contain.quantity)|round(2, 'floor') %}
                     {% set totalTTC = totalTTC + ((contain.unitPrice + contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') %}
                     {% set totalTVA = totalTVA + ((contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') %}
@@ -107,8 +106,6 @@
             </tr>
             </tbody>
         </table>
-
-
     </div>
 
 

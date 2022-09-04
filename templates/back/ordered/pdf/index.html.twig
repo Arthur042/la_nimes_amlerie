@@ -1,0 +1,115 @@
+{% set absoluteUrl = app.request.scheme ~'://' ~ app.request.httpHost %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Commande n°{{ ordered[0].id }}</title>
+        <link rel="stylesheet" type="text/css"
+              href="{{ absoluteUrl ~ asset('build/back_style.css') }}"
+        >
+    </head>
+    <body>
+        <div class="container">
+                <h2 class="my-4">Informations client</h2>
+
+            <table class="clientInformationTable ms-4">
+                <tbody>
+                <tr>
+                    <th>Date :</th>
+                    <td>{{ ordered[0].creationAt|date('Y-m-d H:i:s')}}</td>
+                </tr>
+                <tr>
+                    <th>Bon decommande N° :</th>
+                    <td>{{ ordered[0].id }}</td>
+                </tr>
+                <tr>
+                    <th>Contact client :</th>
+                    <td>{{ ordered[0].bag.user.firstName }} {{ ordered[0].bag.user.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Email du client :</th>
+                    <td>{{ ordered[0].bag.user.email }}</td>
+                </tr>
+                <tr>
+                    <th>inscrit depuis le :</th>
+                    <td>{{ ordered[0].bag.user.inscriptionAt|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <th>Mode de paiement :</th>
+                    <td>{{ ordered[0].payment.name }}</td>
+                </tr>
+                <tr>
+                    <th>Adresse de livraison :</th>
+                    <td>
+                        <ul>
+                            <li>{{ ordered[0].billingAdress.city }}  {{ ordered[0].billingAdress.postalCode }}</li>
+                            <li>{{ ordered[0].billingAdress.line1 }}</li>
+                            {% if ordered[0].billingAdress.line2 is not null %}
+                                <li>{{ ordered[0].billingAdress.line2 }}</li>
+                            {% endif %}
+                            {% if ordered[0].billingAdress.line3 is not null %}
+                                <li>{{ ordered[0].billingAdress.line3 }}</li>
+                            {% endif %}
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-hover table-striped mt-5">
+                <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire HT</th>
+                    <th>% TVA</th>
+                    <th>Total TVA</th>
+                    <th>Total TTC</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contain in ordered %}
+                    {% if loop.index > 1 %}
+                        {% set totalHT = totalHT + (contain.unitPrice * contain.quantity)|round(2, 'floor') %}
+                        {% set totalTTC = totalTTC + ((contain.unitPrice + contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') %}
+                        {% set totalTVA = totalTVA + ((contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') %}
+                        <tr>
+                            <td>{{ contain.products.title }}</td>
+                            <td>{{ contain.quantity }}</td>
+                            <td>{{ contain.unitPrice }} €</td>
+                            <td>{{ contain.tva * 100 }} %</td>
+                            <td>{{ (contain.tva * contain.unitPrice)|round(2, 'floor') }} €</td>
+                            <td>{{ ((contain.unitPrice + contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') }} €</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr class="totalPriceOrdered">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total HT</td>
+                    <td>{{ totalHT }} €</td>
+                </tr>
+                <tr class="totalPriceOrdered">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total TVA</td>
+                    <td>{{ totalTVA }} €</td>
+                </tr>
+                <tr class="totalPriceOrdered">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total TTC</td>
+                    <td>{{ totalTTC }} €</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -80,7 +80,7 @@
                 <td>{{ ordered[0].status.advancement }}</td>
                 <td>
                     <a href="{{ path('app_admin_ordered_show', {'id': ordered[0].id}) }}"><i class="fa-solid fa-eye"></i></a>
-                    <a href="{{ path('app_admin_ordered_show', {'id': ordered[0].id}) }}"><i class="fa-solid fa-file-pdf"></i></a>
+                    <a href="{{ path('app_admin_ordered_pdf', {'id': ordered[0].id}) }}"><i class="fa-solid fa-file-pdf"></i></a>
                     <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ ordered[0].id }}"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
