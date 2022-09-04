@@ -1,5 +1,5 @@
 
-<div class="lna_product_item  {# todo display des cards #}">
+<div class="lna_product_item">
     <a href="#">
         <div class="lna_card_img">
             <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
@@ -7,13 +7,13 @@
     </a>
     <div class="lna_card_body">
         <h3>{{ product.title|excerpt(20) }}</h3>
-        <div class="lna_comment"> {# todo service d'affichage des étoile a la place du fichier#}
+        <div class="lna_comment">
             <div class="star">
                 {{ average|star|raw }}
             </div>
             <p>{{ product.comments|length }} avis</p>
         </div>
         <p>{{ product.priceHt }}€</p>
-        <a href="#" class="lna_btn_main lna_btn_product lna_btn_dark">Ajouter</a>
+        <a href="{{ path('app_product', {'id': product.id}) }}" class="lna_btn_main lna_btn_product lna_btn_dark">Voir plus</a>
     </div>
 </div>

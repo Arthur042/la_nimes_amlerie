@@ -24,7 +24,7 @@ class Contain
     ]
     private ?int $quantity = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: true)]
     #[
         Assert\NotNull(
@@ -33,7 +33,7 @@ class Contain
     ]
     private ?Product $products = null;
 
-    #[ORM\ManyToOne(inversedBy: 'contains')]
+    #[ORM\ManyToOne(inversedBy: 'contains', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     #[
         Assert\NotNull(

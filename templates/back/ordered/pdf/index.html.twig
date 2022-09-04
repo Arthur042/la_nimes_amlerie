@@ -4,14 +4,17 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Commande n°{{ ordered[0].id }}</title>
+        <title>Chiffre d'affaire des éditeurs</title>
         <link rel="stylesheet" type="text/css"
               href="{{ absoluteUrl ~ asset('build/back_style.css') }}"
         >
     </head>
     <body>
-        <div class="container">
-                <h2 class="my-4">Informations client</h2>
+        <div class="container pdf">
+            <div class="my-4 header">
+                <h2>Bon de commande</h2>
+                <img src="{{ absolute_url(asset('build/images/header/animalerieLogo.png')) }}" alt="logo de la nîmes'alerie">
+            </div>
 
             <table class="clientInformationTable ms-4">
                 <tbody>
@@ -20,7 +23,7 @@
                     <td>{{ ordered[0].creationAt|date('Y-m-d H:i:s')}}</td>
                 </tr>
                 <tr>
-                    <th>Bon decommande N° :</th>
+                    <th>Bon de commande N° :</th>
                     <td>{{ ordered[0].id }}</td>
                 </tr>
                 <tr>

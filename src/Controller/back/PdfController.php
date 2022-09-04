@@ -3,7 +3,6 @@
 namespace App\Controller\back;
 
 use App\Repository\OrderedRepository;
-use App\Repository\PublisherRepository;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Knp\Snappy\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

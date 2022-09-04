@@ -1,0 +1,15 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+    <input  type="number"
+            min="1"
+            value="1"
+            class="form-control"
+            data-input-add-game="{{ product.id }}"
+    >
+    <button class="btn btn-warning" data-game-id="{{ product.id }}">
+        Ajouter
+    </button>
+{% endblock %}
