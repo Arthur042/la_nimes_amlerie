@@ -1,0 +1,25 @@
+
+<div class="breadcrumb">
+    {% dump(product) %}
+    <div class="container">
+        <ol class="d-flex align-items-center">
+            <li>
+                {% if product[0][0].category.parentCategory is not null %}
+                <img src="{{ asset('build/images/icon/offCanva/' ~ product[0][0].category.parentCategory.imageEndUrl ~ '.png') }}"
+                     alt="icone de {{ product[0][0].category.parentCategory.name }}"
+                >
+                {% else %}
+                    <img src="{{ asset('build/images/icon/offCanva/' ~ product[0][0].category.imageEndUrl ~ '.png') }}"
+                         alt="icone de {{ product[0][0].category.name }}"
+                    >
+                {% endif %}
+            </li>
+            <li>La Nîmes'alerie</li>
+            {% if product[0][0].category.parentCategory is not null %}
+                <li>{{ product[0][0].category.parentCategory.name }}</li>
+            {% endif %}
+            <li>{{ product[0][0].category.name }}</li>
+            <li>{{ product[0][0].title }}</li>
+        </ol>
+    </div>
+</div>

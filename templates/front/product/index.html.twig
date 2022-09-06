@@ -3,13 +3,68 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-    <input  type="number"
-            min="1"
-            value="1"
-            class="form-control"
-            data-input-add-game="{{ product.id }}"
-    >
-    <button class="btn btn-warning" data-game-id="{{ product.id }}">
-        Ajouter
-    </button>
+    <div class="displayProductPages">
+        {% include 'front/partial/breadcrump/breadcrump.html.twig' %}
+        <div class="container">
+            <div class="productDetailTop row mt-5">
+                <div class="imagePart col-3">
+                    {% if product[0][0].thumbnail is not null %}
+                        <img src="{{ asset(product[0][0].thumbnail) }}" alt="image {{ product[0][0].title }}">
+                    {% else %}
+                        <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
+                    {% endif %}
+                </div>
+                <div class="detailPart col-9">
+                    <h1>{{ product[0][0].title }}</h1>
+                    <div class="d-flex justify-content-center align-items-center lna_comment mb-2">
+                        <div class="star">
+                            {{ product[0]['average']|star|raw }}
+                        </div>
+                        <p>{{ product[0][0].comments|length }} avis</p>
+                    </div>
+
+                    <div class="detailBottomPart d-flex justify-content-between">
+                        <div class="addToCraft d-flex flex-column align-items-start">
+                            <ul class="d-flex align-items- p-0 mb-4">
+                                <li><a href="#">Évaluer le produit</a></li>
+                                <li><a href="#">Description détaillée</a></li>
+                            </ul>
+
+                            <div class="quantityProduct d-flex align-items-center justify-content-between mb-3">
+                                <label for="quantity" class="d-none">nombre d'article</label>
+                                <select name="qty" id="pet-quantity" class="form-select" data-input-add-game="{{ product[0][0].id }}">
+                                    <option selected>Nombre de produit</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+
+                                <p class="price">{{ product[0][0].priceHt }} €</p>
+                            </div>
+
+                            <button class="lna_btn_main lna_btn_fade_color m-0" data-game-id="{{ product[0][0].id }}">
+                                Ajouter au panier
+                            </button>
+                        </div>
+                        <div class="avantage me-5">
+                            <p class="titleAvantage">Nos avantages</p>
+                            <ul>
+                                <li><img src="{{ asset('build/images/icon/header/expedition.svg') }}">Expédition sous 48h gratuite à partir de 59 €</li>
+                                <li><img src="{{ asset('build/images/icon/header/safety_certificate.svg') }}">Paiment sécurisé</li>
+                                <li><img src="{{ asset('build/images/icon/header/delivery.svg') }}">Satisfait ou remboursé</li>
+                                <li><img src="{{ asset('build/images/icon/reassurant/service_client.svg') }}">Service client 6j/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

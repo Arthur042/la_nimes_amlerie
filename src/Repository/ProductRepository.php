@@ -98,6 +98,8 @@ class ProductRepository extends ServiceEntityRepository
             ->leftJoin(Contain::class, 'contain', Join::WITH, 'contain.products = product')
             ->leftJoin('contain.bag', 'bag')
             ->leftJoin(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->leftJoin('product.category', 'category')
+            ->leftJoin('category.parentCategory', 'parentCategory')
             ->where('product.id = :id')
             ->setParameter('id', $id)
             ->getQuery()

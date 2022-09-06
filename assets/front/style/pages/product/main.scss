@@ -1,0 +1,141 @@
+.displayProductPages{
+    position: relative;
+    top: -48px;
+    display: block;
+
+    .productDetailTop{
+
+        .detailPart{
+
+          h1{
+            font-family: $main;
+            font-size: 26px;
+            width: fit-content;
+          }
+
+          .lna_comment{
+            display: flex;
+            justify-content: space-between;
+            width: fit-content;
+
+            > div{
+
+              display: flex;
+              justify-content: left;
+              align-items: center;
+              margin-right: 5px;
+            }
+
+            .star{
+              i{
+                @include text_fade;
+              }
+            }
+
+            p{
+              margin: 0;
+              font-size: .9rem;
+              font-weight: bold;
+            }
+
+          }
+
+          .detailBottomPart{
+
+
+            .addToCraft{
+                ul{
+                  list-style: none;
+
+                  li:first-child:after{
+                    content: "";
+                    padding-right: .5rem;
+                    margin-right: .5rem;
+                    border-right: 1px solid $search;
+                  }
+
+                  a{
+                    color: $search;
+                  }
+                }
+
+              .quantityProduct{
+                width: 350px;
+                select{
+                  width: 215px;
+                }
+
+                .price{
+                  color: #9BCBEB;
+                  font-size: 1.3rem;
+                  font-weight: bolder;
+                  margin: 0;
+                }
+              }
+
+              button{
+                border-radius: .5rem !important;
+                padding: .7rem 1rem !important;
+
+                &:before{
+                  content: "";
+                  background-image: url("../../../../images/icon/product/panier_white.png");
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  margin-right: .7rem;
+                  padding: 1rem;
+                }
+              }
+            }
+          }
+
+          .avantage{
+            border: 1px solid rgba(0,242,96);
+            width: 354px;
+            height: 187px;
+            border-radius: 7px;
+            position: relative;
+
+            .titleAvantage{
+              padding: .7rem 1rem;
+              border-radius: .5rem;
+              display: inline-block;
+              @include gradient_btn;
+              color: $light;
+              font-family: $main;
+              font-weight: bold;
+              position: absolute;
+              top: -23px;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+
+            ul{
+              list-style: none;
+              font-family: $headings_product;
+              font-size: 15px;
+              color: $dark;
+              padding: 2rem 1rem;
+              width: 100%;
+              height: 100%;
+              margin-bottom: 0;
+              text-align: left;
+
+              li{
+                margin-bottom: .5rem;
+
+                &:last-child{
+                  margin-bottom: 0;
+                }
+
+                img{
+                  width: 29px;
+                  height: 29px;
+                  margin-right: .4rem;
+                }
+              }
+            }
+          }
+        }
+    }
+}

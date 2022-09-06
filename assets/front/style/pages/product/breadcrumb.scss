@@ -1,0 +1,42 @@
+.breadcrumb{
+  @include gradient_btn;
+  font-weight: bold;
+  .container{
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    ol{
+      list-style: none;
+      margin: 0;
+
+      li{
+        color: $light;
+
+        &:after{
+          content: "";
+          background-image: url("../../../../images/icon/offCanva/pointer.png");
+          background-position: center;
+          background-repeat: no-repeat;
+          padding: 0 2rem;
+        }
+
+        &:first-child{
+          &:after{
+            background: none;
+            padding: 0 1rem;
+          }
+        }
+        &:last-child{
+          &:after{
+            background: none;
+            padding: 0;
+          }
+        }
+
+        img{
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
