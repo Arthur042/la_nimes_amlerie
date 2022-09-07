@@ -51,7 +51,7 @@ class ProductRepository extends ServiceEntityRepository
             ->select('products', 'AVG(comments.note) AS average')
             ->join('products.comments', 'comments')
             ->groupBy('products')
-            ->setMaxResults(15)
+            ->setMaxResults(7)
             ->getQuery()
             ->getResult()
             ;
@@ -67,7 +67,7 @@ class ProductRepository extends ServiceEntityRepository
             ->join('product.comments', 'comments')
             ->groupBy('product')
             ->orderBy('SUM(contain.quantity)', 'DESC')
-            ->setMaxResults(15)
+            ->setMaxResults(7)
             ->getQuery()
             ->getResult();
     }
@@ -79,7 +79,7 @@ class ProductRepository extends ServiceEntityRepository
             ->leftJoin('product.comments', 'comments')
             ->groupBy('product')
             ->orderBy('product.createdAt', 'DESC')
-            ->setMaxResults(15)
+            ->setMaxResults(7)
             ->getQuery()
             ->getResult();
     }

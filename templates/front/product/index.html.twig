@@ -73,7 +73,7 @@
                 <div class="lna_separation"></div>
                 <!-- carousel des produits -->
                 <div class="lna_container_flex">
-                    <div class="carrouselCard productCarrouselProduct">
+                    <div class="carrouselCard">
                         <div id="ProductSecondCarrousel" class="zero" data-position-carrousel="">
                             {% for product in samecategory %}
                                 {% include 'front/partial/productCard/productCard.html.twig' with {
@@ -94,7 +94,7 @@
                 <div class="lna_separation"></div>
                 <!-- carousel des produits -->
                 <div class="lna_container_flex">
-                    <div class="carrouselCard productCarrouselProduct">
+                    <div class="carrouselCard">
                         <div id="ProductCarrousel" class="zero" data-position-carrousel="">
                             {% for product in samemark %}
                                 {% include 'front/partial/productCard/productCard.html.twig' with {
@@ -118,6 +118,17 @@
         </section>
 
         <!-- section commentaire -->
+        <section id="comment" class="container row">
+            <div class="leftCommentPart col-2">
+
+            </div>
+            <div class="rightCommentPart col-10">
+                {% for comment in comments %}
+                    {% include 'front/partial/comment/commentCard.html.twig' %}
+                    {% dump comment%}
+                {% endfor %}
+            </div>
+        </section>
     </div>
 
 {% endblock %}

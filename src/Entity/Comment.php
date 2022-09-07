@@ -62,6 +62,9 @@ class Comment
     ]
     private ?\DateTimeInterface $creationAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $shortDescrib = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +126,18 @@ class Comment
     public function setCreationAt(\DateTimeInterface $creationAt): self
     {
         $this->creationAt = $creationAt;
+
+        return $this;
+    }
+
+    public function getShortDescrib(): ?string
+    {
+        return $this->shortDescrib;
+    }
+
+    public function setShortDescrib(string $shortDescrib): self
+    {
+        $this->shortDescrib = $shortDescrib;
 
         return $this;
     }

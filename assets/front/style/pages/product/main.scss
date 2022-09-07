@@ -179,17 +179,6 @@
           }
         }
     }
-  .productCarrouselProduct{
-    width: fit-content;
-    margin: auto;
-
-    @media screen and (max-width: 1400px) {
-      width: 1030px;
-    }
-    @media screen and (max-width: 1200px) {
-      width: 850px;
-    }
-  }
 
   #productDescription{
     h2{
@@ -200,6 +189,26 @@
 
     .descriptionProduct{
       text-align: left;
+    }
+  }
+
+  #comment{
+    .cardComment{
+      font-family: $main;
+      h3{
+        font-family: $main;
+        text-transform: uppercase;
+      }
+      .star{
+        i{
+          font-size: 1.2rem;
+          @include text_fade;
+        }
+      }
+      .titleComment{
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
     }
   }
 }

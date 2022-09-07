@@ -1,0 +1,11 @@
+<div class="text-start cardComment mb-4">
+    <div class="d-flex align-items-center">
+        <h3 class="me-3">{{ comment.user.username }}</h3>
+        <div class="star">
+            {{ comment.note|star|raw }}
+        </div>
+    </div>
+    <p class="titleComment">{{ comment.shortDescrib }}</p>
+    <p class="mb-4">{{ comment.description }}</p>
+    <hr>
+</div>
