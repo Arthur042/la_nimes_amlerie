@@ -65,6 +65,48 @@
                 </div>
             </div>
         </div>
+
+        <!-- section même catégory -->
+        <section class="order">
+            <div class="container">
+                <h2>Les clients ayant consulté cet article ont également acheté</h2>
+                <div class="lna_separation"></div>
+                <!-- carousel des produits -->
+                <div class="lna_container_flex">
+                    <div class="carrouselCard productCarrouselProduct first">
+                        <div id="ProductSecondCarrousel" class="zero" data-position-carrousel="">
+                            {% for product in samecategory %}
+                                {% include 'front/partial/productCard/productCard.html.twig' with {
+                                    'product': product[0],
+                                    'average': product['average'],
+                                } %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section même marque -->
+        <section class="order">
+            <div class="container">
+                <h2>Plus de produit de cette marque</h2>
+                <div class="lna_separation"></div>
+                <!-- carousel des produits -->
+                <div class="lna_container_flex">
+                    <div class="carrouselCard productCarrouselProduct">
+                        <div id="ProductCarrousel" class="zero" data-position-carrousel="">
+                            {% for product in samemark %}
+                                {% include 'front/partial/productCard/productCard.html.twig' with {
+                                    'product': product[0],
+                                    'average': product['average'],
+                                } %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
 {% endblock %}

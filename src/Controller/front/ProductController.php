@@ -17,9 +17,13 @@ class ProductController extends AbstractController
     ): Response
     {
         $product = $productRepository->getDetailProduct($id);
+        $samecategory = $productRepository->findSameCategory($product[0][0]->getCategory()->getId());
+        $samemark = $productRepository->findSameMark($product[0][0]->getMark()->getId());
 
         return $this->render('front/product/index.html.twig', [
             'product' => $product,
+            'samecategory' => $samecategory,
+            'samemark' => $samemark,
         ]);
     }
 }

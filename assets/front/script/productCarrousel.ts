@@ -1,10 +1,8 @@
 
 function slideLeft(carrousel){
     let width: number = carrousel.getAttribute('data-position-carrousel');
-    console.log(width);
     if (width >= 172){
         width = width - 172;
-        console.log(width);
 
         carrousel.style.transform = 'translateX(-'+ width +'px)';
 
@@ -17,7 +15,6 @@ function slideRight(carrousel){
 
     if(width <= 1204){
         width = Number(width) + 172;
-        console.log(width);
         carrousel.style.transform = 'translateX(-'+ width +'px)';
 
         carrousel.setAttribute('data-position-carrousel', width.toString());
@@ -41,7 +38,6 @@ function slideCaroussel(classList){
         if(classList.contains('lna_arrow_second_left')){
             slideLeft(carrousel);
         } else if(classList.contains('lna_arrow_second_right')){
-            console.log(carrousel.classList);
             slideRight(carrousel);
         }
     }
@@ -56,12 +52,14 @@ function carrousel() {
         document.querySelector('.lna_arrow_second_left'),
         document.querySelector('.lna_arrow_second_right')
     ];
-
     if (arrayOfDivs) {
+        console.log(arrayOfDivs)
         arrayOfDivs.forEach(element => {
-            element.addEventListener('click', (e: Event) => {
-                slideCaroussel(element.classList);
-            })
+            if (element != null) {
+                element.addEventListener('click', (e: Event) => {
+                    slideCaroussel(element.classList);
+                })
+            }
         })
     };
 }

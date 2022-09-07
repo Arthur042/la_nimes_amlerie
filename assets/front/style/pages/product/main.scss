@@ -137,4 +137,17 @@
           }
         }
     }
+  .productCarrouselProduct{
+    width: fit-content;
+    margin: auto;
+
+    &.first{
+      @media screen and (max-width: 1400px) {
+        width: 1030px;
+      }
+      @media screen and (max-width: 1200px) {
+        width: 850px;
+      }
+    }
+  }
 }

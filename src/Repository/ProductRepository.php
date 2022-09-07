@@ -106,4 +106,40 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findSameCategory($getId)
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product', 'AVG(comments.note) AS average')
+            ->join(Contain::class, 'contain', Join::WITH, 'contain.products = product')
+            ->join('contain.bag', 'bag')
+            ->join(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->join('product.comments', 'comments')
+            ->join('product.category', 'category')
+            ->groupBy('product')
+            ->where('category.id = :id')
+            ->setParameter('id', $getId)
+            ->setMaxResults(7)
+            ->getQuery()
+            ->getResult();
+            ;
+    }
+
+    public function findSameMark($getId)
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product', 'AVG(comments.note) AS average')
+            ->join(Contain::class, 'contain', Join::WITH, 'contain.products = product')
+            ->join('contain.bag', 'bag')
+            ->join(Ordered::class, 'ordered', Join::WITH, 'ordered.bag = bag')
+            ->join('product.comments', 'comments')
+            ->join('product.mark', 'mark')
+            ->groupBy('product')
+            ->where('mark.id = :id')
+            ->setParameter('id', $getId)
+            ->setMaxResults(7)
+            ->getQuery()
+            ->getResult();
+        ;
+    }
 }
