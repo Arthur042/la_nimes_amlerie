@@ -207,3 +207,10 @@ symfony console doctrine:migration:migrate
     limit 500;
     ```
     ---
+
+# Deploy task
+
+- create or download phploy.ini and phploy.phar then
+```
+  php phploy.phar
+```
