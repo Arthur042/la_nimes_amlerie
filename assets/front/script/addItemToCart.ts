@@ -14,10 +14,11 @@ function setUpClickEventAddItem(): void {
         buttons.forEach((btn) => {
             btn.addEventListener('click', () => {
                 const gameId: string = btn.getAttribute('data-game-id');
-                const inputQty: HTMLInputElement = document.querySelector("[data-input-add-game='"+gameId+"']");
+                const select: HTMLSelectElement = document.querySelector("[data-input-add-game='"+gameId+"']");
+                let inputQty: string = select.value;
                 let datasToSend: ItemQty = {
                     gameId,
-                    qty: inputQty.valueAsNumber
+                    qty: Number(inputQty)
                 };
                 fetch('/ajax/addItemToCart/' + JSON.stringify(datasToSend))
                     .catch((e) => {
