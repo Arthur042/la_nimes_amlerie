@@ -27,7 +27,7 @@
                         <div class="addToCraft ps-0 pe-0 me-lg-3 col-lg-5 col-md-12 d-flex flex-column align-items-start">
                             <ul class="d-flex align-items- p-0 mb-4">
                                 <li><a href="#">Évaluer le produit</a></li>
-                                <li><a href="#">Description</a></li>
+                                <li><a href="#productDescription">Description</a></li>
                             </ul>
 
                             <div class="quantityProduct d-flex align-items-center justify-content-between mb-3">
@@ -73,7 +73,7 @@
                 <div class="lna_separation"></div>
                 <!-- carousel des produits -->
                 <div class="lna_container_flex">
-                    <div class="carrouselCard productCarrouselProduct first">
+                    <div class="carrouselCard productCarrouselProduct">
                         <div id="ProductSecondCarrousel" class="zero" data-position-carrousel="">
                             {% for product in samecategory %}
                                 {% include 'front/partial/productCard/productCard.html.twig' with {
@@ -107,6 +107,17 @@
                 </div>
             </div>
         </section>
+
+        <!-- section description du produit -->
+        <section id="productDescription" class="container">
+            <hr>
+            <h2>Détail du produit</h2>
+            <div class="descriptionProduct">
+                {{ product[0][0].fullDescription|raw }}
+            </div>
+        </section>
+
+        <!-- section commentaire -->
     </div>
 
 {% endblock %}

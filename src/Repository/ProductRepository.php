@@ -76,7 +76,7 @@ class ProductRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('product')
             ->select('product, AVG(comments.note) AS average')
-            ->join('product.comments', 'comments')
+            ->leftJoin('product.comments', 'comments')
             ->groupBy('product')
             ->orderBy('product.createdAt', 'DESC')
             ->setMaxResults(15)
