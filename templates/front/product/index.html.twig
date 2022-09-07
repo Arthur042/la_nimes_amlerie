@@ -5,7 +5,7 @@
 {% block body %}
     <div class="displayProductPages">
         {% include 'front/partial/breadcrump/breadcrump.html.twig' %}
-        <div class="container">
+        <div class="container mb-5">
             <div class="productDetailTop row mt-5">
                 <div class="imagePart col-3">
                     {% if product[0][0].thumbnail is not null %}
@@ -14,7 +14,7 @@
                         <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
                     {% endif %}
                 </div>
-                <div class="detailPart col-9">
+                <div class="detailPart col-lg-9 col-md-8 ms-md-5 ms-lg-0">
                     <h1>{{ product[0][0].title }}</h1>
                     <div class="d-flex justify-content-center align-items-center lna_comment mb-2">
                         <div class="star">
@@ -23,11 +23,11 @@
                         <p>{{ product[0][0].comments|length }} avis</p>
                     </div>
 
-                    <div class="detailBottomPart d-flex justify-content-between">
-                        <div class="addToCraft d-flex flex-column align-items-start">
+                    <div class="detailBottomPart row">
+                        <div class="addToCraft ps-0 pe-0 me-lg-3 col-lg-5 col-md-12 d-flex flex-column align-items-start">
                             <ul class="d-flex align-items- p-0 mb-4">
                                 <li><a href="#">Évaluer le produit</a></li>
-                                <li><a href="#">Description détaillée</a></li>
+                                <li><a href="#">Description</a></li>
                             </ul>
 
                             <div class="quantityProduct d-flex align-items-center justify-content-between mb-3">
@@ -52,7 +52,7 @@
                                 Ajouter au panier
                             </button>
                         </div>
-                        <div class="avantage me-5">
+                        <div class="avantage col-lg-7 col-md-12">
                             <p class="titleAvantage">Nos avantages</p>
                             <ul>
                                 <li><img src="{{ asset('build/images/icon/header/expedition.svg') }}">Expédition sous 48h gratuite à partir de 59 €</li>
