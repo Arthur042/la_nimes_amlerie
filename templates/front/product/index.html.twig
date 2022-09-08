@@ -48,7 +48,7 @@
                                 <p class="price">{{ product[0][0].priceHt }} €</p>
                             </div>
 
-                            <button class="lna_btn_main lna_btn_fade_color m-0" data-product-id="{{ product[0][0].id }}">
+                            <button class="lna_btn_main lna_btn_fade_color m-0" data-product-id="{{ product[0][0].id }}" data-page-link="{{ path('app_product', {'id': product[0][0].id}) }}">
                                 Ajouter au panier
                             </button>
                         </div>

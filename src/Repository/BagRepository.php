@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Bag;
+use App\Enum\PanierStatusEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -63,4 +64,15 @@ class BagRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findBagIfNotExpired($user)
+    {
+        return $this->createQueryBuilder('bag')
+            ->where('bag.user = :user')
+            ->andWhere('bag.status = :status')
+            ->setParameter(':user', $user)
+            ->setParameter(':status', PanierStatusEnum::ENCOURS)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

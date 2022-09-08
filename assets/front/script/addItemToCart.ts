@@ -25,11 +25,8 @@ function setUpClickEventAddItem(): void {
                         console.log('error' + e);
                     })
                     .then((response: Response) => {
-                        return response.json() as Promise<ResponseCart>;
-                    })
-                    .then((data) => {
-                        const qtyCart: HTMLParagraphElement = document.querySelector('[data-cart-item]');
-                        qtyCart.innerText = data.qtyTotale;
+                        const link: string = btn.getAttribute('data-page-link');
+                        window.location.replace(link);
                     });
             });
         });

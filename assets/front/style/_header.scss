@@ -128,7 +128,27 @@ header{
                 @media screen and (max-width:992px) {
                     width: 80px;
                 }
-                
+
+                .lna_shop{
+                    position: relative;
+
+                    div{
+                        background-color: white;
+                        position: absolute;
+                        top: -15px;
+                        left: -15px;
+                        padding: .5rem;
+                        border-radius: 2rem;
+                        height: 40px;
+                        p{
+                            @include text_fade;
+                            font-weight: bolder;
+                            font-size: 1.3rem;
+                        }
+                    }
+
+                }
+
                 .lna_account, .lna_shop, .lna_commande{
                     width: 45px;
                     height: 45px;

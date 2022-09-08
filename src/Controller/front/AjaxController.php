@@ -37,6 +37,9 @@ class AjaxController extends AbstractController
 
         if (!$session->has(self::$CART)) {
             $cart = new Bag();
+            if ($user = $this->getUser()){
+                $cart->setUser($user);
+            }
             $em->persist($cart);
             $em->flush();
             $session->set(self::$CART, $cart->getId());
@@ -69,6 +72,7 @@ class AjaxController extends AbstractController
         foreach ($cart->getContains() as $contain) {
             $qtyTotal += $contain->getQuantity();
         }
+        $session->set('QTY', $qtyTotal);
 
         return new JsonResponse([
             'qtyTotale' => $qtyTotal,

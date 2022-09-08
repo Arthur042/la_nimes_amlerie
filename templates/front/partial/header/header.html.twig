@@ -1,4 +1,5 @@
 <header>
+    {{ get_cart() }}
     <!-- banniere -->
     <div class="banner d-flex justify-content-center text-light">
         <!-- banniere gauche -->
@@ -84,6 +85,12 @@
                                 <div class="lna_header_icon shop">
                                     <div class="lna_shop">
                                         <span class="d-none">icone de panier</span>
+                                        {% if app.session.get('QTY') %}
+                                            <div>
+                                                <p>{{ app.session.get('QTY') }}</p>
+                                            </div>
+
+                                        {% endif %}
                                     </div>
                                     <p class="d-none d-lg-block">Panier</p>
 

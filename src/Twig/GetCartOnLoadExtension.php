@@ -2,12 +2,16 @@
 
 namespace App\Twig;
 
+use App\Service\GetCartOnLoad;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class GetCartOnLoadExtension extends AbstractExtension
 {
+    public function __construct(
+        private GetCartOnLoad $cartOnLoad,
+    ){}
+
     public function getFilters(): array
     {
         return [
@@ -21,12 +25,12 @@ class GetCartOnLoadExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('function_name', [$this, 'GetCartOnLoad']),
+            new TwigFunction('get_cart', [$this, 'GetCartOnLoad']),
         ];
     }
 
     public function GetCartOnLoad()
     {
-        // ...
+        $this->cartOnLoad->FindCart();
     }
 }

@@ -27,7 +27,6 @@ class IsAdminExtension extends AbstractExtension
 
     public function isAdmin($value): bool
     {
-        dump($this->isAdmin->isAdmin($value));
         return $this->isAdmin->isAdmin($value);
     }
 }
