@@ -52,10 +52,22 @@ class CommentRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findAllCommentWithUser($product)
+    public function findAllCommentWithUser(mixed $product)
     {
         return $this->createQueryBuilder('comment')
             ->join('comment.user', 'user')
+            ->where('comment.product = :product')
+            ->setParameter(':product', $product)
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function CountComment(mixed $product)
+    {
+        return $this->createQueryBuilder('comment')
+            ->select('count(comment)')
             ->where('comment.product = :product')
             ->setParameter(':product', $product)
             ->getQuery()

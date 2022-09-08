@@ -5,6 +5,9 @@
   .imagePart{
     img{
       width: 100%;
+      @media screen and (max-width: 768px) {
+        width: 200px;
+      }
     }
   }
 
@@ -193,18 +196,72 @@
   }
 
   #comment{
+    .star{
+      i{
+        font-size: 1.2rem;
+        @include text_fade;
+      }
+    }
+
+    .leftCommentPart{
+      text-align: left;
+
+      hr{
+        width: 270px;
+      }
+      h3{
+        width: fit-content;
+        font-family: $main;
+      }
+      p{
+        margin-bottom: 3px;
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        span{
+          font-weight: normal !important;
+        }
+      }
+
+      .progressBarPart{
+
+        .progressBarElement{
+          display: flex;
+          align-items: center;
+          margin-bottom: .7rem;
+
+          .progress{
+            width: 166px;
+            height: 25px;
+
+            @media screen and (max-width: 992px) {
+              width: 80%;
+            }
+            @media screen and (max-width: 500px) {
+              width: 60%;
+            }
+
+            .progress-bar{
+              @include gradient_btn;
+            }
+          }
+          &:last-child{
+            margin-bottom: 0;
+            p{
+              margin-right: 26px;
+            }
+          }
+        }
+      }
+    }
+
     .cardComment{
       font-family: $main;
       h3{
         font-family: $main;
         text-transform: uppercase;
       }
-      .star{
-        i{
-          font-size: 1.2rem;
-          @include text_fade;
-        }
-      }
+
       .titleComment{
         font-weight: bold;
         font-size: 1.3rem;

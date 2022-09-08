@@ -144,8 +144,10 @@
 
                             <!-- icone commande -->
                             <div class="lna_header_icon">
-                                <div class="lna_commande"><span class="d-none">icone de commande</span></div>
-                                <p class="d-none d-lg-block">Commandes</p>
+                                <a href="{% if app.user %}#{% else %}{{ path('app_login') }}{% endif %}">
+                                    <div class="lna_commande"><span class="d-none">icone de commande</span></div>
+                                    <p class="d-none d-lg-block">Commandes</p>
+                                </a>
                             </div>
                         </div>
                     </div>

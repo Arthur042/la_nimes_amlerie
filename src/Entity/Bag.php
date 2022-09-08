@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BagRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Enum\PanierStatusEnum;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -31,7 +32,7 @@ class Bag
     ]
     private ?\DateTimeInterface $creationAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'bags', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'bags')]
     #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private ?User $user = null;
 
@@ -55,6 +56,7 @@ class Bag
     {
         $this->products = new ArrayCollection();
         $this->contains = new ArrayCollection();
+        $this->setCreationAt(new DateTime());
     }
 
     public function getId(): ?int

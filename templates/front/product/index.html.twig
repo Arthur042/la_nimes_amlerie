@@ -4,10 +4,11 @@
 
 {% block body %}
     <div class="displayProductPages">
+
         {% include 'front/partial/breadcrump/breadcrump.html.twig' %}
         <div class="container mb-5">
             <div class="productDetailTop row mt-5">
-                <div class="imagePart col-3">
+                <div class="imagePart col-md-3">
                     {% if product[0][0].thumbnail is not null %}
                         <img src="{{ asset(product[0][0].thumbnail) }}" alt="image {{ product[0][0].title }}">
                     {% else %}
@@ -30,10 +31,9 @@
                                 <li><a href="#productDescription">Description</a></li>
                             </ul>
 
+                            <label for="quantity">Nombre de produit</label>
                             <div class="quantityProduct d-flex align-items-center justify-content-between mb-3">
-                                <label for="quantity" class="d-none">nombre d'article</label>
-                                <select name="qty" id="pet-quantity" class="form-select" data-input-add-game="{{ product[0][0].id }}">
-                                    <option selected>Nombre de produit</option>
+                                <select name="qty" id="pet-quantity" class="form-select" data-input-add-product="{{ product[0][0].id }}">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -48,7 +48,7 @@
                                 <p class="price">{{ product[0][0].priceHt }} €</p>
                             </div>
 
-                            <button class="lna_btn_main lna_btn_fade_color m-0" data-game-id="{{ product[0][0].id }}">
+                            <button class="lna_btn_main lna_btn_fade_color m-0" data-product-id="{{ product[0][0].id }}">
                                 Ajouter au panier
                             </button>
                         </div>
@@ -87,6 +87,7 @@
             </div>
         </section>
 
+        {% if samemark is not null %}
         <!-- section même marque -->
         <section class="order">
             <div class="container">
@@ -107,6 +108,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
 
         <!-- section description du produit -->
         <section id="productDescription" class="container">
@@ -115,18 +117,58 @@
             <div class="descriptionProduct">
                 {{ product[0][0].fullDescription|raw }}
             </div>
+            <hr>
         </section>
 
         <!-- section commentaire -->
-        <section id="comment" class="container row">
-            <div class="leftCommentPart col-2">
-
-            </div>
-            <div class="rightCommentPart col-10">
-                {% for comment in comments %}
-                    {% include 'front/partial/comment/commentCard.html.twig' %}
-                    {% dump comment%}
-                {% endfor %}
+        <section id="comment" class="container">
+            <div class="row justify-content-between">
+                <div class="leftCommentPart col-lg-4 mb-4 mb-lg-0">
+                    <h3>Commentaires client</h3>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="star me-2">
+                            {{ product[0]['average']|star|raw }}
+                        </div>
+                        <p>{{ product[0]['average']|round(1) }} sur 5</p>
+                    </div>
+                    <div class="progressBarPart mb-4">
+                        <div class="progressBarElement">
+                            <p class="me-3">5 étoiles</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{ notes[5] }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="progressBarElement">
+                            <p class="me-3">4 étoiles</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{ notes[4] }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="progressBarElement">
+                            <p class="me-3">3 étoiles</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{ notes[3] }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="progressBarElement">
+                            <p class="me-3">2 étoiles</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{ notes[2] }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="progressBarElement">
+                            <p>1 étoile</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: {{ notes[1] }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightCommentPart col-lg-8">
+                    {% for comment in comments %}
+                        {% include 'front/partial/comment/commentCard.html.twig' %}
+                    {% endfor %}
+                </div>
             </div>
         </section>
     </div>

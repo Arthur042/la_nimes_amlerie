@@ -1,6 +1,6 @@
 
 interface ItemQty {
-    gameId: string;
+    productId: string;
     qty: number;
 }
 
@@ -9,15 +9,15 @@ interface ResponseCart {
 }
 
 function setUpClickEventAddItem(): void {
-    const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('[data-game-id]');
+    const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('[data-product-id]');
     if (buttons) {
         buttons.forEach((btn) => {
             btn.addEventListener('click', () => {
-                const gameId: string = btn.getAttribute('data-game-id');
-                const select: HTMLSelectElement = document.querySelector("[data-input-add-game='"+gameId+"']");
+                const productId: string = btn.getAttribute('data-product-id');
+                const select: HTMLSelectElement = document.querySelector("[data-input-add-product='"+productId+"']");
                 let inputQty: string = select.value;
                 let datasToSend: ItemQty = {
-                    gameId,
+                    productId,
                     qty: Number(inputQty)
                 };
                 fetch('/ajax/addItemToCart/' + JSON.stringify(datasToSend))

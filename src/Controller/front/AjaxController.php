@@ -4,6 +4,7 @@ namespace App\Controller\front;
 
 use App\Entity\Bag;
 use App\Entity\Contain;
+use App\Repository\BagRepository;
 use App\Repository\ContainRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,7 +21,6 @@ class AjaxController extends AbstractController
 
     public static string $CART = 'CART';
     public static string $CONTAIN = 'CONTAIN';
-    public static string $QTY = 'QTY';
 
     #[Route('/addItemToCart/{datas}', name: 'ajax_add_item_to_cart')]
     public function index(
@@ -28,53 +28,50 @@ class AjaxController extends AbstractController
         SessionInterface $session,
         EntityManagerInterface $em,
         ProductRepository $productRepository,
-        ContainRepository $containRepository
+        ContainRepository $containRepository,
+        BagRepository $bagRepository
     ): Response
     {
-
         $datas = json_decode($request->get('datas'), true);
-        $currentSession = [];
-        $cart = null;
+        $currentSession = $session->has(self::$CONTAIN) ? $session->get(self::$CONTAIN) : [];
 
         if (!$session->has(self::$CART)) {
             $cart = new Bag();
-            $cart->setCreationAt(new \DateTime('now'));
             $em->persist($cart);
             $em->flush();
-            $session->set(self::$CART, $cart);
-        } else {
-            $cart = $session->get(self::$CART);
-            $currentSession = $session->get(self::$CONTAIN);
+            $session->set(self::$CART, $cart->getId());
         }
 
+        $cartId = $session->get(self::$CART);
+        $cart = $bagRepository->findOneBy(['id' => $cartId]);
+        $product = $productRepository->findOneBy(['id' => $datas['productId']]);
 
-        if (isset($currentSession[$datas['gameId']])) {
-            $contain =$containRepository->findOneBy(['id' => $currentSession[$datas['gameId']]->getId()]);
-            $contain->setQuantity($contain->getQuantity() + $datas['qty']);
-            $em->persist($contain);
-            $em->flush();
-            $session->set(self::$CONTAIN, [$datas['gameId'] => $contain]);
-            dd($session);
-
-        } else {
-            $product = $productRepository->findOneBy(['id' => $datas['gameId']]);
+        if (false === isset($currentSession[$datas['productId']])) {
             $contain = new Contain();
             $contain->setProducts($product);
             $contain->setQuantity($datas['qty']);
-            $contain->setBag($cart);
             $contain->setUnitPrice($product->getPriceHt());
             $contain->setTva($product->getTva());
+            $cart->addContain($contain);
             $em->persist($contain);
-            $em->flush();
-            $session->set(self::$CONTAIN, [$datas['gameId'] => $contain]);
-
+        } else {
+            /** @var Contain $contain */
+            $contain = $containRepository->findOneBy(['id' => $currentSession[$product->getId()]]);
+            $contain->setQuantity($contain->getQuantity() + $datas['qty']);
         }
+        $em->flush();
+        $currentSession[$product->getId()] = $contain->getId();
 
+        $session->set(self::$CONTAIN, $currentSession);
 
 
         $qtyTotal = 0;
+        foreach ($cart->getContains() as $contain) {
+            $qtyTotal += $contain->getQuantity();
+        }
 
-        return new JsonResponse(['qtyTotale' => $qtyTotal]);
+        return new JsonResponse([
+            'qtyTotale' => $qtyTotal,
+        ]);
     }
-
 }
