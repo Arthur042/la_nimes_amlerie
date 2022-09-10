@@ -1,5 +1,4 @@
 <header>
-    {{ add_cart_if_connected() }}
     {{ get_cart() }}
     <!-- banniere -->
     <div class="banner d-flex justify-content-center text-light">
@@ -100,9 +99,9 @@
                                     {% set totalPriceCart = 0 %}
                                     <div class="myModal d-none">
                                         <div class="myModalBody">
-                                            {% if bag is not null %}
+                                            {% if bag is not empty %}
+                                                {% dump bag%}
                                                 {% for contain in bag[0].contains %}
-                                                    {% dump contain %}
                                                     <div class="myModalItem">
                                                         {% if contain.products.thumbnail is not null %} {# todo enlever l'image pardefaut apres les fixtures #}
                                                             <img src="{{ asset(contain.products.thumbnail) }}" alt="image miniature du produit"
@@ -120,7 +119,7 @@
                                                                 <p class="myModalPriceProduct">{{ contain.unitPrice * contain.quantity }} €</p>
                                                             </div>
                                                         </div>
-                                                        <div class="myModalDeleteProduct"></div>
+                                                        <a href="{{ path('app_delete_contain', {'id': contain.id}) }}" class="myModalDeleteProduct"></a>
                                                     </div>
                                                     {% set totalPriceCart = totalPriceCart + (contain.quantity * contain.unitPrice) %}
                                                 {% endfor %}

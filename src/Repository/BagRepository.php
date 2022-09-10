@@ -88,4 +88,14 @@ class BagRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findOneById(mixed $get)
+    {
+        return $this->createQueryBuilder('bag')
+            ->where('bag.id = :id')
+            ->setParameter(':id', $get)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -34,7 +34,6 @@ class AjaxController extends AbstractController
     {
         $datas = json_decode($request->get('datas'), true);
         $currentSession = $session->has(self::$CONTAIN) ? $session->get(self::$CONTAIN) : [];
-
         if (!$session->has(self::$CART)) {
             $cart = new Bag();
             if ($user = $this->getUser()){
