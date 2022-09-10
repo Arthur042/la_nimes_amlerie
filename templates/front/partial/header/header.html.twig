@@ -1,4 +1,5 @@
 <header>
+    {{ add_cart_if_connected() }}
     {{ get_cart() }}
     <!-- banniere -->
     <div class="banner d-flex justify-content-center text-light">
@@ -95,52 +96,55 @@
                                     <p class="d-none d-lg-block">Panier</p>
 
                                     <!-- modal de panier -->
+                                    {% set bag = find_contains() %}
+                                    {% set totalPriceCart = 0 %}
                                     <div class="myModal d-none">
                                         <div class="myModalBody">
-                                            {# composant item panier --------------------------------------------------------------------------------------------- #}
-                                            <div class="myModalItem">
-                                                <img src="{{ asset('build/images/product_item/product_one.png') }}" alt="image miniature du produit"
-                                                     class="myModalPanierImg">
-                                                <div class="myModalResumeProduct">
-                                                    <div class="myModalTopResume">
-                                                        <p>Pet Partner</p> <!-- marque du produit-->
-                                                        <p>Pet products Cage pour petits animaux Gonzales S </p>
-                                                        <!-- nom du produit-->
+                                            {% if bag is not null %}
+                                                {% for contain in bag[0].contains %}
+                                                    {% dump contain %}
+                                                    <div class="myModalItem">
+                                                        {% if contain.products.thumbnail is not null %} {# todo enlever l'image pardefaut apres les fixtures #}
+                                                            <img src="{{ asset(contain.products.thumbnail) }}" alt="image miniature du produit"
+                                                        {% else %}
+                                                            <img src="{{ asset('build/images/product_item/product_one.png') }}" alt="image miniature du produit"
+                                                        {% endif %}
+                                                             class="myModalPanierImg">
+                                                        <div class="myModalResumeProduct">
+                                                            <div class="myModalTopResume">
+                                                                <p>{{ contain.products.mark.name }}</p>
+                                                                <p>{{ contain.products.title }}</p>
+                                                            </div>
+                                                            <div class="myModalBottomResume">
+                                                                <p class="myModalQuantity"> quantité : {{ contain.quantity }}</p>
+                                                                <p class="myModalPriceProduct">{{ contain.unitPrice * contain.quantity }} €</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="myModalDeleteProduct"></div>
                                                     </div>
-                                                    <div class="myModalBottomResume">
-                                                        <p class="myModalQuantity"> quantité : 1</p>
-                                                        <p class="myModalPriceProduct">59,99 €</p>
+                                                    {% set totalPriceCart = totalPriceCart + (contain.quantity * contain.unitPrice) %}
+                                                {% endfor %}
+                                                <div class="myModalPrice">
+                                                    <div class="myModalDelivery">
+                                                        <p>Livraison : </p>
+                                                        <p>
+                                                            {% if totalPriceCart >= 59 %}
+                                                                Offerte
+                                                            {% else %}
+                                                                5 €
+                                                            {% endif %}
+                                                        </p>
+                                                    </div>
+                                                    <div class="myModalTotalPrice">
+                                                        <p>Montant Total : </p>
+                                                        <p>{{ totalPriceCart }} €</p>
                                                     </div>
                                                 </div>
-                                                <div class="myModalDeleteProduct"></div>
-                                            </div>
-                                            {# composant item panier ---------------------------------------------------------------------------------------------> #}
-                                            <div class="myModalItem">
-                                                <img src="{{ asset('build/images/product_item/product_two.png') }}" alt="image miniature du produit"
-                                                     class="myModalPanierImg">
-                                                <div class="myModalResumeProduct">
-                                                    <div class="myModalTopResume">
-                                                        <p>Pet Partner</p> <!-- marque du produit-->
-                                                        <p>Pet products Cage pour petits animaux Gonzales S </p>
-                                                        <!-- nom du produit-->
-                                                    </div>
-                                                    <div class="myModalBottomResume">
-                                                        <p class="myModalQuantity"> quantité : 2</p>
-                                                        <p class="myModalPriceProduct">66,98 €</p>
-                                                    </div>
+                                            {% else %}
+                                                <div class="emptyCart">
+                                                    <p>Panier vide</p>
                                                 </div>
-                                                <div class="myModalDeleteProduct"></div>
-                                            </div>
-                                            <div class="myModalPrice">
-                                                <div class="myModalDelivery">
-                                                    <p>Livraison : </p>
-                                                    <p>Offerte</p>
-                                                </div>
-                                                <div class="myModalTotalPrice">
-                                                    <p>Montant Total : </p>
-                                                    <p>126,97 €</p>
-                                                </div>
-                                            </div>
+                                            {% endif %}
 
                                             <button class="lna_btn_main lna_btn_fade_color">Accéder au panier</button>
                                         </div>

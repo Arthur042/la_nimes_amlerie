@@ -22,7 +22,7 @@ class GetCartOnLoad extends AbstractController
                 if(!empty($bag)) {
                     $session->set('CART', $bag[0]->getId());
                     $qtyTotal = 0;
-                    foreach ($bag->getContains() as $contain) {
+                    foreach ($bag[0]->getContains() as $contain) {
                         $qtyTotal += $contain->getQuantity();
                     }
                     $session->set('QTY', $qtyTotal);

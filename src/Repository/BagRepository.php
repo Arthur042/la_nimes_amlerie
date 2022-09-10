@@ -75,4 +75,17 @@ class BagRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findBagAndContain(mixed $get)
+    {
+        return $this->createQueryBuilder('bag')
+            ->leftJoin('bag.contains', 'contains')
+            ->join('contains.products', 'products')
+            ->join('products.mark', 'mark')
+            ->where('bag.id = :id')
+            ->setParameter(':id', $get)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
