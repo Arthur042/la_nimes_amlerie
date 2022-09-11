@@ -5,68 +5,63 @@
 {% block body %}
 
     <section class="container bagSeeSection">
-        <h1>Panier</h1>
-        {% set bag = find_contains() %}
-        {% if bag is not empty %}
-            {% set totalHT = 0 %}
-            {% set totalTTC = 0 %}
-            {% set totalTVA = 0 %}
-            <table class="table table-hover table-striped mt-5 d-none d-md-block">
-                <thead>
-                <tr>
-                    <th>Produit</th>
-                    <th>Quantité</th>
-                    <th>Prix Unitaire HT</th>
-                    <th>% TVA</th>
-                    <th>Total TVA</th>
-                    <th>Total TTC</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for contain in bag[0].contains %}
-                        {% set totalHT = totalHT + (contain.unitPrice * contain.quantity)|round(2, 'floor') %}
+        <div class="row">
+            <div class="col-xl-7 cartItem mb-4 mb-xl-0 me-xl-4">
+                <h2>Panier</h2>
+                {% set bag = find_contains() %}
+                {% set totalTTC = 0 %}
+                {% if bag is not empty %}
+                    {% for contain in bag[0].contains %}
+                        {% dump contain %}
                         {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
-                        {% set totalTVA = totalTVA + ((contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') %}
-                        <tr>
-                            <td>{{ contain.products.title }}</td>
-                            <td>{{ contain.quantity }}</td>
-                            <td>{{ contain.unitPrice }} €</td>
-                            <td>{{ contain.tva * 100 }} %</td>
-                            <td>{{ (contain.tva * contain.unitPrice)|round(2, 'floor') }} €</td>
-                            <td>{{ ((contain.unitPrice + contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') }} €</td>
-                        </tr>
-                {% endfor %}
-                <tr class="totalPriceOrdered">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Total HT</td>
-                    <td>{{ totalHT }} €</td>
-                </tr>
-                <tr class="totalPriceOrdered">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Total TVA</td>
-                    <td>{{ totalTVA }} €</td>
-                </tr>
-                <tr class="totalPriceOrdered">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Total TTC</td>
-                    <td>{{ totalTTC }} €</td>
-                </tr>
-                </tbody>
-            </table>
-        {% else %}
-            <div class="emptyCart">
-                <p>Panier vide</p>
+                        <div class="d-flex flex-column flex-sm-row align-items-center itemLine mb-4">
+                            {% if contain.products.thumbnail is not null %} {# todo enlever l'image pardefaut apres les fixtures #}
+                                <img src="{{ asset(contain.products.thumbnail) }}" alt="image miniature du produit"
+                            {% else %}
+                                <img src="{{ asset('build/images/product_item/product_one.png') }}" alt="image miniature du produit"
+                            {% endif %}
+                                 class="cartImg">
+
+                            <div class="cartResumeProduct ms-4">
+                                <div class="d-flex justify-content-between align-baseline">
+                                    <div class="cartProductName">
+                                        <p>{{ contain.products.mark.name }}</p>
+                                        <p>{{ contain.products.title }}</p>
+                                    </div>
+                                    <p class="cartQuantity"> X{{ contain.quantity }}</p>
+                                </div>
+                                <div>
+                                    <p class="cartDelivery">Livraison en 1 à 3  jours ouvrés</p>
+                                    <p class="cartback">Retour gratuit</p>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <a href="{{ path('app_delete_contain', {'id': contain.id}) }}" class="cartDeleteProduct">supprimer</a>
+                                    <p class="cartPriceProduct">{{ (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity }} €</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                {% else %}
+                    <div class="emptyCart">
+                        <p>Panier vide</p>
+                    </div>
+                {% endif %}
             </div>
-        {% endif %}
+            <div class="col-xl-4 cartPriceTotal">
+                <h2>Montant total</h2>
+                <div>
+                    <div class="d-flex justify-content-between align-items-center pb-2 mb-2">
+                        <p>Livraison :</p>
+                        <p class="cartDelivery">{% if totalTTC >= 59 %}OFFERTE{% else %}4.99 €{% endif %}</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center  pb-2 mb-2">
+                        <p>Montant total :</p>
+                        <p class="cartTotalPrice">{{ totalTTC }}€</p>
+                    </div>
+                    <a href="{{ path('app_bag') }}" class="lna_btn_main lna_btn_fade_color">Aller au paiement</a>
+                </div>
+            </div>
+        </div>
     </section>
 
 {% endblock %}

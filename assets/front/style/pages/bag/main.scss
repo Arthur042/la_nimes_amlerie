@@ -1,6 +1,145 @@
 .bagSeeSection{
-  h1{
+
+  h2{
     font-family: $main;
     width: fit-content;
+    font-size: 2rem;
+  }
+
+  .cartPriceTotal{
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    padding: 2rem;
+    height: fit-content;
+
+    p{
+      margin: 0;
+    }
+    >div div:first-child{
+      border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    }
+
+    .cartDelivery{
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    .cartTotalPrice{
+      font-size: 1.3rem;
+      color: $price;
+      font-weight: bold;
+    }
+
+    .lna_btn_main{
+      border-radius: 10px;
+      width: 100%;
+    }
+  }
+
+  .cartItem {
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    padding: 2rem;
+
+    .itemLine {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+      padding-bottom: 1rem;
+
+      &:last-child{
+        border-bottom: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        width: 300px;
+        height: 240px;
+
+        @media screen and (max-width:768px) {
+          width: 150px;
+          height: 120px;
+        }
+        @media screen and (max-width:576px) {
+          width: 200px;
+          height: 160px;
+        }
+      }
+
+      .cartResumeProduct {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 200px;
+        width: 100%;
+
+        .cartProductName {
+          p {
+            margin: 0;
+          }
+
+          p:first-child {
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+        }
+
+        .cartPriceProduct {
+          color: $price;
+          margin: 0;
+          font-weight: bold;
+          font-size: 1.3rem;
+        }
+        .cartQuantity{
+          font-size: 1.3rem;
+          font-weight: bold;
+        }
+
+        .cartback:before, .cartDelivery:before{
+          content: '';
+          width: 25px;
+          height: 25px;
+          margin-right: 7px;
+          @include bg_img_parameter;
+          vertical-align: -25%;
+        }
+
+        .cartback{
+          margin: 0;
+
+          &:before{
+            background-image: url(../../../../images/icon/header/delivery.svg);
+          }
+        }
+        .cartDelivery{
+          margin-bottom: 7px;
+
+          &:before{
+            background-image: url(../../../../images/icon/reassurant/livraison.svg);
+          }
+        }
+
+        a {
+          box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+          padding: .3rem .7rem;
+          border-radius: 7px;
+          transition: ease-in-out .25s;
+
+          &:hover {
+            background-color: whitesmoke;
+          }
+
+          &:before {
+            content: '';
+            @include bg_img_parameter;
+            width: 25px;
+            height: 25px;
+            background-image: url('../../../../images/icon/panier/been.png');
+            vertical-align: -25%;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
   }
 }
