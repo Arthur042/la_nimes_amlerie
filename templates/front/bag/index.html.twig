@@ -1,0 +1,72 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+    <section class="container bagSeeSection">
+        <h1>Panier</h1>
+        {% set bag = find_contains() %}
+        {% if bag is not empty %}
+            {% set totalHT = 0 %}
+            {% set totalTTC = 0 %}
+            {% set totalTVA = 0 %}
+            <table class="table table-hover table-striped mt-5 d-none d-md-block">
+                <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire HT</th>
+                    <th>% TVA</th>
+                    <th>Total TVA</th>
+                    <th>Total TTC</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contain in bag[0].contains %}
+                        {% set totalHT = totalHT + (contain.unitPrice * contain.quantity)|round(2, 'floor') %}
+                        {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
+                        {% set totalTVA = totalTVA + ((contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') %}
+                        <tr>
+                            <td>{{ contain.products.title }}</td>
+                            <td>{{ contain.quantity }}</td>
+                            <td>{{ contain.unitPrice }} €</td>
+                            <td>{{ contain.tva * 100 }} %</td>
+                            <td>{{ (contain.tva * contain.unitPrice)|round(2, 'floor') }} €</td>
+                            <td>{{ ((contain.unitPrice + contain.tva * contain.unitPrice) * contain.quantity)|round(2, 'floor') }} €</td>
+                        </tr>
+                {% endfor %}
+                <tr class="totalPriceOrdered">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total HT</td>
+                    <td>{{ totalHT }} €</td>
+                </tr>
+                <tr class="totalPriceOrdered">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total TVA</td>
+                    <td>{{ totalTVA }} €</td>
+                </tr>
+                <tr class="totalPriceOrdered">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total TTC</td>
+                    <td>{{ totalTTC }} €</td>
+                </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <div class="emptyCart">
+                <p>Panier vide</p>
+            </div>
+        {% endif %}
+    </section>
+
+{% endblock %}

@@ -13,7 +13,7 @@
             </div>
             <p>{{ product.comments|length }} avis</p>
         </div>
-        <p>{{ product.priceHt }}€</p>
+        <p>{{ (product.priceHt + (product.priceHt * product.tva))|round(2, 'floor') }}€</p>
         <a href="{{ path('app_product', {'id': product.id}) }}" class="lna_btn_main lna_btn_product lna_btn_dark">Voir plus</a>
     </div>
 </div>

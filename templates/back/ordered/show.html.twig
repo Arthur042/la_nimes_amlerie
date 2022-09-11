@@ -9,51 +9,51 @@
             <a class="showEditLink" href="{{ path('app_admin_ordered_pdf', {'id': ordered[0].id}) }}">Imprimer <i class="fa-solid fa-file-pdf"></i></a>
         </div>
 
-    <table class="clientInformationTable ms-4">
-        <tbody>
-        <tr>
-            <th>Date :</th>
-            <td>{{ ordered[0].creationAt|date('Y-m-d H:i:s')}}</td>
-        </tr>
-        <tr>
-            <th>Bon decommande N° :</th>
-            <td>{{ ordered[0].id }}</td>
-        </tr>
-        <tr>
-            <th>Contact client :</th>
-            <td>{{ ordered[0].bag.user.firstName }} {{ ordered[0].bag.user.lastName }}</td>
-        </tr>
-        <tr>
-            <th>Email du client :</th>
-            <td>{{ ordered[0].bag.user.email }}</td>
-        </tr>
-        <tr>
-            <th>inscrit depuis le :</th>
-            <td>{{ ordered[0].bag.user.inscriptionAt|date('Y-m-d') }}</td>
-        </tr>
-        <tr>
-            <th>Mode de paiement :</th>
-            <td>{{ ordered[0].payment.name }}</td>
-        </tr>
-        <tr>
-            <th>Adresse de livraison :</th>
-            <td>
-                <ul>
-                    <li>{{ ordered[0].billingAdress.city }}  {{ ordered[0].billingAdress.postalCode }}</li>
-                    <li>{{ ordered[0].billingAdress.line1 }}</li>
-                    {% if ordered[0].billingAdress.line2 is not null %}
-                        <li>{{ ordered[0].billingAdress.line2 }}</li>
-                    {% endif %}
-                    {% if ordered[0].billingAdress.line3 is not null %}
-                        <li>{{ ordered[0].billingAdress.line3 }}</li>
-                    {% endif %}
-                </ul>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="clientInformationTable ms-4">
+            <tbody>
+            <tr>
+                <th>Date :</th>
+                <td>{{ ordered[0].creationAt|date('Y-m-d H:i:s')}}</td>
+            </tr>
+            <tr>
+                <th>Bon decommande N° :</th>
+                <td>{{ ordered[0].id }}</td>
+            </tr>
+            <tr>
+                <th>Contact client :</th>
+                <td>{{ ordered[0].bag.user.firstName }} {{ ordered[0].bag.user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email du client :</th>
+                <td>{{ ordered[0].bag.user.email }}</td>
+            </tr>
+            <tr>
+                <th>inscrit depuis le :</th>
+                <td>{{ ordered[0].bag.user.inscriptionAt|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Mode de paiement :</th>
+                <td>{{ ordered[0].payment.name }}</td>
+            </tr>
+            <tr>
+                <th>Adresse de livraison :</th>
+                <td>
+                    <ul>
+                        <li>{{ ordered[0].billingAdress.city }}  {{ ordered[0].billingAdress.postalCode }}</li>
+                        <li>{{ ordered[0].billingAdress.line1 }}</li>
+                        {% if ordered[0].billingAdress.line2 is not null %}
+                            <li>{{ ordered[0].billingAdress.line2 }}</li>
+                        {% endif %}
+                        {% if ordered[0].billingAdress.line3 is not null %}
+                            <li>{{ ordered[0].billingAdress.line3 }}</li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-    <table class="table table-hover table-striped mt-5">
+        <table class="table table-hover table-striped mt-5">
             <thead>
             <tr>
                 <th>Produit</th>

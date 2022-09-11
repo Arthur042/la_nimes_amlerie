@@ -100,7 +100,6 @@
                                     <div class="myModal d-none">
                                         <div class="myModalBody">
                                             {% if bag is not empty %}
-                                                {% dump bag%}
                                                 {% for contain in bag[0].contains %}
                                                     <div class="myModalItem">
                                                         {% if contain.products.thumbnail is not null %} {# todo enlever l'image pardefaut apres les fixtures #}
@@ -116,12 +115,12 @@
                                                             </div>
                                                             <div class="myModalBottomResume">
                                                                 <p class="myModalQuantity"> quantité : {{ contain.quantity }}</p>
-                                                                <p class="myModalPriceProduct">{{ contain.unitPrice * contain.quantity }} €</p>
+                                                                <p class="myModalPriceProduct">{{ (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity }} €</p>
                                                             </div>
                                                         </div>
                                                         <a href="{{ path('app_delete_contain', {'id': contain.id}) }}" class="myModalDeleteProduct"></a>
                                                     </div>
-                                                    {% set totalPriceCart = totalPriceCart + (contain.quantity * contain.unitPrice) %}
+                                                    {% set totalPriceCart = totalPriceCart + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity %}
                                                 {% endfor %}
                                                 <div class="myModalPrice">
                                                     <div class="myModalDelivery">
@@ -145,7 +144,7 @@
                                                 </div>
                                             {% endif %}
 
-                                            <button class="lna_btn_main lna_btn_fade_color">Accéder au panier</button>
+                                            <a href="{{ path('app_bag') }}" class="lna_btn_main lna_btn_fade_color">Accéder au panier</a>
                                         </div>
                                     </div>
                                 </div>

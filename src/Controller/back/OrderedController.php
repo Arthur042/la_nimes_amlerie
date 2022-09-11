@@ -66,7 +66,6 @@ class OrderedController extends AbstractController
         $totalTTC = 0;
         $totalTVA = 0;
 
-    dump($ordered);
         return $this->render('back/ordered/show.html.twig', [
             'ordered' => $ordered,
             'totalHT' => $totalHT,

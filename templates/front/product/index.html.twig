@@ -45,7 +45,7 @@
                                     <option value="9">9</option>
                                 </select>
 
-                                <p class="price">{{ product[0][0].priceHt }} €</p>
+                                <p class="price">{{ (product[0][0].priceHt + (product[0][0].priceHt * product[0][0].tva))|round(2, 'floor') }} €</p>
                             </div>
 
                             <button class="lna_btn_main lna_btn_fade_color m-0" data-product-id="{{ product[0][0].id }}" data-page-link="{{ path('app_product', {'id': product[0][0].id}) }}">
