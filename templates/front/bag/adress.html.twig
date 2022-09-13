@@ -1,0 +1,30 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Adresse{% endblock %}
+
+{% block body %}
+
+    <section class="container bagSeeSection">
+        <div class="row">
+            {% include 'front/partial/checkout/advancement.html.twig'  with {
+                currentTwo: true,
+                setpOne: true
+            }%}
+            <div class="col-lg-7 cartItem connection mb-4 mb-lg-0 me-lg-4">
+                {% set bag = find_contains() %}
+                {% set totalTTC = 0 %}
+                {% for contain in bag[0].contains %}
+                    {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
+                {% endfor %}
+                <h2>Mon adresse de livraison</h2>
+
+            </div>
+            {% include 'front/partial/checkout/totalPrice.html.twig'  with {
+                button: 'Poursuivre',
+                display: 'col-lg-4',
+                link:'mb'
+            }%}
+        </div>
+    </section>
+
+{% endblock %}

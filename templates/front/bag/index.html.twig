@@ -47,20 +47,11 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="col-xl-4 cartPriceTotal">
-                <h2>Montant total</h2>
-                <div>
-                    <div class="d-flex justify-content-between align-items-center pb-2 mb-2">
-                        <p>Livraison :</p>
-                        <p class="cartDelivery">{% if totalTTC >= 59 %}OFFERTE{% else %}4.99 €{% endif %}</p>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center  pb-2 mb-2">
-                        <p>Montant total :</p>
-                        <p class="cartTotalPrice">{{ totalTTC }}€</p>
-                    </div>
-                    <a href="{{ path('app_bag') }}" class="lna_btn_main lna_btn_fade_color">Aller au paiement</a>
-                </div>
-            </div>
+            {% include 'front/partial/checkout/totalPrice.html.twig'  with {
+                button: 'Valider le panier',
+                display: 'col-xl-4',
+                link: path('app_adress_bag')
+            }%}
         </div>
     </section>
 

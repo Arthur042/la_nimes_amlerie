@@ -5,3 +5,6 @@ App\Entity\Adress:
         line3: '20%? <streetSuffix()>'
         postalCode: '<postcode()>'
         city: '<city()>'
+        firstName: '<firstName()>'
+        lastName: '<lastName()>'
+        phoneNumber: '<phoneNumber()>'

@@ -1,0 +1,34 @@
+<div class="col-lg-7 advancement">
+    <ul>
+        <li>
+            <div class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentOne is defined %}current{% endif %} {% if setpOne is defined %}active{% endif %}">{% if setpOne is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}1{% endif %}</span>
+                <span class="AdvancementDisplayContent {% if currentOne is defined %}current{% endif %}">Se connecter</span>
+            </div>
+        </li>
+        <li>
+            <a class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentTwo is defined %}current{% endif %} {% if setpTwo is defined %}active{% endif %}">{% if setpTwo is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}2{% endif %}</span>
+                <span class="AdvancementDisplayContent {% if currentTwo is defined %}current{% endif %}">Adresse</span>
+            </a>
+        </li>
+        <li>
+            <a class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentThree is defined %}current{% endif %} {% if setpThree is defined %}active{% endif %}">{% if setpThree is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}3{% endif %}</span>
+                <span class="AdvancementDisplayContent {% if currentThree is defined %}current{% endif %}">Paiement</span>
+            </a>
+        </li>
+        <li>
+            <a class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentFour is defined %}current{% endif %} {% if setpFour is defined %}active{% endif %}">{% if setpFour is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}4{% endif %}</span>
+                <span class="AdvancementDisplayContent {% if currentFour is defined %}current{% endif %}">Aperçu</span>
+            </a>
+        </li>
+        <li>
+            <a class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentFive is defined %}current{% endif %} {% if setpFive is defined %}active{% endif %}">{% if setpFive is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}5{% endif %}</span>
+                <span class="AdvancementDisplayContent {% if currentFive is defined %}current{% endif %}">Commandé</span>
+            </a>
+        </li>
+    </ul>
+</div>

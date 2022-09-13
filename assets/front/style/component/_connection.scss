@@ -1,5 +1,9 @@
 .connection, .inscription{
     min-height: calc(100vh - 882px);
+
+    &, .cartItem{
+        min-height: 0;
+    }
     h2{
         font-family: $main !important;
         font-size: 1.5rem;

@@ -1,0 +1,61 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+    <section class="container bagSeeSection">
+        <div class="row">
+            {% include 'front/partial/checkout/advancement.html.twig'  with {
+                currentOne: true
+            }%}
+            <div class="col-lg-7 cartItem connection mb-4 mb-lg-0 me-lg-4">
+                <h2>Connexion</h2>
+                {% set bag = find_contains() %}
+                {% set totalTTC = 0 %}
+                {% for contain in bag[0].contains %}
+                    {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
+                {% endfor %}
+                <form method="post" class="mb-4">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                    <div class="mb-4">
+                        <label for="inputUsername" class="d-none">Nom d'utilisateur</label>
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus placeholder="Nom d'utilisateur">
+                    </div>
+
+                    <div class="mb-4 passwordInput">
+                        <label for="inputPassword" class="d-none">mot de passe</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="Mot de passe">
+                        <span class="input-group-text hide" id="togglePassword"></span>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    {#        <div class="checkbox mb-3">#}
+                    {#            <label>#}
+                    {#                <input type="checkbox" name="_remember_me"> Remember me#}
+                    {#            </label>#}
+                    {#        </div>#}
+
+                    <button class="lna_btn_main lna_btn_fade_color" type="submit">
+                        Poursuivre
+                    </button>
+                </form>
+            </div>
+            {% include 'front/partial/checkout/totalPrice.html.twig'  with {
+                button: 'Poursuivre',
+                display: 'col-lg-4',
+                buttonDisplay: 'd-none'
+            }%}
+        </div>
+    </section>
+
+{% endblock %}
