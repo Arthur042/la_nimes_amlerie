@@ -16,8 +16,47 @@
                 {% for contain in bag[0].contains %}
                     {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
                 {% endfor %}
-                <h2>Mon adresse de livraison</h2>
+                {% if form is defined %}
+                    <h2>Entrer votre adresse</h2>
+                    {{ form_start(form) }}
+                    <div class="row text-start">
+                        <div class="col-lg-6">
+                            {{ form_row(form.firstName) }}
+                        </div>
+                        <div class="col-lg-6">
+                            {{ form_row(form.lastName) }}
+                        </div>
+                        <div class="col-lg-4">
+                            {{ form_row(form.postalCode) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_row(form.city) }}
+                        </div>
+                        <div class="col-lg-4">
+                            {{ form_row(form.line1) }}
+                        </div>
+                        <div class="col-lg-8">
+                            {{ form_row(form.line2) }}
+                        </div>
+                        {{ form_row(form.line3) }}
+                        {{ form_row(form.phoneNumber) }}
+                    </div>
 
+                    <button class="lna_btn_main lna_btn_fade_color mt-2" type="submit">
+                        Poursuivre
+                    </button>
+                    {{ form_end(form) }}
+                {% else %}
+                    <h2>Mon adresse de livraison</h2>
+                    {% dump adress %}
+                    <div class="facturationAdresse">
+                        <p>Adresse de livraison</p>
+                        <p>{{ adress.firstName }} {{ adress.lastName }}</p>
+                        <p>{{ adress.line1 }} {{ adress.line2 }}, {{ adress.postalCode }} {{ adress.city }}</p>
+                        <a><i class="fa-solid fa-pen"></i></a>
+                    </div>
+
+                {% endif %}
             </div>
             {% include 'front/partial/checkout/totalPrice.html.twig'  with {
                 button: 'Poursuivre',
