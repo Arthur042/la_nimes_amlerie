@@ -93,7 +93,7 @@ class BagController extends AbstractController
     }
 
 
-    #[Route('/validateCart/{datas}', name: 'ajax_add_item_to_cart')]
+    #[Route('/validateCart/{datas}', name: 'app_validate_bag')]
     public function validateCart(
         Request $request,
         StatusRepository $statusRepository,
