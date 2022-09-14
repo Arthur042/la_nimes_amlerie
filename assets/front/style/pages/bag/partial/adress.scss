@@ -18,8 +18,10 @@
     &:nth-child(2){
       @include text_fade;
       font-weight: bold;
+      width: fit-content;
     }
   }
+
   a{
     @include text_fade;
     font-size: 1.2rem;
@@ -27,5 +29,13 @@
     right: 1rem;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+.modalAdress{
+  background-color: rgba(0, 0, 0, 0.49);
+  .modalTitleAdress{
+    font-family: $main;
   }
 }

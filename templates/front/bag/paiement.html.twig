@@ -1,0 +1,40 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block body %}
+
+    <section class="container bagSeeSection">
+        <div class="row">
+            {% include 'front/partial/checkout/advancement.html.twig'  with {
+                currentThree: true,
+                setpOne: true,
+                setpTwo: true,
+            }%}
+            <div class="col-lg-7 me-lg-4 p-0">
+                {% set bag = find_contains() %}
+                {% set totalTTC = 0 %}
+                {% for contain in bag[0].contains %}
+                    {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
+                {% endfor %}
+                <div class="cartItem mb-4">
+                    <h2>Moyen de paiement</h2>
+                    <div class="paiementCard d-flex align-items-center mb-4">
+                        <div class="paimentPill"></div>
+                        <img src="{{ asset('build/images/checkout/paypal-logo.png') }}">
+                    </div>
+                    <div class="paiementCard d-flex align-items-center">
+                        <div class="paimentPill me-3"></div>
+                        <img src="{{ asset('build/images/checkout/logo-cb.png') }}">
+                    </div>
+                </div>
+            </div>
+            {% include 'front/partial/checkout/totalPrice.html.twig'  with {
+                button: 'Commander',
+                display: 'col-lg-4',
+                link:'mb'
+            }%}
+        </div>
+    </section>
+{#todo create data-element on each paimentCard div to select the paiement method look offcanva mobils ts and create ajax script to request a controller whit data-element (paypal) in argument then create the order with user adress paiment change status of bag and redirect to order confirmation template#}
+{% endblock %}

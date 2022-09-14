@@ -1,0 +1,21 @@
+.paiementCard{
+  border: 1px solid rgba(42, 42, 42, 0.3);
+  padding: 2rem;
+  cursor: pointer;
+  height: 144px;
+  border-radius: 7px;
+  transition: ease-in-out .25s;
+
+  &:hover{
+    background-color: #eaeaea;
+  }
+  .paimentPill{
+    padding: .5rem;
+    background-color: #bdbdbd;
+    border-radius: 100%;
+  }
+
+  img{
+    width: 300px;
+  }
+}

@@ -6,7 +6,6 @@ use App\Entity\Adress;
 use App\Entity\User;
 use App\Form\AdressType;
 use App\Repository\AdressRepository;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,17 +37,46 @@ class BagController extends AbstractController
                 $user->setAdress($adress);
                 $entityManager->persist($user);
                 $entityManager->flush();
-                return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_paiement_bag', [], Response::HTTP_SEE_OTHER);
             }
 
             return $this->render('front/bag/adress.html.twig', [
-                'product' => $adress,
+                'newAdress' => $adress,
                 'form' => $form->createView(),
+            ]);
+        } else {
+            $adress = $user->getAdress();
+            $form = $this->createForm(AdressType::class, $adress);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $adressRepository->add($adress, true);
+                $user->setAdress($adress);
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->redirectToRoute('app_adress_bag', [], Response::HTTP_SEE_OTHER);
+            }
+
+            return $this->render('front/bag/adress.html.twig', [
+                'adress' => $user->getAdress(),
+                'editAdress' => $adress,
+                'formEdit' => $form->createView(),
             ]);
         }
 
-        return $this->render('front/bag/adress.html.twig', [
-            'adress' => $user->getAdress()
+
+    }
+
+    #[Route('/paiement', name: 'app_paiement_bag')]
+    public function paiement(): Response
+    {
+        /** @var User $user*/
+        $user = $this->getUser();
+
+        return $this->render('front/bag/paiement.html.twig', [
+            'adress' => $user->getAdress(),
         ]);
+
+
     }
 }
