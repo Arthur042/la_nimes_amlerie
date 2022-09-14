@@ -2,25 +2,25 @@
     <ul>
         <li>
             <div class="advancementPosition">
-                <span class="AdvancementDisplayCheck {% if currentOne is defined %}current{% endif %} {% if setpOne is defined %}active{% endif %}">{% if setpOne is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}1{% endif %}</span>
+                <span class="AdvancementDisplayCheck {% if currentOne is defined %}current{% endif %} {% if stepOne is defined %}active{% endif %}">{% if stepOne is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}1{% endif %}</span>
                 <span class="AdvancementDisplayContent {% if currentOne is defined %}current{% endif %}">Se connecter</span>
             </div>
         </li>
         <li>
-            <a class="advancementPosition">
-                <span class="AdvancementDisplayCheck {% if currentTwo is defined %}current{% endif %} {% if setpTwo is defined %}active{% endif %}">{% if setpTwo is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}2{% endif %}</span>
+            <a {% if stepTwo is defined %}href="{{ path('app_adress_bag') }}" {% endif %} class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentTwo is defined %}current{% endif %} {% if stepTwo is defined %}active{% endif %}">{% if stepTwo is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}2{% endif %}</span>
                 <span class="AdvancementDisplayContent {% if currentTwo is defined %}current{% endif %}">Adresse</span>
             </a>
         </li>
         <li>
-            <a class="advancementPosition">
-                <span class="AdvancementDisplayCheck {% if currentThree is defined %}current{% endif %} {% if setpThree is defined %}active{% endif %}">{% if setpThree is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}3{% endif %}</span>
+            <a {% if stepThree is defined %}href="{{ path('app_paiement_bag') }}" {% endif %} class="advancementPosition">
+                <span class="AdvancementDisplayCheck {% if currentThree is defined %}current{% endif %} {% if stepThree is defined %}active{% endif %}">{% if stepThree is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}3{% endif %}</span>
                 <span class="AdvancementDisplayContent {% if currentThree is defined %}current{% endif %}">Paiement</span>
             </a>
         </li>
         <li>
             <a class="advancementPosition">
-                <span class="AdvancementDisplayCheck {% if currentFour is defined %}current{% endif %} {% if setpFour is defined %}active{% endif %}">{% if setpFour is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}4{% endif %}</span>
+                <span class="AdvancementDisplayCheck {% if currentFour is defined %}current{% endif %} {% if stepFour is defined %}active{% endif %}">{% if stepFour is defined %}<i class="fa-sharp fa-solid fa-check"></i>{% else %}4{% endif %}</span>
                 <span class="AdvancementDisplayContent {% if currentFour is defined %}current{% endif %}">Commandé</span>
             </a>
         </li>

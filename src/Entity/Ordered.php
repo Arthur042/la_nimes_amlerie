@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OrderedRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -63,6 +64,11 @@ class Ordered
         ),
     ]
     private ?Bag $bag = null;
+
+    public function __construct()
+    {
+        $this->setCreationAt(new DateTime());
+    }
 
     public function getId(): ?int
     {

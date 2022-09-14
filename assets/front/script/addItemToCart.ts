@@ -26,7 +26,7 @@ function setUpClickEventAddItem(): void {
                     })
                     .then((response: Response) => {
                         const link: string = btn.getAttribute('data-page-link');
-                        window.location.replace(link);
+                        // window.location.replace(link);
                     });
             });
         });

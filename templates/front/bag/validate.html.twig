@@ -1,0 +1,19 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block body %}
+
+    <section class="container bagSeeSection">
+        <div class="row">
+            {% include 'front/partial/checkout/advancement.html.twig'  with {
+                stepOne: true,
+                stepTwo: true,
+                stepThree: true,
+                stepFour: true
+            }%}
+            <h1>Commande validé</h1>
+        </div>
+    </section>
+
+{% endblock %}

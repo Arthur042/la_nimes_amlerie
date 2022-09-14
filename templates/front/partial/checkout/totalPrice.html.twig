@@ -9,6 +9,15 @@
             <p>Montant total :</p>
             <p class="cartTotalPrice">{{ totalTTC }}€</p>
         </div>
-        <a href="{% if app.user %}{{ link }}{% else %}{{ path('app_checkout_login') }}{% endif %}" class="lna_btn_main lna_btn_fade_color {% if buttonDisplay is defined %}{{ buttonDisplay }}{% endif %}{% if totalTTC == 0 %}d-none{% endif %}">{{ button }}</a>
+
+        <a href="{% if app.user %}{{ link }}{% else %}{{ path('app_checkout_login') }}{% endif %}"
+           class="lna_btn_main lna_btn_fade_color
+            {% if buttonDisplay is defined %}{{ buttonDisplay }}{% endif %}
+            {% if totalTTC == 0 %}d-none{% endif %}
+            {% if isActivePaiement is defined %}btn disabled{% endif %}"
+            {% if data is defined %}data-button-order{% endif %}>
+            {{ button }}
+        </a>
+
     </div>
 </div>

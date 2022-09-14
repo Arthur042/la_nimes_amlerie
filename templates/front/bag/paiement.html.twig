@@ -19,12 +19,16 @@
                 {% endfor %}
                 <div class="cartItem mb-4">
                     <h2>Moyen de paiement</h2>
-                    <div class="paiementCard d-flex align-items-center mb-4">
-                        <div class="paimentPill"></div>
+                    <div class="paiementCard d-flex align-items-center mb-4" data-select-paiement="paypal">
+                        <div class="paimentPill">
+                            <div></div>
+                        </div>
                         <img src="{{ asset('build/images/checkout/paypal-logo.png') }}">
                     </div>
-                    <div class="paiementCard d-flex align-items-center">
-                        <div class="paimentPill me-3"></div>
+                    <div class="paiementCard d-flex align-items-center" data-select-paiement="cb">
+                        <div class="paimentPill me-3">
+                            <div></div>
+                        </div>
                         <img src="{{ asset('build/images/checkout/logo-cb.png') }}">
                     </div>
                 </div>
@@ -32,9 +36,11 @@
             {% include 'front/partial/checkout/totalPrice.html.twig'  with {
                 button: 'Commander',
                 display: 'col-lg-4',
-                link:'mb'
+                link: path('app_home'),
+                isActivePaiement: true,
+                data: 'data-button-order'
             }%}
         </div>
     </section>
-{#todo create data-element on each paimentCard div to select the paiement method look offcanva mobils ts and create ajax script to request a controller whit data-element (paypal) in argument then create the order with user adress paiment change status of bag and redirect to order confirmation template#}
+{#todo controller whit data-element (paypal) in argument then create the order with user adress paiment change status of bag and redirect to order confirmation template#}
 {% endblock %}

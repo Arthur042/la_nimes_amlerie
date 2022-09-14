@@ -5,3 +5,5 @@ import './panierToggle.ts';
 import './showPassword.ts';
 import './gestionCompteToggle.ts';
 import './addItemToCart.ts';
+import './selectPaiement.ts';
+import './orderAjax.ts';
