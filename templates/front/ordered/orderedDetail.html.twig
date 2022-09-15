@@ -1,0 +1,80 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Détail commande{% endblock %}
+
+{% block body %}
+
+    <section class="container validateCart orderedDetail">
+        <div class="row">
+
+            <div class="validateContainer col-md-6 mb-4 pe-2 pe-sm-0 ps-2 ps-sm-0 pe-md-2">
+                <div class="d-flex">
+                    <h2>Adresse de livraison</h2>
+                </div>
+
+                <div class="validateBorderDiv">
+                    <div class="cartItem mb-4">
+                        <ul>
+                            <li>{{ ordered.billingAdress.firstName }} {{ ordered.billingAdress.lastName }}</li>
+                            <li>{{ ordered.billingAdress.line1 }} {{ ordered.billingAdress.line2 }}</li>
+                            <li>{{ ordered.billingAdress.postalCode }} {{ ordered.billingAdress.city }}</li>
+                            <li>{{ ordered.billingAdress.phoneNumber }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="validateContainer col-md-6 mb-4 pe-2 pe-sm-0 ps-2 ps-sm-0 ps-md-2">
+                <div class="d-flex">
+                    <h2>Adresse de facturation</h2>
+                </div>
+
+                <div class="validateBorderDiv">
+                    <div class="cartItem mb-4">
+                        <ul>
+                            <li>{{ ordered.billingAdress.firstName }} {{ ordered.billingAdress.lastName }}</li>
+                            <li>{{ ordered.billingAdress.line1 }} {{ ordered.billingAdress.line2 }}</li>
+                            <li>{{ ordered.billingAdress.postalCode }} {{ ordered.billingAdress.city }}</li>
+                            <li>{{ ordered.billingAdress.phoneNumber }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-scroll p-0 borderTable">
+                <table class="table table-hover table-bordered text-start">
+                    <thead>
+                    <tr class="table-light">
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Prix total</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% set totalTTC = 0 %}
+                    {% for contain in ordered.bag.contains %}
+                        {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity %}
+                        <tr>
+                            <td>{{ contain.products.title }}</td>
+                            <td>{{ contain.quantity }}</td>
+                            <td>{{ (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2) }} €</td>
+                            <td>{{ ((contain.unitPrice + (contain.unitPrice * contain.tva)) * contain.quantity)|round(2)  }} €</td>
+                            <td><a href="{{ path('app_comment', {'id': contain.products.id}) }}" class="commentLink">Donner votre avis</a></td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="table-light">
+                        <td><b>Total TTC</b></td>
+                        <td colspan="4">{{ totalTTC }} €</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="{{ path('app_ordered') }}" class="orderedBtn"> Retour à la liste des commandes</a>
+
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+.orderedDetail{
+  .validateContainer{
+    text-align: left;
+
+    h2{
+      font-size: 1.5rem;
+    }
+
+    ul{
+      list-style: none;
+    }
+  }
+
+  table{
+    min-width: 700px;
+  }
+
+  .borderTable{
+    margin-bottom: 2rem;
+    padding-bottom: 2rem !important;
+    border-bottom: 1px solid rgba(178, 178, 178, 0.42);
+  }
+
+  .orderedBtn{
+    width: fit-content;
+    font-weight: bold;
+    color: $light;
+  }
+
+  .commentLink:hover{
+    @include text_fade;
+  }
+}

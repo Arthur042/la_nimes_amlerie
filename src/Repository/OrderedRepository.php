@@ -105,11 +105,27 @@ class OrderedRepository extends ServiceEntityRepository
             ->join('bag.user', 'user')
             ->join('ordered.status', 'status')
             ->join('bag.contains', 'contains')
+            ->join('ordered.billingAdress', 'adress')
             ->leftJoin('contains.products', 'products')
             ->where('user.id = :id')
             ->setParameter('id', $getId)
             ->orderBy('ordered.creationAt', 'DESC')
             ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAllOrderedUser($getId)
+    {
+        return $this->createQueryBuilder('ordered')
+            ->join('ordered.bag', 'bag')
+            ->join('ordered.status', 'status')
+            ->join('ordered.payment', 'payment')
+            ->join('bag.user', 'user')
+            ->where('user.id = :id')
+            ->setParameter('id', $getId)
+            ->orderBy('ordered.creationAt', 'DESC')
             ->getQuery()
             ->getResult()
             ;

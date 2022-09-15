@@ -1,3 +1,15 @@
+.orderedBtn{
+    padding: .3rem .6rem;
+    @include gradient_btn;
+    border-radius: 4px;
+    transition: ease-in-out .15s;
+
+    &:hover{
+        color: inherit;
+        filter: brightness(120%);
+    }
+}
+
 .lna_btn_main{
     font-family: $headings_product;
     padding: .6rem 3rem;

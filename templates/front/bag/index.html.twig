@@ -12,8 +12,7 @@
                 {% set totalTTC = 0 %}
                 {% if bag is not empty %}
                     {% for contain in bag[0].contains %}
-                        {% dump contain %}
-                        {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
+                        {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity %}
                         <div class="d-flex flex-column flex-sm-row align-items-center itemLine mb-4">
                             {% if contain.products.thumbnail is not null %} {# todo enlever l'image pardefaut apres les fixtures #}
                                 <img src="{{ asset(contain.products.thumbnail) }}" alt="image miniature du produit"
