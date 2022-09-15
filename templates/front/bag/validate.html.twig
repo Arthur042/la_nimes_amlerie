@@ -4,15 +4,64 @@
 
 {% block body %}
 
-    <section class="container bagSeeSection">
-        <div class="row">
+    <section class="container validateCart bagSeeSection">
+        <div class="d-flex flex-column ">
             {% include 'front/partial/checkout/advancement.html.twig'  with {
                 stepOne: true,
                 stepTwo: true,
                 stepThree: true,
                 stepFour: true
             }%}
-            <h1>Commande validé</h1>
+
+            <div class="row">
+                <div class="validateContainer col-xl-7 mb-4 mb-xl-0 me-xl-4">
+                    <div class="d-flex">
+                        <h2>Récapitulatif de la commande</h2>
+                    </div>
+
+                    <div class="validateBorderDiv">
+                        <div class="cartItem mb-4">
+
+                            {% set totalTTC = 0 %}
+                            {% for contain in ordered.bag.contains %}
+                                {% set totalTTC = totalTTC + (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity%}
+                                <div class="d-flex flex-column flex-sm-row align-items-center itemLine mb-4">
+                                    {% if contain.products.thumbnail is not null %} {# todo enlever l'image pardefaut apres les fixtures #}
+                                    <img src="{{ asset(contain.products.thumbnail) }}" alt="image miniature du produit"
+                                    {% else %}
+                                    <img src="{{ asset('build/images/product_item/product_one.png') }}" alt="image miniature du produit"
+                                            {% endif %}
+                                         class="cartImg">
+
+                                    <div class="cartResumeProduct ms-4">
+                                        <div class="d-flex justify-content-between align-baseline">
+                                            <div class="cartProductName">
+                                                <p>{{ contain.products.mark.name }}</p>
+                                                <p>{{ contain.products.title }}</p>
+                                            </div>
+                                            <p class="cartQuantity">Qté : {{ contain.quantity }}</p>
+                                            <p class="cartPriceProduct">Prix de l'article : <b>{{ (contain.unitPrice + (contain.unitPrice * contain.tva))|round(2, 'floor') * contain.quantity }} €</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 cartPriceTotal">
+                    <h2>Total de la commande</h2>
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center  pb-2 mb-2">
+                            <p>Montant total :</p>
+                            <p class="cartTotalPrice">{{ totalTTC }}€</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pb-2 mb-2">
+                            <p>Statut de la commande : </p>
+                            <p class="cartDelivery">{{ ordered.status.advancement }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -97,4 +97,21 @@ class OrderedRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function findLastOrderOfClient($getId)
+    {
+        return $this->createQueryBuilder('ordered')
+            ->join('ordered.bag', 'bag')
+            ->join('bag.user', 'user')
+            ->join('ordered.status', 'status')
+            ->join('bag.contains', 'contains')
+            ->leftJoin('contains.products', 'products')
+            ->where('user.id = :id')
+            ->setParameter('id', $getId)
+            ->orderBy('ordered.creationAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

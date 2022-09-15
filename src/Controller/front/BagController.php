@@ -9,6 +9,7 @@ use App\Enum\PanierStatusEnum;
 use App\Form\AdressType;
 use App\Repository\AdressRepository;
 use App\Repository\BagRepository;
+use App\Repository\OrderedRepository;
 use App\Repository\PaymentRepository;
 use App\Repository\StatusRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -100,6 +101,7 @@ class BagController extends AbstractController
         PaymentRepository $paymentRepository,
         BagRepository $bagRepository,
         SessionInterface $session,
+        OrderedRepository $orderedRepository,
         EntityManagerInterface $em,
     ): Response
     {
@@ -128,10 +130,11 @@ class BagController extends AbstractController
             $em->flush();
         }
 
+        $ordered = $orderedRepository->findLastOrderOfClient($this->getUser()->getId());
 
 
         return $this->render('front/bag/validate.html.twig', [
-
+            'ordered' => $ordered[0],
         ]);
     }
 }
