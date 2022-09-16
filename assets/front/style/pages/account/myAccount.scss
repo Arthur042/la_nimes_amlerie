@@ -1,0 +1,73 @@
+.accountNav{
+  ul{
+    padding: 0 !important;
+    margin: 0 !important;
+
+    li{
+      text-align: left;
+      list-style: none;
+      margin-bottom: 1rem;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+
+      a{
+        font-weight: bold;
+        font-size: .9rem;
+
+        &:hover{
+          @include text_fade;
+        }
+      }
+    }
+
+    div{
+      border-bottom: 1px solid rgba(61, 61, 61, 0.344);
+      margin-bottom: 1rem;
+      width: 45px;
+    }
+  }
+}
+
+.accountContentNav{
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  margin-bottom: 4rem;
+  padding: 1rem;
+  border-radius: 7px;
+
+  &:hover{
+    color: inherit;
+  }
+
+  &:first-child{
+    margin-top: 4rem;
+  }
+
+  &:last-child{
+    margin-bottom: 0;
+  }
+
+  img{
+    width: 56px;
+    height: 56px;
+    margin-right: 2rem;
+  }
+
+  p{
+    margin: 0;
+  }
+
+  .arrow{
+    @include bg_img_parameter;
+    padding: 1rem;
+    background-image: url("../../../../images/icon/fleche.svg");
+    background-size: 20px;
+  }
+}
+
+.userHome{
+  h2{
+    font-family: $main;
+  }
+}

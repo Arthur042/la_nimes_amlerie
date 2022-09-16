@@ -6,29 +6,38 @@
 
     <section class="orderedPage container text-start">
 
-        <h2>HISTORIQUE DE VOS COMMANDES</h2>
-        <p>Vous trouverez ici vos commandes passées depuis la création de votre compte</p>
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr class="table-light">
-                    <th>Référence de commande</th>
-                    <th class="d-none d-sm-block">État</th>
-                    <th>Date</th>
-                    <th class="d-none d-md-block">Paiement</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for ordered in oredereds %}
-                <tr>
-                    <td>#{{ ordered.id }}</td>
-                    <td class="d-none d-sm-block">{{ ordered.status.advancement }}</td>
-                    <td>{{ ordered.creationAt|date('d/m/Y') }}</td>
-                    <td class="d-none d-md-block">{{ ordered.payment.name }}</td>
-                    <td><a href="{{ path('app_ordered_detail', {'id': ordered.id}) }}" class="orderedBtn">Détails</a></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="d-none d-md-block col-3 accountNav">
+                {% include 'front/partial/header/modal/gestionCompte.html.twig' %}
+            </div>
+            <div class="col-md-9">
+                <h2>HISTORIQUE DE VOS COMMANDES</h2>
+                <p>Vous trouverez ici vos commandes passées depuis la création de votre compte</p>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr class="table-light">
+                        <th>Référence de commande</th>
+                        <th class="d-none d-sm-block">État</th>
+                        <th>Date</th>
+                        <th class="d-none d-lg-block">Paiement</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ordered in oredereds %}
+                        <tr>
+                            <td>#{{ ordered.id }}</td>
+                            <td class="d-none d-sm-block">{{ ordered.status.advancement }}</td>
+                            <td>{{ ordered.creationAt|date('d/m/Y') }}</td>
+                            <td class="d-none d-lg-block">{{ ordered.payment.name }}</td>
+                            <td><a href="{{ path('app_ordered_detail', {'id': ordered.id}) }}" class="orderedBtn">Détails</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </section>
 {% endblock %}

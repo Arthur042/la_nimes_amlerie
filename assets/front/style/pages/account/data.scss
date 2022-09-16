@@ -1,0 +1,23 @@
+.userData{
+  h2{
+    font-family: $main;
+  }
+  .underTitle{
+    font-size: .9rem;
+  }
+
+  .dataAdress{
+    cursor: pointer;
+  }
+
+  .adress{
+    color: $search;
+    font-size: .8rem;
+  }
+
+  .lockIcon{
+    width: 46px;
+    height: 46px;
+    margin: 5px 2rem 5px 5px;
+  }
+}

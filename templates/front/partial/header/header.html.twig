@@ -76,7 +76,11 @@
 
                             {% if app.user %}
                                 {# Afficher le boutton de gestion de compte #}
-                                    {% include 'front/partial/header/modal/gestionCompte.html.twig' %}
+                                    <div class="gestionDeCompteModal d-none">
+                                        <div class="myModalBody">
+                                            {% include 'front/partial/header/modal/gestionCompte.html.twig' %}
+                                        </div>
+                                    </div>
                             {% endif %}
                                 </a>
                             </div>

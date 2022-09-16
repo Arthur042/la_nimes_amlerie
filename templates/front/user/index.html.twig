@@ -1,0 +1,50 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+    <section class="container userHome">
+
+        <div class="row">
+            <div class="d-none d-md-block col-3 accountNav">
+                {% include 'front/partial/header/modal/gestionCompte.html.twig' %}
+            </div>
+            <div class="col-md-9 text-start">
+                <h2 class="pb-5">Mon compte</h2>
+
+                <a href="{{ path('app_ordered') }}" class="accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex align-items-center">
+                        <div><img src="{{ asset('build/images/icon/header/panier.svg') }}"></div>
+                        <div>
+                            <p><b>Mes commandes</b></p>
+                            <p>Consultez vos dernière commandes</p>
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </a>
+                <a href="{{ path('app_user_profil') }}" class="accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex align-items-center">
+                        <div><img src="{{ asset('build/images/icon/header/account.svg') }}"></div>
+                        <div>
+                            <p><b>Mes données</b></p>
+                            <p>Consulter et gérer les données utilisateur.</p>
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </a>
+                <a href="#" class="accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex align-items-center">
+                        <div><img src="{{ asset('build/images/icon/account/newsletter.png') }}"></div>
+                        <div>
+                            <p><b>Newsletter</b></p>
+                            <p>Inscrivez vous à la newslettre pour ne rien manquer</p>
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </a>
+                <p>Vous n’êtes pas {{ app.user.email}} ? <a href="{{ path('app_logout') }}"><b>Se déconnecter</b></a></p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

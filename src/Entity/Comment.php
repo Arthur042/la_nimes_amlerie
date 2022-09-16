@@ -56,10 +56,6 @@ class Comment
         Assert\NotBlank(
             message : 'comment.createdAt.NotBlank',
         ),
-        Assert\LessThanOrEqual(
-            'today',
-            message : 'comment.createdAt.LessThanOrEqual',
-        ),
     ]
     private ?\DateTimeInterface $creationAt = null;
 

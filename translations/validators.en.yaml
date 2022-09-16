@@ -40,7 +40,6 @@ comment:
     product: 'Le commentaire doit être relié a un produit'
     createdAt:
         NotBlank: 'Il faut une date de création pour le commentaire'
-        LessThanOrEqual: "La date doit ne peut être supérieur aujourd'hui."
 
 contain:
     quantity:

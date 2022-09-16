@@ -18,7 +18,9 @@
                 {% endfor %}
                 {% if form is defined %}
                     <h2>Entrer votre adresse</h2>
-                    {% include 'front/partial/checkout/adressForm.html.twig' %}
+                    {% include 'front/partial/checkout/adressForm.html.twig' with{
+                        button : 'poursuivre'
+                    } %}
                 {% else %}
                     <div class="cartItem mb-4">
                         <h2>Mon adresse de livraison</h2>
@@ -38,7 +40,8 @@
                                     </div>
                                     <div class="modal-body">
                                         {% include 'front/partial/checkout/adressForm.html.twig' with{
-                                            form : formEdit
+                                            form : formEdit,
+                                            button : 'poursuivre'
                                         }%}
                                     </div>
                                 </div>

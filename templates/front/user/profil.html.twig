@@ -1,0 +1,141 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}Mes données{% endblock %}
+
+{% block body %}
+
+    <section class="container userData">
+
+        <div class="row">
+            <div class="d-none d-md-block col-3 accountNav">
+                {% include 'front/partial/header/modal/gestionCompte.html.twig' %}
+            </div>
+            <div class="col-md-9 text-start">
+                <h2 class="mb-2">Mes données</h2>
+                <p class="mb-5 underTitle">Consulter et gérer les données utilisateur. Vous pouvez en outre actualiser vos données utilisateur et vos mots de passe.</p>
+
+                <div data-bs-toggle="modal" {% if adress is null %}data-bs-target="#accountAdressNew"{% else %}data-bs-target="#accountAdressEdit"{% endif %} class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex {% if adress is null %}align-items-center{% endif %}">
+                        <div><img src="{{ asset('build/images/icon/account/adress.png') }}"></div>
+                        <div>
+                            {% if adress is null %}
+                                <p>tu n'as pas encore d'adresse renseigné.</p>
+                            {% else %}
+                                <p class="adress mb-1">Identité</p>
+                                <p><b>{{ adress.firstName }} {{ adress.lastName }}</b></p>
+                                <p class="mb-3">{{ adress.phoneNumber }}</p>
+                                <p class="mb-1 adress">Adresse</p>
+                                <ul class="list-unstyled">
+                                    <li>{{ adress.line1 }} {{ adress.line2 }}</li>
+                                    <li>{{ adress.postalCode }} {{ adress.city }}</li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </div>
+                {% if adress is null %}
+                    <div class="modal fade modalAdress" id="accountAdressNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Créer une adresse</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {% include 'front/partial/checkout/adressForm.html.twig' with{
+                                        form : formAdressNew,
+                                        button : 'Enregistrer'
+                                    }%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="modal fade modalAdress" id="accountAdressEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Modifier mon adresse</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {% include 'front/partial/checkout/adressForm.html.twig' with{
+                                        form : formAdressNew,
+                                        button : 'Enregistrer'
+                                    }%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div data-bs-toggle="modal" data-bs-target="#accountEmailEdit" class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex ">
+                        <div><img src="{{ asset('build/images/icon/account/newsletter.png') }}"></div>
+                        <div>
+                            <p class="adress mb-1">Adresse e-mail</p>
+                            <p><b>{{ app.user.email }}</b></p>
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </div>
+                <div class="modal fade modalAdress" id="accountEmailEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Modifier mon E-mail</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ form_start(formMail) }}
+                                {{ form_widget(formMail.mail) }}
+                                <button class="lna_btn_main lna_btn_fade_color mt-3" type="submit">
+                                    Enregistrer
+                                </button>
+                                {{ form_end(formMail) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-bs-toggle="modal" data-bs-target="#accountPasswordEdit" class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex ">
+                        <div><img src="{{ asset('build/images/icon/account/lock.png') }}" class="lockIcon"></div>
+                        <div>
+                            <p class="adress mb-1">Mot de passe</p>
+                            <p><b>•••••••••••••••••</b></p>
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </div>
+                <div class="modal fade modalAdress" id="accountPasswordEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Modifier mon E-mail</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ form_start(formPassword) }}
+                                <div class="mb-3">
+                                    {{ form_widget(formPassword.oldPassword) }}
+                                </div>
+                                <div class="mb-3">
+                                    {{ form_widget(formPassword.newPassword) }}
+                                </div>
+                                <div class="mb-3">
+                                    {{ form_widget(formPassword.confirmPassword) }}
+                                </div>
+                                <button class="lna_btn_main lna_btn_fade_color mt-3" type="submit">
+                                    Enregistrer
+                                </button>
+                                {{ form_end(formPassword) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

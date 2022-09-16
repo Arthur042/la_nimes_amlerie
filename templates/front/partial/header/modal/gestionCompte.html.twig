@@ -1,22 +1,16 @@
-<div class="gestionDeCompteModal d-none">
-    <div class="myModalBody">
-        <!-- liste des liens degestion de compte -->
-        <ul>
-            <li><a href="">Mes commandes</a></li>
-            <div></div>
-            <li><a href="">Mes données</a></li>
-            <div></div>
-            <li><a href="">Moyen de paiment</a></li>
-            <div></div>
-            <li><a href="">Newsletter</a></li>
-            <div></div>
-            <li><a href="">Mes adresses</a></li>
-            {% if app.user|isAdmin %}
-            <div></div>
-            <li><a href="{{ path('app_admin_user') }}">Gestion du site</a></li>
-            {% endif %}
-            <div></div>
-            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-        </ul>
-    </div>
-</div>
+ <!-- liste des liens degestion de compte -->
+    <ul>
+        <li><a href="{{ path('app_user') }}">Mon compte</a></li>
+        <div></div>
+        <li><a href="{{ path('app_user_profil') }}">Mes données</a></li>
+        <div></div>
+        <li><a href="{{ path('app_ordered') }}">Mes commandes</a></li>
+        <div></div>
+        <li><a href="">Newsletter</a></li>
+        {% if app.user|isAdmin %}
+        <div></div>
+        <li><a href="{{ path('app_admin_user') }}">Gestion du site</a></li>
+        {% endif %}
+        <div></div>
+        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+    </ul>

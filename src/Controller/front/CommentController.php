@@ -19,18 +19,20 @@ class CommentController extends AbstractController
     {
 
         $comment = new Comment();
+        $comment->setUser($this->getUser());
+        $comment->setProduct($product);
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
+        dump($this->getUser());
+        dump($product);
+        dump($comment);
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser());
-            $comment->setProduct($product);
             $commentRepository->add($comment, true);
-
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        dump($comment);
         return $this->render('front/comment/index.html.twig', [
             'comment' => $comment,
             'form' => $form->createView(),
