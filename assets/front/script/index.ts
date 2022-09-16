@@ -7,3 +7,4 @@ import './gestionCompteToggle.ts';
 import './addItemToCart.ts';
 import './selectPaiement.ts';
 import './orderAjax.ts';
+import './checkStarForComment.ts';

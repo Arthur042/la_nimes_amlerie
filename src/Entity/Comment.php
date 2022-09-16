@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use App\Enum\CommentNoteEnum;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -62,8 +63,10 @@ class Comment
     ]
     private ?\DateTimeInterface $creationAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $shortDescrib = null;
+    public function __construct()
+    {
+        $this->setCreationAt(new DateTime());
+    }
 
     public function getId(): ?int
     {
@@ -126,18 +129,6 @@ class Comment
     public function setCreationAt(\DateTimeInterface $creationAt): self
     {
         $this->creationAt = $creationAt;
-
-        return $this;
-    }
-
-    public function getShortDescrib(): ?string
-    {
-        return $this->shortDescrib;
-    }
-
-    public function setShortDescrib(string $shortDescrib): self
-    {
-        $this->shortDescrib = $shortDescrib;
 
         return $this;
     }

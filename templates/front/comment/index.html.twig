@@ -3,5 +3,16 @@
 {% block title %}Donnez votre avis{% endblock %}
 
 {% block body %}
+    <section class="container text-start">
+        <div class="commentContent">
+            <h2>Écrire un commentaire</h2>
+            <p>Laissez un commentaire concernant votre achat de {{ product.title }}</p>
 
+            {{ form_start(form) }}
+            {{ form_widget(form.note) }}
+            {{ form_row(form.description) }}
+            <button class="orderedBtn" type="submit">Envoyer</button>
+            {{ form_end(form) }}
+        </div>
+    </section>
 {% endblock %}
