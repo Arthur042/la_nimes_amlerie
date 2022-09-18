@@ -25,7 +25,11 @@ class UserController extends AbstractController
     }
 
     #[Route('/profil', name: 'app_user_profil')]
-    public function profil(Request $request, AdressRepository $adressRepository, EntityManagerInterface $entityManager): Response
+    public function profil(
+        Request $request,
+        AdressRepository $adressRepository,
+        EntityManagerInterface $entityManager,
+    ): Response
     {
         $user = $this->getUser();
 
@@ -76,15 +80,16 @@ class UserController extends AbstractController
 
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
 
+
+
+            dump($user->getPassword());
             if(hash('sha256',$formPassword->getData()['oldPassword']) === $user->getPassword()) {
                 dd(hash('sha256',$formPassword->getData()['oldPassword']));
-                $user->setPassword($formPassword->getData()['newPassword']);
                 $entityManager->persist($user);
                 $entityManager->flush();
                 return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
             }
-            dump($user->getPassword());
-            dd($formPassword->getData()['oldPassword']);
+            dd('end');
         }
 
 
