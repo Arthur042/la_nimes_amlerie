@@ -1,6 +1,6 @@
 
 <div class="lna_product_item">
-    <a href="#">
+    <a href="{{ path('app_product', {'id': product.id}) }}">
         <div class="lna_card_img">
             <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
         </div>
@@ -14,6 +14,6 @@
             <p>{{ product.comments|length }} avis</p>
         </div>
         <p>{{ (product.priceHt + (product.priceHt * product.tva))|round(2, 'floor') }}€</p>
-        <a href="{{ path('app_product', {'id': product.id}) }}" class="lna_btn_main lna_btn_product lna_btn_dark">Voir plus</a>
+        <a href="{{ path('app_product', {'id': product.id}) }}" class="lna_btn_main lna_btn_fade_color">Voir plus</a>
     </div>
 </div>

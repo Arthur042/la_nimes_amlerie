@@ -51,7 +51,7 @@ class ProductRepository extends ServiceEntityRepository
             ->select('products', 'AVG(comments.note) AS average')
             ->join('products.comments', 'comments')
             ->groupBy('products')
-            ->setMaxResults(7)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult()
             ;
@@ -67,7 +67,7 @@ class ProductRepository extends ServiceEntityRepository
             ->join('product.comments', 'comments')
             ->groupBy('product')
             ->orderBy('SUM(contain.quantity)', 'DESC')
-            ->setMaxResults(7)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
     }
@@ -79,7 +79,7 @@ class ProductRepository extends ServiceEntityRepository
             ->leftJoin('product.comments', 'comments')
             ->groupBy('product')
             ->orderBy('product.createdAt', 'DESC')
-            ->setMaxResults(7)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
     }
@@ -119,7 +119,7 @@ class ProductRepository extends ServiceEntityRepository
             ->groupBy('product')
             ->where('category.id = :id')
             ->setParameter('id', $getId)
-            ->setMaxResults(7)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
             ;
@@ -137,9 +137,22 @@ class ProductRepository extends ServiceEntityRepository
             ->groupBy('product')
             ->where('mark.id = :id')
             ->setParameter('id', $getId)
-            ->setMaxResults(7)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
         ;
+    }
+
+    public function findAllProductWithParentCategory(Category $category): QueryBuilder
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product, AVG(comments.note) AS average')
+            ->leftJoin('product.comments', 'comments')
+            ->join('product.mark', 'mark')
+            ->join('product.category', 'category')
+            ->groupBy('product')
+            ->where('product.category = :category')
+            ->setParameter('category', $category)
+            ;
     }
 }

@@ -97,9 +97,16 @@
         color: $light;
         font-family: $main !important;
         font-weight: bold;
+        padding: .6rem 2rem;
+        border-radius: 7px;
+        transition: ease-in-out .25s;
 
+
+        @media screen and (max-width: 992px) {
+            padding: .6rem 1.5rem;
+        }
         &:hover{
-            @include gradient_btn_hover;
+            filter: brightness(115%);
         }
     }
 }
