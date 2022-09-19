@@ -6,7 +6,9 @@ use App\Entity\Adress;
 use App\Form\AdressType;
 use App\Form\EmailType;
 use App\Form\PasswordType;
+use App\Form\UserType;
 use App\Repository\AdressRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +31,7 @@ class UserController extends AbstractController
         Request $request,
         AdressRepository $adressRepository,
         EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
     ): Response
     {
         $user = $this->getUser();
@@ -93,12 +96,23 @@ class UserController extends AbstractController
         }
 
 
+        $formUser = $this->createForm(UserType::class, $user);
+        $formUser->handleRequest($request);
+
+        if ($formUser->isSubmitted() && $formUser->isValid()) {
+            $userRepository->add($user, true);
+            return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
+        }
+
+
         return $this->render('front/user/profil.html.twig', [
             'adressForm' => $adress,
             'formAdressNew' => $formAdress,
             'formMail' => $formMail->createView(),
             'formPassword' => $formPassword->createView(),
-            'adress' => $user->getAdress()
+            'formUser' => $formUser->createView(),
+            'adress' => $user->getAdress(),
+            'user' => $user
         ]);
     }
 }

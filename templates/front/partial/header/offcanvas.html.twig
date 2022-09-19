@@ -17,6 +17,7 @@
                                 <div class="rightOffcanva">
                                     <h3 class="offcanvas-title d-block d-lg-none" id="offcanvasExampleLabel">{{ category.name }}</h3>
                                     <ul class="secondCanvas">
+                                        <li><b><a href="#">voir tous les produits</a></b></li>
                                         {% for subCategory in category|sub_categories %}
                                             <li><a href="#">{{ subCategory.name }}</a><span></span></li>
                                         {% endfor %}

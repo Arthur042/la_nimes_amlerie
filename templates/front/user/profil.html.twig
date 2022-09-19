@@ -14,6 +14,66 @@
                 <h2 class="mb-2">Mes données</h2>
                 <p class="mb-5 underTitle">Consulter et gérer les données utilisateur. Vous pouvez en outre actualiser vos données utilisateur et vos mots de passe.</p>
 
+{#                changement des données liées à l'utilisateur#}
+                <div data-bs-toggle="modal" data-bs-target="#accountUserEdit" class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
+                    <div class="accountContent d-flex ">
+                        <div><img src="{{ asset('build/images/icon/header/account.svg') }}" class="lockIcon"></div>
+                        <div>
+                            <p class="adress mb-1">Informations utilisateur</p>
+                            <p><b>{% if user.firstName is not null %}
+                                        {% if user.lastName is not null %}
+                                            {{ user.firstName }} {{ user.lastName }}
+                                        {% else %}
+                                            {{ user.firstName }} nom inconnu
+                                        {% endif %}
+                                    {% else%}
+                                        {% if user.lastName is not null %}
+                                            {{ user.lastName }} prénom inconnu
+                                        {% else %}
+                                            Nom et prénom inconnu
+                                        {% endif %}
+                                    {% endif %}
+                                </b></p>
+                            <p>genre : {% if user.gender is not null %}{{ user.gender.label }}{% else%}inconnu{% endif%}</p>
+                            <p>Anniverssaire : {% if user.birthAt is not null %}{{ user.birthAt|date('d/m/Y') }}{% else%}inconnu{% endif%}</p>
+                        </div>
+                    </div>
+                    <div class="arrow"></div>
+                </div>
+                <div class="modal fade modalAdress" id="accountUserEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Modifier mes informations</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {{ form_start(formUser) }}
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        {{ form_row(formUser.firstName) }}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form_row(formUser.lastName) }}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form_row(formUser.gender) }}
+                                    </div>
+                                    <div class="col-6">
+                                        {{ form_row(formUser.birthAt) }}
+                                    </div>
+                                </div>
+                                <button class="lna_btn_main lna_btn_fade_color mt-3" type="submit">
+                                    Enregistrer
+                                </button>
+                                {{ form_end(formUser) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {#                changement des données liées à l'adresse#}
+
                 <div data-bs-toggle="modal" {% if adress is null %}data-bs-target="#accountAdressNew"{% else %}data-bs-target="#accountAdressEdit"{% endif %} class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
                     <div class="accountContent d-flex {% if adress is null %}align-items-center{% endif %}">
                         <div><img src="{{ asset('build/images/icon/account/adress.png') }}"></div>
@@ -70,6 +130,7 @@
                     </div>
                 {% endif %}
 
+                {#                changement des données liées à l'email#}
                 <div data-bs-toggle="modal" data-bs-target="#accountEmailEdit" class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
                     <div class="accountContent d-flex ">
                         <div><img src="{{ asset('build/images/icon/account/newsletter.png') }}"></div>
@@ -99,6 +160,7 @@
                     </div>
                 </div>
 
+                {#                changement des données liées au mot de passe#}
                 <div data-bs-toggle="modal" data-bs-target="#accountPasswordEdit" class="dataAdress accountContentNav d-flex justify-content-between align-items-center">
                     <div class="accountContent d-flex ">
                         <div><img src="{{ asset('build/images/icon/account/lock.png') }}" class="lockIcon"></div>
@@ -113,7 +175,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Modifier mon E-mail</h5>
+                                <h5 class="modal-title modalTitleAdress" id="exampleModalLabel">Modifier mon mot de passe</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

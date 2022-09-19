@@ -33,8 +33,8 @@
                     <hr>
                     <a href="#">Aide et FAQ</a>
                     <a href="#">L'espace service</a>
-                    <a href="#">Mon compte</a>
-                    <a href="#">Mes commandes</a>
+                    <a href="{% if app.user %}{{ path('app_user') }}{% else %}{{ path('app_login') }}{% endif %}">Mon compte</a>
+                    <a href="{% if app.user %}{{ path('app_ordered') }}{% else %}{{ path('app_login') }}{% endif %}">Mes commandes</a>
                     <a href="#">Newsletter</a>
                 </div>
                 <div class="col-sm-4">
@@ -43,12 +43,6 @@
                     <a href="#">Service client</a>
                     <a href="#">Paiement sécurisé</a>
                     <a href="#">Régimes VET</a>
-                </div>
-                <div class="col-sm-4">
-                    <p><b>À propos</b></p>
-                    <hr>
-                    <a href="#">La Nîmes'alerie France</a>
-                    <a href="#">Recrutement</a>
                 </div>
             </div>
             <div class="social_link">

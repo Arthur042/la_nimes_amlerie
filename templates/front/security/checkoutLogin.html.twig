@@ -49,6 +49,7 @@
                         Poursuivre
                     </button>
                 </form>
+                <p>Si vous n'avez pas de compte : <a href="{{ path('app_checkout_register') }}">Inscrivez-vous</a></p>
             </div>
             {% include 'front/partial/checkout/totalPrice.html.twig'  with {
                 button: 'Poursuivre',
