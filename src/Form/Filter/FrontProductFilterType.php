@@ -21,12 +21,13 @@ class FrontProductFilterType extends AbstractType
         $builder
             ->add('title', TextFilterType::class, [
                 'condition_pattern' => FilterOperands::STRING_CONTAINS,
-            ])
-            ->add('priceHt', NumberFilterType::class, [ // make NumberRangeFilterType work ????????
-                'condition_operator' => FilterOperands::OPERATOR_GREATER_THAN_EQUAL,
+                'label' => 'Chercher une référence'
             ])
             ->add('priceHt', NumberRangeFilterType::class, [
-                'condition_operator' => FilterOperands::OPERATOR_LOWER_THAN_EQUAL,
+                'label' => 'Prix compris entre',
+                'attr' =>  [
+                    'class' => 'filterRangeInput'
+                ]
             ])
             ->add('mark', EntityFilterType::class, [
                 'class' => Mark::class,
@@ -35,7 +36,9 @@ class FrontProductFilterType extends AbstractType
                     return $er->createQueryBuilder('m')
                         ->orderBy('m.name', 'ASC')
                         ;
-                }
+                },
+                'label' => 'Marque',
+                'placeholder' => 'Sélectionner'
             ])
         ;
     }

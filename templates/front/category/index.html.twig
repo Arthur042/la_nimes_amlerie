@@ -6,18 +6,37 @@
 
     <section class="container listProduct">
         <div class="row">
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-3 text-start">
+
                 {{ form_start(filters) }}
+                    <div class="row">
+                        <a href="{{ path('app_category_parent', {'id': idCategory}) }}" class="col-sm-4 col-lg-12 mb-3 ps-3 pe-3 ps-sm-0 pe-sm-0 text-center unsetFilter">
+                            <p class="w-100">Réinitialiser les filtres</p>
+                        </a>
+                        <div class="col-12"></div>
+                        <div class="ps-sm-0 pe-lg-0 col-sm-6 col-lg-12">
+                            {{ form_row(filters.title) }}
+                        </div>
+                        <div class="pe-sm-0 ps-lg-0 col-sm-6 col-lg-12 filterSearch">
+                            {{ form_row(filters.priceHt) }}
+                        </div>
+                        <div class="ps-sm-0 pe-sm-0 col-12 mb-2">
+                            {{ form_row(filters.mark) }}
+                        </div>
+                        <div class="col-sm-3 col-lg-12 mb-3 mb-lg-0 ps-3 pe-3 ps-sm-0 pe-sm-0">
+                            <button class="lna_btn_main lna_btn_fade_color w-100" type="submit">Rechercher</button>
+                        </div>
+                    </div>
                 {{ form_end(filters) }}
             </div>
-            <div class="col-12 col-lg-9 d-flex flex-wrap justify-content-center">
-                    {% for product in products %}
-                        {% dump product %}
-                            {% include 'front/partial/productCard/productCard.html.twig' with {
-                                'product': product[0],
-                                'average': product['average'],
-                            } %}
-                    {% endfor %}
+            <div class="col-12 col-lg-9 d-flex flex-wrap">
+                {% for product in products %}
+                    {% dump product %}
+                    {% include 'front/partial/productCard/productCard.html.twig' with {
+                        'product': product[0],
+                        'average': product['average'],
+                    } %}
+                {% endfor %}
             </div>
         </div>
     </section>

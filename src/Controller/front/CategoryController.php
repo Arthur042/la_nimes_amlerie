@@ -30,7 +30,7 @@ class CategoryController extends AbstractController
         ]);
 
         if ($request->query->has($filterForm->getName())) {
-            $filterForm->submit($request->query->get($filterForm->getName()));
+            $filterForm->submit($request->query->all($filterForm->getName()));
             $builderUpdater->addFilterConditions($filterForm, $qb);
         }
 
@@ -43,6 +43,7 @@ class CategoryController extends AbstractController
         return $this->render('front/category/index.html.twig', [
             'products' => $products,
             'filters' => $filterForm->createView(),
+            'idCategory' => $category->getId(),
         ]);
     }
 }

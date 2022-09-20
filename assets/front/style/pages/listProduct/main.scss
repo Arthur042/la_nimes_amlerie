@@ -3,4 +3,47 @@
     .lna_product_item{
         margin: 1rem;
     }
+
+    .filterRangeInput{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div{
+            margin-bottom: 0 !important;
+        }
+        div:first-child{
+            margin-right: .5rem;
+        }
+        div:last-child{
+            margin-left: .5rem;
+        }
+        label{
+            display: none;
+        }
+    }
+    .filterSearch{
+        @media screen and (max-width: 992px){
+            legend{
+                padding-top: 0!important;
+            }
+        }
+    }
+    .unsetFilter{
+        margin: 0;
+        p{
+            color: #b60202;
+            font-weight: bold;
+            margin: 0;
+            transition: ease-in-out .25s;
+            padding: 0.6rem 1.5rem;
+            border: 3px solid #b60202;
+            border-radius: 7px;
+
+            &:hover{
+                color: #ff0000;
+                border: 3px solid #ff0000;
+            }
+        }
+    }
 }

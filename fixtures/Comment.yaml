@@ -5,4 +5,3 @@ App\Entity\Comment:
         description: '<text(150)>'
         note: '<numberBetween(1,5)>'
         creationAt: '<dateTimeBetween(2018-01-01, "now")>'
-        shortDescrib: '<text(20)>'
