@@ -43,7 +43,42 @@ class CategoryController extends AbstractController
         return $this->render('front/category/index.html.twig', [
             'products' => $products,
             'filters' => $filterForm->createView(),
-            'idCategory' => $category->getId(),
+            'category' => $category,
+        ]);
+    }
+
+    #[Route('/{category}/{id}', name: 'app_category_child')]
+    public function childCategories(
+        Category $id,
+        string $category,
+        ProductRepository $productRepository,
+        PaginatorInterface $paginator,
+        Request $request,
+        FilterBuilderUpdaterInterface $builderUpdater,
+    ): Response
+    {
+        $qb = $productRepository->findAllProductWithChildCategory($id);
+        $filterForm = $this->createForm(FrontProductFilterType::class, null, [
+            'method' => 'GET',
+        ]);
+
+        if ($request->query->has($filterForm->getName())) {
+            $filterForm->submit($request->query->all($filterForm->getName()));
+            $builderUpdater->addFilterConditions($filterForm, $qb);
+        }
+
+        $products = $paginator->paginate(
+            $qb,
+            $request->query->getInt('page', 1),
+            20
+        );
+
+        return $this->render('front/category/index.html.twig', [
+            'products' => $products,
+            'filters' => $filterForm->createView(),
+            'category' => $id,
+            'isChild' => true,
+            'parentCategory' => $category
         ]);
     }
 }

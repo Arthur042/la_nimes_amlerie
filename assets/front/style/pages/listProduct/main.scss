@@ -1,4 +1,12 @@
 .listProduct{
+    h2{
+        font-family: $main;
+
+        &.filterTitle{
+            border-bottom: 1px solid rgba(128, 128, 128, 0.43);
+            padding-bottom: 1.5rem;
+        }
+    }
 
     .lna_product_item{
         margin: 1rem;
@@ -44,6 +52,12 @@
                 color: #ff0000;
                 border: 3px solid #ff0000;
             }
+        }
+    }
+
+    .listProductContent{
+        @media screen and (max-width: 538px){
+            justify-content: center;
         }
     }
 }

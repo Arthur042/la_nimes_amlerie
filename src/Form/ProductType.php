@@ -71,6 +71,7 @@ class ProductType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.name', 'ASC')
+                        ->where('c.parentCategory is not null')
                         ;
                 }
             ])

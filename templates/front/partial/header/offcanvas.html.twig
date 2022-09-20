@@ -19,7 +19,7 @@
                                     <ul class="secondCanvas">
                                         <li><b><a href="{{ path('app_category_parent', {'id': category.id}) }}">voir tous les produits</a></b></li>
                                         {% for subCategory in category|sub_categories %}
-                                            <li><a href="#">{{ subCategory.name }}</a><span></span></li>
+                                            <li><a href="{{ path('app_category_child', {'category': category.name|url_encode, 'id': subCategory.id }) }}">{{ subCategory.name }}</a><span></span></li>
                                         {% endfor %}
                                     </ul>
                                 </div>

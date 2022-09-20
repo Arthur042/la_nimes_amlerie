@@ -320,3 +320,6 @@ App\Entity\Mark:
     mark107: 
         pathImage: 'mark<numberBetween(0,5)>.png'
         name: 'Yarrah'
+    mark108:
+        pathImage: 'mark<numberBetween(0,5)>.png'
+        name: 'japhy'

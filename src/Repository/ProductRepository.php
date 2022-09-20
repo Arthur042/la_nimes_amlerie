@@ -151,8 +151,34 @@ class ProductRepository extends ServiceEntityRepository
             ->join('product.mark', 'mark')
             ->join('product.category', 'category')
             ->groupBy('product')
-            ->where('product.category = :category')
+            ->where('category.parentCategory = :category')
             ->setParameter('category', $category)
+            ;
+    }
+
+    public function findAllProductWithChildCategory(Category $id)
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product, AVG(comments.note) AS average')
+            ->leftJoin('product.comments', 'comments')
+            ->join('product.mark', 'mark')
+            ->join('product.category', 'category')
+            ->groupBy('product')
+            ->where('product.category = :category')
+            ->setParameter('category', $id)
+            ;
+    }
+
+    public function findAllProductWithMark(Mark $mark)
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product, AVG(comments.note) AS average')
+            ->leftJoin('product.comments', 'comments')
+            ->join('product.mark', 'mark')
+            ->join('product.category', 'category')
+            ->groupBy('product')
+            ->where('product.mark = :mark')
+            ->setParameter('mark', $mark)
             ;
     }
 }

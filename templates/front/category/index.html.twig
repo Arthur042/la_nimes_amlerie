@@ -8,9 +8,10 @@
         <div class="row">
             <div class="col-12 col-lg-3 text-start">
 
+                <h2 class="filterTitle">Filtrer les produits</h2>
                 {{ form_start(filters) }}
                     <div class="row">
-                        <a href="{{ path('app_category_parent', {'id': idCategory}) }}" class="col-sm-4 col-lg-12 mb-3 ps-3 pe-3 ps-sm-0 pe-sm-0 text-center unsetFilter">
+                        <a href="{% if isChild is defined %}{{ path('app_category_child', {'category': parentCategory, 'id': category.id }) }}{% else %}{{ path('app_category_parent', {'id': category.id}) }}{% endif %}" class="col-sm-4 col-lg-12 mb-3 ps-3 pe-3 ps-sm-0 pe-sm-0 text-center unsetFilter">
                             <p class="w-100">Réinitialiser les filtres</p>
                         </a>
                         <div class="col-12"></div>
@@ -29,14 +30,18 @@
                     </div>
                 {{ form_end(filters) }}
             </div>
-            <div class="col-12 col-lg-9 d-flex flex-wrap">
-                {% for product in products %}
-                    {% dump product %}
-                    {% include 'front/partial/productCard/productCard.html.twig' with {
-                        'product': product[0],
-                        'average': product['average'],
-                    } %}
-                {% endfor %}
+            <div class="col-12 col-lg-9">
+                <h2 class="text-start">Article correspondant à : <b>{{ category.name }}</b></h2>
+                <div class="d-flex flex-wrap listProductContent">
+                    {% for product in products %}
+                        {% dump product %}
+                        {% include 'front/partial/productCard/productCard.html.twig' with {
+                            'product': product[0],
+                            'average': product['average'],
+                        } %}
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
     </section>

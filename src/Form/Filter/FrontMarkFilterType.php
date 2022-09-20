@@ -2,7 +2,7 @@
 
 namespace App\Form\Filter;
 
-use App\Entity\Mark;
+use App\Entity\Category;
 use Doctrine\ORM\EntityRepository;
 use Lexik\Bundle\FormFilterBundle\Filter\FilterOperands;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType;
@@ -11,7 +11,7 @@ use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class FrontProductFilterType extends AbstractType
+class FrontMarkFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -26,15 +26,16 @@ class FrontProductFilterType extends AbstractType
                     'class' => 'filterRangeInput'
                 ]
             ])
-            ->add('mark', EntityFilterType::class, [
-                'class' => Mark::class,
+            ->add('category', EntityFilterType::class, [
+                'class' => Category::class,
                 'choice_label' => 'name',
                 'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                        ->orderBy('m.name', 'ASC')
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name', 'ASC')
+                        ->where('c.parentCategory is not null')
                         ;
                 },
-                'label' => 'Marque',
+                'label' => 'Catégorie',
                 'placeholder' => 'Sélectionner'
             ])
         ;
