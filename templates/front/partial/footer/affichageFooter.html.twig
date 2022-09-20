@@ -31,8 +31,6 @@
                 <div class="col-sm-4">
                     <p><b>Nos services</b></p>
                     <hr>
-                    <a href="#">Aide et FAQ</a>
-                    <a href="#">L'espace service</a>
                     <a href="{% if app.user %}{{ path('app_user') }}{% else %}{{ path('app_login') }}{% endif %}">Mon compte</a>
                     <a href="{% if app.user %}{{ path('app_ordered') }}{% else %}{{ path('app_login') }}{% endif %}">Mes commandes</a>
                     <a href="#">Newsletter</a>
@@ -40,9 +38,15 @@
                 <div class="col-sm-4">
                     <p><b>Vos avantages</b></p>
                     <hr>
-                    <a href="#">Service client</a>
-                    <a href="#">Paiement sécurisé</a>
-                    <a href="#">Régimes VET</a>
+                    <a href="{{ path('app_home_paiement') }}">Paiement sécurisé</a>
+                </div>
+                <div class="col-sm-4">
+                    <p><b>Informations</b></p>
+                    <hr>
+                    <a href="{{ path('app_home_legal_notice') }}">mentions légales</a>
+                    <a href="{{ path('app_home_cgv') }}">CGV</a>
+                    <a href="{{ path('app_home_data_protection') }}">protection des données</a>
+                    <a href="{{ path('app_home_cancellation') }}">Conditions de résiliation</a>
                 </div>
             </div>
             <div class="social_link">

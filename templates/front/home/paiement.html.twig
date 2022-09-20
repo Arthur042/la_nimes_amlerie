@@ -1,0 +1,59 @@
+{% extends 'front/base.html.twig' %}
+{% block title %}Paiement sécurisé{% endblock %}
+
+{% block body %}
+
+    <section class="container text-start markDownStyle">
+        {% apply markdown_to_html %}
+            ## Frais d’expédition et de service
+
+            - Pour toute commande à partir de 59 euros, la livraison est gratuite
+            - Pour toute commande inférieur à 59 euros, les frais de port à votre charge s’élèveront à 4,99 euros.
+            - La livraison n’est possible qu’en France Continentale.
+            - Le délai de livraison en France est actuellement de 2 à 4 jours ouvrables pour les commandes jusqu’à 15h00
+            - Actuellement, nos livraisons sont effectuées exclusivement par Chronopost.
+            - Les livraisons dans des dépôts de colis ne sont actuellement pas possibles.
+            - En fonction du poids et des dimensions des articles, la commande peut être répartie dans plusieurs colis.
+
+            ## Options de paiement dans la boutique en ligne
+
+            Pour vos achats dans la boutique en ligne, nous vous proposons les modes de paiement suivants :
+
+            - PayPal
+            - Carte de crédit
+
+            Nous nous réservons le droit de n’accepter que certains modes de paiement dans certains cas.
+
+
+            Quel que soit le mode de paiement que vous avez choisi, la facture de votre commande vous sera envoyée par e-mail à l’adresse e-mail que vous avez indiquée lors de votre commande
+
+
+
+
+
+            ## Paiement via PayPal
+            Le paiement via PayPal est pratique et sûr. Vous pouvez payer tout simplement en deux clics.
+
+            Comme tout client PayPal, vous profitez de la Protection des achats PayPal lors de vos achats dans la boutique en ligne Maxi Zoo.
+
+            Vous avez la possibilité de régler nos services et nos marchandises en utilisant la fonction Reference Transaction (également appelée « autoriser & encaisser ») de PayPal (Europe) SARL et Cie, S.C.A., 22-24 Boulevard Royal, L-2449 Luxemburg (dénommée ci-après : Pay-Pal). L’usage de ce mode de paiement nécessite la délivrance d’une autorisation de prélève-ment sur le compte PayPal que vous avez sélectionné respectivement dans le même ordre d’idées en faveur de Fressnapf. En utilisant cette fonction, vous nous autorisez donc à l’avenir à encaisser les paiements dus de votre part de manière unique ou récurrente (à intervalles réguliers ou irréguliers) du compte PayPal sélectionné.
+
+            Pour être en mesure d’utiliser ce mode de paiement, vous devez être enregistré auprès de PayPal, vous identifier avec vos données d’accès et nous confirmer une seule fois les instruc-tions de paiement dans la section « Paiement par prélèvement bancaire du commerçant ». À cette fin et dans le cadre du processus de commande dans notre boutique en ligne, vous se-rez redirigé initialement vers un site de PayPal. Grâce à votre confirmation de la fonction de paiement en question, nous sommes autorisés à effectuer le prélèvement immédiatement du compte PayPal respectif. Dans le même temps, PayPal est chargé de mettre à disposition les montants que nous demandons par le biais d’une procédure de recouvrement conformément aux conditions d’utilisation de PayPal. En règle générale, le débit du compte PayPal pour le traitement des paiements en notre faveur a lieu le même jour. Il n’est toutefois pas exclu que nous ne percevions dans un premier temps qu’un montant partiel, et par la suite, le montant total de la créance.
+
+            Vous avez la possibilité de modifier à tout moment l’autorisation de prélèvement octroyée en notre faveur par Fressnapf dans votre profil PayPal sous la rubrique « Paiements par prélèvement bancaire du commerçant » ou de révoquer cette autorisation avec effet pour l’avenir.
+
+
+
+
+
+            ## Paiement par carte de crédit
+
+
+            Pour les paiements par carte de crédit, le débit a lieu dans un délai d’une semaine après l’expédition de la marchandise. Vous avez le choix entre VISA et MasterCard.
+        {% endapply %}
+    </section>
+
+
+{% endblock %}
+
+

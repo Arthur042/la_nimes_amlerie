@@ -1,0 +1,44 @@
+{% extends 'front/base.html.twig' %}
+{% block title %}Conditions de résiliation{% endblock %}
+
+{% block body %}
+
+    <section class="container text-start markDownStyle">
+        {% apply markdown_to_html %}
+            ## Formulaire de rétractation
+            **Droit de rétractation**
+
+            Vous avez le droit de rétracter votre commande sans donner de motif dans un délai de quatorze jours suivant la date où vous-même ou un tiers désigné par vous, autre que le transporteur, prend physiquement possession du dernier bien ou lot ou de la dernière pièce commandée.
+
+            Veuillez envoyer un mail a l'adresse suivante : lanimesalerie@gmail.com
+
+            Pour toutes questions vous pouvez nous contacter par téléphone au : 06 89 65 26 36 (Du lundi au samedi de 08 h 00 à 20 h 00)
+
+            Votre décision de rétracter votre commande au moyen d’une décision dénuée d’ambiguïté (par exemple, lettre envoyée par la poste, courriel électronique).
+
+            Pour que le délai de rétractation soit respecté, il suffit de nous transmettre votre communication relative à l’exercice du droit de rétractation avant l’expiration de ce délai.
+
+            *******************
+
+            **Effets de la rétractation**
+
+            En cas de rétractation de votre part, nous vous rembourserons tous les paiements reçus de vous, y compris les frais de livraison (à l’exception des frais supplémentaires découlant du fait que vous avez choisi, le cas échéant, un mode de livraison autre que le mode moins coûteux de livraison standard proposé par nous), sans retard excessif et, en tout état de cause, au plus tard quatorze jours à compter du jour où nous sommes informés de votre décision de rétractation. Nous procéderons au remboursement en utilisant le même moyen de paiement que celui que vous aurez utilisé pour la transaction initiale, sauf si nous avons convenu expressément d’un moyen différent ; en tout état de cause, ce remboursement n’occasionnera pas de frais pour vous.
+
+            Nous pouvons différer le remboursement jusqu’à ce que nous ayons reçu le bien ou jusqu’à ce que vous ayez fourni une preuve d’expédition du bien, la date retenue étant celle du premier de ces faits.
+
+
+
+            Vous devrez nous renvoyer ou nous restituer le bien sans retard excessif et, en tout état de cause, au plus tard quatorze jours après que vous nous ayez communiqué votre décision de rétractation. Ce délai est réputé respecté si vous renvoyez le bien avant l’expiration du délai de quatorze jours. Nous prendrons en charge les frais de renvoi du bien. Votre responsabilité n’est engagée qu’à l’égard de la dépréciation du bien résultant de manipulations autres que celles nécessaires pour établir la nature, les caractéristiques et le bon fonctionnement de ce bien.
+
+            *******************
+
+            **ATTENTION :**
+
+            Le droit de rétractation ne peut être exercé notamment en cas de fourniture de biens susceptibles de se détériorer ou de se périmer rapidement ainsi que de biens scellés ne pouvant être renvoyés pour des raisons de protection de la santé ou d’hygiène et qui ont été descellés par le consommateur après la livraison, conformément à l’article L221-28 du Code de la Consommation.
+
+            **Fin des informations sur le droit de rétractation**
+        {% endapply %}
+    </section>
+
+
+{% endblock %}

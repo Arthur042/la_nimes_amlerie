@@ -175,8 +175,11 @@
             <nav class="d-none d-md-block">
                 <ul>
                     {% for category in main_categories() %}
-                    <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="#" id="buttonToggle{{ category.imageEndUrl|capitalize }}"><img
-                                src="{{ asset('build/images/icon/header/' ~ category.imageEndUrl ~ '.svg') }}" alt="icone de {{ category.name }}">{{ category.name }}</a></li>
+                        {% if category.name == 'Espace' %}
+                            <li class="opened"><a href="{{ path('app_home_space')}}"><img src="{{ asset('build/images/icon/header/' ~ category.imageEndUrl ~ '.svg') }}" alt="icone de {{ category.name }}">{{ category.name }}</a></li>
+                        {% else %}
+                            <li class="opened"><a data-bs-toggle="offcanvas" role="button" href="{{ path('app_category_parent', {'id': category.id}) }}" id="buttonToggle{{ category.imageEndUrl|capitalize }}"><img src="{{ asset('build/images/icon/header/' ~ category.imageEndUrl ~ '.svg') }}" alt="icone de {{ category.name }}">{{ category.name }}</a></li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </nav>

@@ -49,4 +49,46 @@ class HomeController extends AbstractController
             'marks' => $marks,
         ]);
     }
+
+    #[Route('/space', name: 'app_home_space')]
+    public function space(): Response
+    {
+        return $this->render('front/home/space.html.twig', [
+        ]);
+    }
+
+    #[Route('/legal_notice', name: 'app_home_legal_notice')]
+    public function legal_notice(): Response
+    {
+        return $this->render('front/home/legal_notice.html.twig', [
+        ]);
+    }
+
+    #[Route('/cgv', name: 'app_home_cgv')]
+    public function cgv(): Response
+    {
+        return $this->render('front/home/cgv.html.twig', [
+        ]);
+    }
+
+    #[Route('/data_protection', name: 'app_home_data_protection')]
+    public function data_protection(): Response
+    {
+        return $this->render('front/home/data_protection.html.twig', [
+        ]);
+    }
+
+    #[Route('/cancellation', name: 'app_home_cancellation')]
+    public function cancellation(): Response
+    {
+        return $this->render('front/home/cancellation.html.twig', [
+        ]);
+    }
+
+    #[Route('/paiement_security', name: 'app_home_paiement')]
+    public function paiement_security(): Response
+    {
+        return $this->render('front/home/paiement.html.twig', [
+        ]);
+    }
 }

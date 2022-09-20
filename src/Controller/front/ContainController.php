@@ -29,6 +29,6 @@ class ContainController extends AbstractController
             $session->set('QTY', $qtyTotal);
         }
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 }

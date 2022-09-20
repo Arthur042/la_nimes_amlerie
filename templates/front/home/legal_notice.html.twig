@@ -1,0 +1,49 @@
+{% extends 'front/base.html.twig' %}
+{% block title %}Mentions légales{% endblock %}
+
+{% block body %}
+
+    <section class="container text-start markDownStyle">
+        {% apply markdown_to_html %}
+            ## Mentions légales
+
+            Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site La Nîmes'alerie l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
+
+            ### Edition du site
+
+            Le présent site, accessible à l’URL **[https://la-nime-alerie.atwebpages.com/](https://la-nime-alerie.atwebpages.com/)** (le « Site »), est édité par :
+
+            Arthur André, résidant 2 rue de l'échappée 75010 PARIS, de nationalité Française (France), né(e) le 24/03/1998,
+
+            Le numéro individuel TVA de l’éditeur est : FR 40 123456789.
+
+
+
+            ### Hébergement
+
+            Le Site est hébergé par la société Awardspace, situé 41 rue jobin, 13003 Marseille, (contact téléphonique ou email : +442081234790).
+
+
+            ### Directeur de publication
+
+            Le Directeur de la publication du Site est Arthur André.
+
+
+            ### Nous contacter
+
+            Par téléphone : +33689652636
+            Par email : lanimesalerie@gmail.com
+            Par courrier : 2 rue de l'échappée 75010 PARIS
+
+
+            ### Données personnelles
+
+            Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée, disponible depuis la section "Charte de Protection des Données Personnelles", conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).
+
+        {% endapply %}
+    </section>
+
+
+{% endblock %}
+
+

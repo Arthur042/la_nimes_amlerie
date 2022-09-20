@@ -33,7 +33,7 @@ form{
             transition: all 0.25s ease-in-out;
 
             &:hover{
-                @include gradient_btn_hover;
+                filter: brightness(115%);
             }
         }
         

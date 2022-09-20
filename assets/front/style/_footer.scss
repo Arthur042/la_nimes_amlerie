@@ -161,9 +161,7 @@ footer{
                 }
             }
 
-            &:last-child a::after{
-                display: none;
-            }
+
 
             &:first-child, &:nth-child(2), &:nth-child(3){
                 margin-bottom: 3rem;
