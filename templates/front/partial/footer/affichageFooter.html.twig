@@ -11,21 +11,6 @@
                 <div class="poste"><span class="d-none">livraison la poste</span></div>
             </div>
         </div>
-        <div class="newsletter">
-            <p>Abonnez-vous à notre <b>newletter</b> pour ne rien rater !</p>
-            <form action="" method="get">
-                <div class="input-group">
-                    <div class="form-outline">
-                        <input type="emailNewsLetter" id="emailNewsLetter" name="emailNewsLetter" class="form-control"
-                            placeholder="exemple@email.com" maxlength="70" />
-                        <label class="form-label d-none" for="emailNewsLetter">barre de recherche</label>
-                    </div>
-                    <button type="button" class="btn lna_btn_fade">
-                        <img src="{{ asset('build/images/icon/footer/send.svg') }}" alt="">
-                    </button>
-                </div>
-            </form>
-        </div>
         <div class="row">
             <div class="footer_link d-sm-flex">
                 <div class="col-sm-4">
@@ -33,7 +18,6 @@
                     <hr>
                     <a href="{% if app.user %}{{ path('app_user') }}{% else %}{{ path('app_login') }}{% endif %}">Mon compte</a>
                     <a href="{% if app.user %}{{ path('app_ordered') }}{% else %}{{ path('app_login') }}{% endif %}">Mes commandes</a>
-                    <a href="#">Newsletter</a>
                 </div>
                 <div class="col-sm-4">
                     <p><b>Vos avantages</b></p>
