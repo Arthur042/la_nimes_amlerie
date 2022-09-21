@@ -9,3 +9,5 @@ import './selectPaiement.ts';
 import './orderAjax.ts';
 import './checkStarForComment.ts';
 import './addPlaceHolderToFilter.ts';
+import './searchbar.ts';
+import './displaysearchResult.ts';

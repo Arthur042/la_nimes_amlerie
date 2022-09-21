@@ -97,15 +97,6 @@ class Product
     ]
     private ?Category $category = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
-    #[
-        Assert\NotNull(
-            message : 'product.mark.NotNull',
-        ),
-    ]
-    private ?Mark $mark = null;
-
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Comment::class)]
     private Collection $comments;
 
@@ -114,6 +105,9 @@ class Product
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Mark $mark = null;
 
     public function __construct()
     {
@@ -224,18 +218,6 @@ class Product
         return $this;
     }
 
-    public function getMark(): ?Mark
-    {
-        return $this->mark;
-    }
-
-    public function setMark(?Mark $mark): self
-    {
-        $this->mark = $mark;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Comment>
      */
@@ -286,6 +268,18 @@ class Product
     public function setThumbnail(?string $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getMark(): ?Mark
+    {
+        return $this->mark;
+    }
+
+    public function setMark(?Mark $mark): self
+    {
+        $this->mark = $mark;
 
         return $this;
     }

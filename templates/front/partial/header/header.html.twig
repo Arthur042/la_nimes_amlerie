@@ -46,14 +46,16 @@
                         ">
                             <div class="input-group d-inline-block ">
                                 <div class="form-outline">
-                                    <input type="search" id="search" class="form-control"
-                                        placeholder="Recherche ( nom du produit, marque )" />
+                                    <input type="search" id="search" class="form-control" placeholder="Recherche ( nom du produit, marque )" aria-label="Search"/>
                                     <label class="form-label d-none" for="search">barre de recherche</label>
                                 </div>
-                                <button type="button" class="btn lna_btn_fade d-none d-md-inline-block">
-                                    <span class="lna_search_logo"></span></button>
+                                <button type="button" class="btn lna_btn_fade d-none d-md-inline-block" type="submit"><span class="lna_search_logo"></span></button>
                             </div>
                         </form>
+                        <div id="returnSearchData">
+
+                        </div>
+
                     </div>
                     <!-- fin barre de recherche -->
 
@@ -209,9 +211,9 @@
                     <div class="offcanvas{{ category.imageEndUrl|capitalize }}">
                         <div class="targetDogDisplay">
                             <ul class="secondCanvas">
-                                <li><a href="#">voir tous les produits</a></li>
+                                <li><a href="{{ path('app_category_parent', {'id': category.id}) }}">voir tous les produits</a></li>
                                 {% for subCategory in category|sub_categories %}
-                                    <li><a href="#">{{ subCategory.name }}</a></li>
+                                    <li><a href="{{ path('app_category_child', {'category': category.name|url_encode, 'id': subCategory.id }) }}">{{ subCategory.name }}</a></li>
                                 {% endfor %}
                             </ul>
                             <!-- pointeur du lien cliqué en background -->

@@ -1,0 +1,29 @@
+
+<div class="overflowScroll">
+    {% if products|length > 0 %}
+        <h2 class="ms-3 my-2">Produits</h2>
+        {% for product in products %}
+            <a href="{{ path('app_product', {'id': product.id}) }}">
+                <div class="d-flex align-items-center displayResult">
+                    {% if product.thumbnail is not null %}
+                        <img src="{{ asset(product.thumbnail) }}" alt="image {{ product.title }}" class="me-3">
+                    {% else %}
+                        <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
+                    {% endif %}
+                    <p>{{ product.title }} - <span>{{ (product.priceHt + (product.priceHt * product.tva))|round(2) }}€</span></p>
+                </div>
+            </a>
+        {% endfor %}
+    {% endif %}
+
+    {% if marks|length > 0 %}
+        <h2 class="ms-3 my-2">Marques</h2>
+        {% for mark in marks %}
+            <a href="{{ path('app_mark', {'id': mark.id}) }}">
+                <div class="d-flex align-items-center displayResult">
+                    <p>{{ mark.name }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    {% endif %}
+</div>

@@ -81,4 +81,14 @@ class MarkRepository extends ServiceEntityRepository
             ->orderBy('totalSell', 'DESC')
             ;
     }
+
+    public function findByNameLike(mixed $search)
+    {
+        return $this->createQueryBuilder('mark')
+            ->where('mark.name LIKE :name')
+            ->setParameter('name', '%'.$search.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

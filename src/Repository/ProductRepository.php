@@ -181,4 +181,16 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('mark', $mark)
             ;
     }
+
+    public function findByNameLike(string $search)
+    {
+        return $this->createQueryBuilder('product')
+            ->select('product', 'category')
+            ->join('product.category', 'category')
+            ->where('product.title LIKE :title')
+            ->setParameter('title', '%'.$search.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

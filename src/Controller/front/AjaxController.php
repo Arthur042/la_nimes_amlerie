@@ -6,6 +6,7 @@ use App\Entity\Bag;
 use App\Entity\Contain;
 use App\Repository\BagRepository;
 use App\Repository\ContainRepository;
+use App\Repository\MarkRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -75,6 +76,28 @@ class AjaxController extends AbstractController
 
         return new JsonResponse([
             'qtyTotale' => $qtyTotal,
+        ]);
+    }
+
+    #[Route('/search/{search}', name: 'ajax_add_item_to_cart')]
+    public function search(
+        string $search,
+        ProductRepository $productRepository,
+        MarkRepository $markRepository
+    ): Response
+    {
+        // decode json $search
+            $search = json_decode($search, true);
+
+        // Request in the database
+            $products = $productRepository->findByNameLike($search);
+            $marks = $markRepository->findByNameLike($search);
+
+        return (new JsonResponse())->setData([
+            'html' => $this->renderView('front/partial/result_search.html.twig', [
+                'products' => $products,
+                'marks' => $marks,
+            ]),
         ]);
     }
 }

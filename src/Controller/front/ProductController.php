@@ -17,7 +17,6 @@ class ProductController extends AbstractController
     public function index(
         ProductRepository $productRepository,
         CommentRepository $commentRepository,
-        SessionInterface $session,
         int $id
     ): Response
     {
