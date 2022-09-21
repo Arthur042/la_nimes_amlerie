@@ -71,4 +71,14 @@ class MarkRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function getQbAll()
+    {
+        return $this->createQueryBuilder('mark')
+            ->select('mark, count(products) as totalSell')
+            ->leftJoin('mark.products', 'products')
+            ->groupBy('mark')
+            ->orderBy('totalSell', 'DESC')
+            ;
+    }
 }

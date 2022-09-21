@@ -1,0 +1,9 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}Modification de la marque{% endblock %}
+
+{% block body %}
+    <h1>Modification de la marque</h1>
+
+    {{ include('back/mark/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+{% endblock %}

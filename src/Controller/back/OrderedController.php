@@ -52,12 +52,6 @@ class OrderedController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_ordered_new', methods: ['GET', 'POST'])]
-    public function new()
-    {
-        // todo lorsque payement accepté, créer la commande à partir d'un panier
-    }
-
     #[Route('/detail/{id}', name: 'app_admin_ordered_show', methods: ['GET'])]
     public function show(int $id): Response
     {

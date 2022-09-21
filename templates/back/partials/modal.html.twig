@@ -7,7 +7,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                êtes vous sur de vouloir supprimer cette élément de manière définitive
+                <p>êtes vous sur de vouloir supprimer cette élément de manière définitive</p>
+                {% if content is defined %}
+                    <p>{{ content }}</p>
+                {% endif %}
             </div>
             <div class="modal-footer">
                 <a href="{{ path(redirect, {'id': id}) }}" type="button" class="btn btn-warning">Supprimer</a>

@@ -59,6 +59,24 @@
         </li>
     </ul>
     <hr>
+    <h4>Marques</h4>
+    <ul class="list-unstyled ps-4">
+        <li>
+            <a href="{{ path('app_admin_mark') }}"
+               class="{% if app.request.pathinfo == path('app_admin_mark') %}menu-active{% endif %}"
+            >
+                Liste des marques
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('app_admin_mark_new') }}"
+               class="{% if app.request.pathinfo == path('app_admin_mark_new') %}menu-active{% endif %}"
+            >
+                Ajouter une marque
+            </a>
+        </li>
+    </ul>
+    <hr>
     <a href="{{ path('app_home') }}">
         Retour au site
     </a>
