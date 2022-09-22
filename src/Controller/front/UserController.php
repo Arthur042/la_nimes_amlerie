@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/user')]
@@ -32,6 +33,7 @@ class UserController extends AbstractController
         AdressRepository $adressRepository,
         EntityManagerInterface $entityManager,
         UserRepository $userRepository,
+        UserPasswordHasherInterface $passwordHasher,
     ): Response
     {
         $user = $this->getUser();
@@ -83,16 +85,19 @@ class UserController extends AbstractController
 
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
 
-
-
-            dump($user->getPassword());
-            if(hash('sha256',$formPassword->getData()['oldPassword']) === $user->getPassword()) {
-                dd(hash('sha256',$formPassword->getData()['oldPassword']));
+            if($formPassword->getData()['newPassword'] === $formPassword->getData()['confirmPassword']) {
+                // Encode(hash) the plain password, and set it.
+                $encodedPassword = $passwordHasher->hashPassword(
+                    $user,
+                    $formPassword->getData()['confirmPassword']
+                );
+                $user->setPassword($encodedPassword);
                 $entityManager->persist($user);
                 $entityManager->flush();
                 return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
             }
-            dd('end');
+            $flashy->error('Les mots de passe ne sont pas les mêmes', 'http://your-awesome-link.com');
+            return $this->redirectToRoute('app_user_profil', [], Response::HTTP_SEE_OTHER);
         }
 
 
