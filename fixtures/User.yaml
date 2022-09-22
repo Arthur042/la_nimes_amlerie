@@ -1,5 +1,6 @@
 parameters:
     password: '$2y$13$vldgApLZb5YMp51QTlLTyOSQf.TTiDYfd55FuaF6ZV2TAAdgE3enG' # 1234
+    passwordAdmin: '$2y$13$.4AQHVqFQH.GVIuqZyJg3e890BU0O/0DbcbeH5//2diWcZIHnAcaq' # Issou2021
 
 App\Entity\User:
     account (template):
@@ -18,11 +19,13 @@ App\Entity\User:
         username: 'LaTerreEstPlate'
         firstName: 'Admin'
         roles: '[ROLE_ADMIN]'
+        password: '<{passwordAdmin}>'
 
     account_stats (extends account):
-        username: 'Stats'
-        firstName: 'coucou'
+        username: 'LaFaceCachéeDeLaLune'
+        firstName: 'compte-stat'
         roles: '[ROLE_STATS]'
+        password: '<{passwordAdmin}>'
 
     account_user (extends account):
         username: 'User'

@@ -1,9 +1,9 @@
 App\Entity\Product:
-    product{0..2000}:
+    product{0..100}:
         title: '<text(20)>'
         littleDescription: '<text(80)>'
         fullDescription: '<text(200)>'
-        priceHt: '<numberBetween(5, 1000)>.<numberBetween(1, 100)>'
+        priceHt: '<numberBetween(4, 250)>.<numberBetween(1, 100)>'
         tva: '<randomFloat(2, 0, 0.2)>'
         quantity: '<numberBetween(0, 100)>'
         isAvailable: '<numberBetween(0, 1)>'

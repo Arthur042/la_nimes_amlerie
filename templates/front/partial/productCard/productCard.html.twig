@@ -2,7 +2,11 @@
 <div class="lna_product_item">
     <a href="{{ path('app_product', {'id': product.id}) }}">
         <div class="lna_card_img">
-            <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
+            {% if product.thumbnail is not null %}
+                <img src="{{ asset(product.thumbnail) }}" alt="image {{ product.title }}">
+            {% else %}
+                <img src="{{ asset('build/images/product_item/product_five.png') }}" alt="image d'un produit">
+            {% endif %}
         </div>
     </a>
     <div class="lna_card_body">

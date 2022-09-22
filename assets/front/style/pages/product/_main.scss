@@ -2,10 +2,18 @@
     position: relative;
     top: -48px;
     display: block;
+
+
+  .displayProduct{
+    @media screen and (max-width: 767px) {
+      margin-top: 7rem;
+    }
+  }
+
   .imagePart{
     img{
       width: 100%;
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 767px) {
         width: 200px;
       }
     }
