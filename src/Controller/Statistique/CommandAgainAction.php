@@ -49,6 +49,6 @@ class CommandAgainAction extends AbstractController
             // Calculate the percentage of command for second time
                 $percentage = round((($commandForSecondTime / $totalCommand) * 100),2);
         // return the percentage
-        return new JsonResponse(['récurrance de commande' => $percentage]);
+        return new JsonResponse(['recurranceCommande' => $percentage]);
     }
 }

@@ -50,7 +50,9 @@ class BagMoyAction extends AbstractController
 
             $result = $qb->getQuery()
                 ->getSingleScalarResult();
+
+            $result = round($result, 2);
         // return average bag price
-        return new JsonResponse(['Panier moyen' => $result]);
+        return new JsonResponse(['BagMoy' => $result]);
     }
 }

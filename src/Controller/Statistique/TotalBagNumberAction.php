@@ -33,6 +33,6 @@ class TotalBagNumberAction extends AbstractController
         $total = $qb->getQuery()
                 ->getSingleScalarResult();
         // return total number of bag
-        return new JsonResponse(['Nombre total de panier' => $total]);
+        return new JsonResponse(['totalBag' => $total]);
     }
 }

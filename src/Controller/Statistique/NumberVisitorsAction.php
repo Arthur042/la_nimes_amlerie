@@ -35,7 +35,7 @@ class NumberVisitorsAction extends AbstractController
             $TotalVisitors = $TotalVisitors->getQuery()->getSingleScalarResult();
         
         // return response
-            return new JsonResponse(['Nombre de visites' => $TotalVisitors]);
+            return new JsonResponse(['totalVisite' => $TotalVisitors]);
 
     }
 }

@@ -40,6 +40,6 @@ class NewClientAction extends AbstractController
             $newUsers = $qb->getQuery()
                         ->getSingleScalarResult();
 
-        return new JsonResponse(['Nombre de nouveaux clients' => $newUsers]);
+        return new JsonResponse(['newClient' => $newUsers]);
     }
 }

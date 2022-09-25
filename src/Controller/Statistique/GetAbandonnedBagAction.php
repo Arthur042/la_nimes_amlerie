@@ -50,7 +50,7 @@ class GetAbandonnedBagAction extends AbstractController
         $commande = $commande->getQuery()->getSingleScalarResult();
 
         // Calculate percentage of abandoned bags
-            $result['abandon panier %'] = round(($commande / $total) * 100, 2);
+            $result['abandonnedBag'] = round(($commande / $total) * 100, 2);
 
         return new JsonResponse($result);
     }
