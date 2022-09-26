@@ -21,18 +21,20 @@ class GetAbandonnedBagAction extends AbstractController
 
     public function __invoke(): JsonResponse
     {
-        // Count all bags
-            $total = $this->entityManager->createQueryBuilder()
-                    ->select('Count(b)')
-                    ->from(Bag::class, 'b');
+        // Count all bags with status EXPIRE
+        $abandonned = $this->entityManager->createQueryBuilder()
+        ->select('COUNT(b)')
+        ->from(Bag::class, 'b')
+        ->where('b.status = :status')
+        ->setParameter('status', PanierStatusEnum::EXPIRE);
 
-            if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
-                $total->where('b.creationAt BETWEEN :dateFrom AND :dateTo')
-                    ->setParameter('dateFrom', $_GET['dateFrom'])
-                    ->setParameter('dateTo', $_GET['dateTo']);
-            }
+        if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
+        $abandonned->andwhere('b.creationAt BETWEEN :dateFrom AND :dateTo')
+            ->setParameter('dateFrom', $_GET['dateFrom'])
+            ->setParameter('dateTo', $_GET['dateTo']);
+        }
 
-            $total = $total->getQuery()->getSingleScalarResult();
+        $abandonned = $abandonned->getQuery()->getSingleScalarResult();
 
         // Count all bags with status COMMANDE
             $commande = $this->entityManager->createQueryBuilder()
@@ -50,8 +52,17 @@ class GetAbandonnedBagAction extends AbstractController
         $commande = $commande->getQuery()->getSingleScalarResult();
 
         // Calculate percentage of abandoned bags
-            $result['abandonnedBag'] = round(($commande / $total) * 100, 2);
+            // $result['abandon panier %'] = round(($commande / $total) * 100, 2);
 
-        return new JsonResponse($result);
+            $response = [[
+                "name" => "Panier abandonné",
+                "value" => $abandonned
+            ],
+            [
+                "name" => "Commande",
+                "value" => $commande
+            ]];
+
+        return new JsonResponse($response);
     }
 }

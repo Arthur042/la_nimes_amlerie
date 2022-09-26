@@ -35,6 +35,6 @@ class TotalSellAction extends AbstractController
         $total = $qb->getQuery()
             ->getSingleScalarResult();
         // return total sell price
-        return new JsonResponse(['totalSell' => $total]);
+        return new JsonResponse(['Montant total des ventes' => $total]);
     }
 }

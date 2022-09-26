@@ -34,6 +34,6 @@ class TotalCommandNumberAction extends AbstractController
                     ->getSingleScalarResult();
 
         // return total number of command
-        return new JsonResponse(['totalOrdered' => $total]);
+        return new JsonResponse(['Nombre total de commande' => $total]);
     }
 }

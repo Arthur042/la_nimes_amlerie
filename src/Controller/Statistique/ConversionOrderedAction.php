@@ -48,12 +48,23 @@ class ConversionOrderedAction extends AbstractController
             $totalBag = $totalBag->getQuery()->getSingleScalarResult();
             $totalOrder = $totalOrder->getQuery()->getSingleScalarResult();
 
+            $totalBag = $totalBag - $totalOrder;
+
+            $response = [[
+                "name" => "Paniers non converti",
+                "value" => $totalBag
+            ],
+            [
+                "name" => "Paniers converti",
+                "value" => $totalOrder
+            ]];
+
         // Create response
-            $response = [
-                'total_bag' => $totalBag,
-                'total_order' => $totalOrder,
-                'conversion' => round(($totalOrder / $totalBag) * 100, 2),
-            ];
+            // $response = [
+            //     'total_bag' => $totalBag,
+            //     'total_order' => $totalOrder,
+            //     'conversion' => round(($totalOrder / $totalBag) * 100, 2),
+            // ];
         
         // return response
             return new JsonResponse($response);
