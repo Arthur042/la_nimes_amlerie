@@ -19,27 +19,74 @@ class NewClientAction extends AbstractController
 
     public function __invoke(): JsonResponse
     {
-        // take first day of current month and stock result in a variable
-        $date = new \DateTime('first day of this month');
-        $date = date('Y-m-d', strtotime($date->format('Y-m-d')));
+        $newUsers = $this->entityManager->createQueryBuilder()
+                ->select('SUBSTRING(u.inscriptionAt, 9, 2) as name, COUNT(u) as value')
+                ->from(User::class, 'u')
+                ->groupBy('name')
+                ->orderBy('u.inscriptionAt', 'DESC')
+                ->setMaxResults(31)
+                ->getQuery()
+                ->getResult();
 
-        // Find new users (user inserted in the base during current month)
-            $qb = $this->entityManager->createQueryBuilder()
-                ->select('COUNT(u)')
-                ->from(User::class, 'u');
-        if (isset($_GET['dateFrom']) && isset($_GET['dateTo'])) {
-            $qb->where('u.inscriptionAt BETWEEN :dateFrom AND :dateTo')
-                ->setParameter('dateFrom', $_GET['dateFrom'])
-                ->setParameter('dateTo', $_GET['dateTo'])
-                ->andWhere('u.inscriptionAt <= :expireDate')
-                ->setParameter('expireDate', 'u.inscriptionAt + 1 month');
-        } else {
-            $qb->where('u.inscriptionAt >= :date')
-                ->setParameter('date', $date);
-        }
-            $newUsers = $qb->getQuery()
-                        ->getSingleScalarResult();
+        // create request to count total visits
+            $totalVisitors = $this->entityManager->createQueryBuilder()
+            ->select('SUBSTRING(v.connectionAt, 9, 2) as name, COUNT(v) as value')
+            ->from(CountVisitors::class, 'v')
+            ->groupBy('name')
+            ->orderBy('v.connectionAt', 'DESC')
+            ->setMaxResults(31)
+            ->getQuery()
+            ->getResult();
 
-        return new JsonResponse(['Nombre de nouveaux clients' => $newUsers]);
+        $temp = [
+            [
+              "name" => "Nb nouveau client",
+              "series" => []
+            ],
+            [
+              "name" => "Nb visite",
+              "series" => []
+            ]
+          ];
+
+        $result = [
+          [
+            "name" => "Nb nouveau client",
+            "series" => []
+          ],
+          [
+            "name" => "Nb visite",
+            "series" => []
+          ]
+        ];
+
+          for($i = 0; $i < count($newUsers); $i++) {
+            array_push($temp[0]['series'], $newUsers[$i]);
+          };
+          for($i = 0; $i < count($totalVisitors); $i++) {
+            array_push($temp[1]['series'], $totalVisitors[$i]);
+          };
+
+          for($i = 0; $i < 31; $i++) {
+            if(empty($temp[1]['series'][$i])) {
+                array_push($temp[1]['series'], [
+                    "name" => "$i",
+                    "value" => 0
+                ]);
+            };
+          };
+          for($i = 0; $i < 31; $i++) {
+            $day = 30-$i;
+            $temp[0]['series'][$i]['name'] = "$day";
+            $temp[1]['series'][$i]['name'] = "$day";
+          };
+          for($i = 0; $i < 31; $i++) {
+            $day = 30-$i;
+            array_push($result[0]['series'], $temp[0]['series'][$day]);
+            array_push($result[1]['series'], $temp[1]['series'][$day]);
+          };
+
+
+        return new JsonResponse($result);
     }
 }
