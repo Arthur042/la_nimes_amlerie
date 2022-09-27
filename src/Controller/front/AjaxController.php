@@ -79,7 +79,7 @@ class AjaxController extends AbstractController
         ]);
     }
 
-    #[Route('/search/{search}', name: 'ajax_add_item_to_cart')]
+    #[Route('/search/{search}', name: 'ajax_search')]
     public function search(
         string $search,
         ProductRepository $productRepository,
